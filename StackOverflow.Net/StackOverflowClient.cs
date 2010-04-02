@@ -112,52 +112,52 @@ namespace StackOverflow
 
         public IList<Question> GetActiveQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "active" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "active" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetNewestQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "newest" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "newest" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetFeaturedQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "featured" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "featured" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetHotQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "hot" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "hot" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetHotQuestionsForWeek(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "week" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "week" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetHotQuestionsForMonth(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "month" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "month" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetQuestionsByVotes(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetUnansweredQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "unanswered" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "unanswered" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetNewestQuestionsByVotes(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions(new string[] { "unanswered", "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", new string[] { "unanswered", "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private IList<Question> GetQuestions(string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private IList<Question> GetQuestions(string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            return MakeRequest<List<Question>>("questions", false, sort, new
+            return MakeRequest<List<Question>>(method, false, sort, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
@@ -168,6 +168,47 @@ namespace StackOverflow
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 tagged = tags == null ? (string)null : String.Join(" ", tags)
             });
+        }
+
+        public IList<Question> GetRecentQuestionsByUser(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "questions", "recent" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetQuestionsByUserByViews(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "questions", "views" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetNewestQuestionsByUser(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "questions", "newest" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetQuestionsByUserByVotes(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "questions", "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+
+        public IList<Question> GetRecentFavoriteQuestionsByUser(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites", "recent" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetFavoriteQuestionsByUserByViews(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites", "views" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetFavoriteNewestQuestionsByUser(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites", "newest" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetFavoriteQuestionsByUserByVotes(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        {
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites", "added" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public Question GetQuestion(int id, bool includeBody)

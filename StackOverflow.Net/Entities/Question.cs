@@ -12,10 +12,11 @@ namespace StackOverflow
         {
             Tags = new List<string>();
             Answers = new List<Answer>();
+            Comments = new List<Comment>();
         }
 
         [JsonProperty("question_id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [JsonProperty("title")]
         public string Title { get; set; }
         [JsonProperty("body")]
@@ -49,5 +50,6 @@ namespace StackOverflow
 
         public List<string> Tags { get; set; }
         public List<Answer> Answers { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

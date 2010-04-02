@@ -7,8 +7,13 @@ namespace StackOverflow
 {
     public class Answer
     {
+        public Answer()
+        {
+            Comments = new List<Comment>();
+        }
+
         [JsonProperty("answer_id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [JsonProperty("title")]
         public string Title { get; set; }
         [JsonProperty("accepted")]

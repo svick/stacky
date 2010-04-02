@@ -8,7 +8,7 @@ namespace StackOverflow
     public class Comment
     {
         [JsonProperty("comment_id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [JsonProperty("body")]
         public string Body { get; set; }
         [JsonProperty("creation_date")]

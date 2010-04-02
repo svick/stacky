@@ -108,11 +108,65 @@ namespace StackOverflow
 
         #region API Methods
 
-        public IList<Question> GetQuestions()
+        #region Question Methods
+
+        public IList<Question> GetActiveQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            return MakeRequest<List<Question>>("questions", false, (string[])null, new
+            return GetQuestions(new string[] { "active" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetNewestQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "newest" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetFeaturedQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "featured" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetHotQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "hot" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetHotQuestionsForWeek(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "week" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetHotQuestionsForMonth(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "month" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetQuestionsByVotes(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetUnansweredQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "unanswered" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        public IList<Question> GetNewestQuestionsByVotes(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return GetQuestions(new string[] { "unanswered", "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+        }
+
+        private IList<Question> GetQuestions(string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return MakeRequest<List<Question>>("questions", false, sort, new
             {
-                key = Config.ApiKey
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                body = includeBody ? (bool?)true : null,
+                comments = includeComments ? (bool?)true : null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                tagged = tags == null ? (string)null : String.Join(" ", tags)
             });
         }
 
@@ -124,6 +178,8 @@ namespace StackOverflow
                 body = includeBody ? "true" : "false"
             });
         }
+
+        #endregion
 
         #endregion
     }

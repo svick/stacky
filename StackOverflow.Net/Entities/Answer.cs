@@ -24,8 +24,8 @@ namespace StackOverflow
         public int OwnerUserId { get; set; }
         [JsonProperty("owner_display_name")]
         public string OwnerDisplayName { get; set; }
-        [JsonProperty("creation_date")]
-        public long CreationDate { get; set; }
+        [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime CreationDate { get; set; }
         [JsonProperty("up_vote_count")]
         public int UpVoteCount { get; set; }
         [JsonProperty("down_vote_count")]

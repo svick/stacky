@@ -13,16 +13,16 @@ namespace StackOverflow
         public string Type { get; set; }
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
-        [JsonProperty("creation_date")]
-        public long CreationDate { get; set; }
+        [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime CreationDate { get; set; }
         [JsonProperty("reputation")]
         public int Reputation { get; set; }
         [JsonProperty("email_hash")]
         public string EmailHash { get; set; }
         [JsonProperty("age")]
         public int? Age { get; set; }
-        [JsonProperty("last_access_date")]
-        public long LastAccessDate { get; set; }
+        [JsonProperty("last_access_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LastAccessDate { get; set; }
         [JsonProperty("website_url")]
         public string Website { get; set; }
         [JsonProperty("location")]

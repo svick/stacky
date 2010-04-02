@@ -53,12 +53,14 @@
     <Compile Include="Entities\Answer.cs" />
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\SiteStats.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\Require.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
+    <Compile Include="Helpers\UnixDateTimeConverter.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Interfaces\IProtocol.cs" />
     <Compile Include="Interfaces\IResponse.cs" />

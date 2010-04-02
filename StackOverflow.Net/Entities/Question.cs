@@ -27,12 +27,13 @@ namespace StackOverflow
         public int OwnerUserId { get; set; }
         [JsonProperty("owner_display_name")]
         public string OwnerDisplayName { get; set; }
-        [JsonProperty("creation_date")]
-        public long CreationDate { get; set; }
-        [JsonProperty("last_activity_date")]
-        public long LastActivityDate { get; set; }
-        [JsonProperty("last_edit_date")]
-        public long LastEditDate { get; set; }
+
+        [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime CreationDate { get; set; }
+        [JsonProperty("last_activity_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LastActivityDate { get; set; }
+        [JsonProperty("last_edit_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LastEditDate { get; set; }
         [JsonProperty("up_vote_count")]
         public int UpVoteCount { get; set; }
         [JsonProperty("down_vote_count")]

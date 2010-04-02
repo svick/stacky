@@ -110,6 +110,21 @@ namespace StackOverflow
 
         #region Question Methods
 
+        private IList<Question> GetQuestions(string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        {
+            return MakeRequest<List<Question>>(method, false, sort, new
+            {
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                body = includeBody ? (bool?)true : null,
+                comments = includeComments ? (bool?)true : null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                tagged = tags == null ? (string)null : String.Join(" ", tags)
+            });
+        }
+
         public IList<Question> GetActiveQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions("questions", new string[] { "active" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
@@ -155,21 +170,6 @@ namespace StackOverflow
             return GetQuestions("questions", new string[] { "unanswered", "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private IList<Question> GetQuestions(string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
-        {
-            return MakeRequest<List<Question>>(method, false, sort, new
-            {
-                key = Config.ApiKey,
-                page = page ?? null,
-                pagesize = pageSize ?? null,
-                body = includeBody ? (bool?)true : null,
-                comments = includeComments ? (bool?)true : null,
-                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
-                tagged = tags == null ? (string)null : String.Join(" ", tags)
-            });
-        }
-
         public IList<Question> GetRecentQuestionsByUser(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions("users", new string[] { userId.ToString(), "questions", "recent" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
@@ -211,31 +211,218 @@ namespace StackOverflow
             return GetQuestions("users", new string[] { userId.ToString(), "favorites", "added" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public Question GetQuestion(int id, bool includeBody)
+        public Question GetQuestion(int id, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             return MakeRequest<Question>("questions", false, new string[] { id.ToString() }, new
             {
                 key = Config.ApiKey,
-                body = includeBody ? "true" : "false"
+                body = includeBody ? (bool?)true : null,
+                comments = includeComments ? (bool?)true : null,
+                page = page ?? null,
+                pagesize = pageSize ?? null
+            });
+        }
+
+        #endregion
+
+        #region User Methods
+
+        private IList<User> GetUsers(string sort, int? page = null, int? pageSize = null, string filter = null)
+        {
+            return MakeRequest<List<User>>("users", false, new string[] { sort }, new
+            {
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                filter = filter
+            });
+        }
+
+        public IList<User> GetUsersByReputation(int? page = null, int? pageSize = null, string filter = null)
+        {
+            return GetUsers("reputation", page, pageSize, filter);
+        }
+
+        public IList<User> GetNewestUsers(int? page = null, int? pageSize = null, string filter = null)
+        {
+            return GetUsers("newest", page, pageSize, filter);
+        }
+
+        public IList<User> GetOldestUsers(int? page = null, int? pageSize = null, string filter = null)
+        {
+            return GetUsers("oldest", page, pageSize, filter);
+        }
+
+        public IList<User> GetUsersByName(int? page = null, int? pageSize = null, string filter = null)
+        {
+            return GetUsers("name", page, pageSize, filter);
+        }
+
+        public User GetUser(int userId)
+        {
+            return MakeRequest<User>("users", false, new string[] { userId.ToString() }, new
+            {
+                key = Config.ApiKey
+            });
+        }
+
+        public IList<Comment> GetUserMentions(int userId, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return MakeRequest<List<Comment>>("users", false, new string[] { userId.ToString(), "mentioned" }, new
+            {
+                key = Config.ApiKey,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+        }
+
+        #endregion
+
+        #region Badge Methods
+
+        private IList<Badge> GetBadges(string method, string[] sort)
+        {
+            return MakeRequest<List<Badge>>(method, false, sort, new
+            {
+                key = Config.ApiKey
+            });
+        }
+
+        public IList<Badge> GetBadgesByName()
+        {
+            return GetBadges("badges", new string[] { "name" });
+        }
+
+        public IList<Badge> GetBadgesByTag()
+        {
+            return GetBadges("badges", new string[] { "tags" });
+        }
+
+        public IList<Badge> GetBadgesByUser(int userId)
+        {
+            return GetBadges("users", new string[] { userId.ToString(), "badges" });
+        }
+
+        #endregion
+
+        #region Tag Methods
+
+        private IList<Tag> GetTags(string method, string[] urlParameters, int? page = null, int? pageSize = null)
+        {
+            return MakeRequest<List<Tag>>(method, false, urlParameters, new
+            {
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null
+            });
+        }
+
+        public IList<Tag> GetPopularTags(int? page = null, int? pageSize = null)
+        {
+            return GetTags("tags", new string[] { "popular" }, page, pageSize);
+        }
+
+        public IList<Tag> GetTagsByName(int? page = null, int? pageSize = null)
+        {
+            return GetTags("tags", new string[] { "name" }, page, pageSize);
+        }
+
+        public IList<Tag> GetRecentTags(int? page = null, int? pageSize = null)
+        {
+            return GetTags("tags", new string[] { "recent" }, page, pageSize);
+        }
+
+        public IList<Tag> GetTagsByUser(int userId, int? page = null, int? pageSize = null)
+        {
+            return GetTags("users", new string[] { userId.ToString(), "tags" }, page, pageSize);
+        }
+
+        #endregion
+
+        #region Answer Methods
+
+        private IList<Answer> GetAnswers(string method, string[] urlParameters, int? page, int? pageSize, bool includeBody, bool includeComments)
+        {
+            return MakeRequest<List<Answer>>(method, false, urlParameters, new
+            {
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                body = includeBody ? (bool?)true : null,
+                comments = includeComments ? (bool?)true : null
+            });
+        }
+
+        public IList<Answer> GetUsersRecentAnswers(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        {
+            return GetAnswers("users", new string[] { userId.ToString(), "answers", "recent" }, page, pageSize, includeBody, includeComments);
+        }
+
+        public IList<Answer> GetUsersAnswersByViews(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        {
+            return GetAnswers("users", new string[] { userId.ToString(), "answers", "views" }, page, pageSize, includeBody, includeComments);
+        }
+
+        public IList<Answer> GetUsersNewestAnswers(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        {
+            return GetAnswers("users", new string[] { userId.ToString(), "answers", "newest" }, page, pageSize, includeBody, includeComments);
+        }
+
+        public IList<Answer> GetUsersAnswersByVotes(int userId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        {
+            return GetAnswers("users", new string[] { userId.ToString(), "answers", "votes" }, page, pageSize, includeBody, includeComments);
+        }
+
+        #endregion
+
+        #region Comment Methods
+
+        private IList<Comment> GetComments(string method, string[] urlParameters, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return MakeRequest<List<Comment>>(method, false, urlParameters, new
+            {
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+        }
+
+        public IList<Comment> GetUsersRecentComments(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return GetComments("users", new string[] { userId.ToString(), "comments", "recent" }, page, pageSize, fromDate, toDate);
+        }
+
+        public IList<Comment> GetUsersCommentsByScore(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return GetComments("users", new string[] { userId.ToString(), "comments", "score" }, page, pageSize, fromDate, toDate);
+        }
+
+        public IList<Comment> GetUsersRecentsCommentsTo(int fromUserId, int toUserId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return GetComments("users", new string[] { fromUserId.ToString(), "comments", toUserId.ToString(), "recent" }, page, pageSize, fromDate, toDate);
+        }
+
+        public IList<Comment> GetUsersCommentsToByScore(int fromUserId, int toUserId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return GetComments("users", new string[] { fromUserId.ToString(), "comments", toUserId.ToString(), "score" }, page, pageSize, fromDate, toDate);
+        }
+
+        #endregion
+
+        #region Stats Methods
+
+        public SiteStats GetSiteStats()
+        {
+            return MakeRequest<SiteStats>("stats", false, null, new
+            {
+                key = Config.ApiKey
             });
         }
 
         #endregion
 
         #endregion
-    }
-
-    public enum QuestionSort
-    {
-        Active,
-        Newest,
-        Featured,
-        Hot,
-        Week,
-        Month,
-        Votes,
-        UnAnswered,
-        UnAnsweredNewest,
-        UnAnsweredVotes
     }
 }

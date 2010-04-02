@@ -11,8 +11,8 @@ namespace StackOverflow
         public long Id { get; set; }
         [JsonProperty("body")]
         public string Body { get; set; }
-        [JsonProperty("creation_date")]
-        public long CreationDate { get; set; }
+        [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime CreationDate { get; set; }
         [JsonProperty("owner_user_id")]
         public int OwnerUserId { get; set; }
         [JsonProperty("owner_display_name")]

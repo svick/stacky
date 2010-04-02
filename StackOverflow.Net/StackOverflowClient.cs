@@ -110,47 +110,47 @@ namespace StackOverflow
 
         #region Question Methods
 
-        public IList<Question> GetActiveQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetActiveQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "active" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetNewestQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetNewestQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "newest" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetFeaturedQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetFeaturedQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "featured" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetHotQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetHotQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "hot" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetHotQuestionsForWeek(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetHotQuestionsForWeek(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "week" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetHotQuestionsForMonth(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetHotQuestionsForMonth(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "month" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetQuestionsByVotes(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetQuestionsByVotes(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetUnansweredQuestions(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetUnansweredQuestions(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "unanswered" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetNewestQuestionsByVotes(int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        public IList<Question> GetNewestQuestionsByVotes(int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions(new string[] { "unanswered", "votes" }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }

@@ -53,9 +53,11 @@
     <Compile Include="Entities\Answer.cs" />
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\PostEvent.cs" />
     <Compile Include="Entities\SiteStats.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserEvent.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\Require.cs" />

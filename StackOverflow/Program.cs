@@ -10,21 +10,10 @@ namespace StackOverflow
     {
         static void Main(string[] args)
         {
-            IWebClient client = new WebClient();
+            IWebClient webClient = new WebClient();
             IProtocol protocol = new JsonProtocol();
 
-            var c = new StackOverflowClient("0.5", client, protocol);
-            var questions = c.GetUnansweredQuestions(null, null, false, false, null, null, null);
-
-            foreach (Question q in questions)
-            {
-                Console.WriteLine(q.Title);
-                foreach (var tag in q.Tags)
-                    Console.WriteLine("\t{0}", tag);
-            }
-
-            //var l = GetQuestions();
-            //var result = SerializationHelper.SerializeJson(l);
+            var client = new StackOverflowClient(Config.ServiceVersion, webClient, protocol);
                         
             Console.ReadLine();
         }

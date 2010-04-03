@@ -223,6 +223,16 @@ namespace StackOverflow
             });
         }
 
+        public IList<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return MakeRequest<List<PostEvent>>("questions", false, new string[] { questionId.ToString(), "timeline" }, new
+            {
+                key = Config.ApiKey,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+        }
+
         #endregion
 
         #region User Methods
@@ -269,6 +279,16 @@ namespace StackOverflow
         public IList<Comment> GetUserMentions(int userId, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return MakeRequest<List<Comment>>("users", false, new string[] { userId.ToString(), "mentioned" }, new
+            {
+                key = Config.ApiKey,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+        }
+
+        public IList<UserEvent> GetUserTimeline(int userId, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return MakeRequest<List<UserEvent>>("users", false, new string[] { userId.ToString(), "timeline" }, new
             {
                 key = Config.ApiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,

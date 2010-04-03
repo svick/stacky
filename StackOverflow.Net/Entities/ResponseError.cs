@@ -8,6 +8,7 @@ namespace StackOverflow
     {
         [XmlAttribute("Code"), JsonProperty("Code")]
         public int ErrorCode { get; set; }
+
         [XmlAttribute("Message"), JsonProperty("Message")]
         public string Message { get; set; }
     }

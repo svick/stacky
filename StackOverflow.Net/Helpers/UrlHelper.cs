@@ -4,9 +4,13 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
-using System.Web;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+#if SILVERLIGHT
+using System.Windows.Browser;
+#else
+using System.Web;
+#endif
 
 #endregion
 

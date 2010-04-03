@@ -14,6 +14,11 @@ namespace StackOverflow
             IProtocol protocol = new JsonProtocol();
 
             var client = new StackOverflowClient(Config.ServiceVersion, webClient, protocol);
+            var reputation = client.GetUserReputation(22656);
+            foreach (var rep in reputation)
+            {
+                Console.WriteLine(rep.Title);
+            }
                         
             Console.ReadLine();
         }

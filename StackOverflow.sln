@@ -14,9 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.Net.Silverlight", "StackOverflow.Net.Silverlight\StackOverflow.Net.Silverlight.csproj", "{C888BD6E-3362-48BE-AFD4-20D307FD917D}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs07.codeplex.com/
 		SccLocalPath0 = .
@@ -29,6 +31,9 @@ Global
 		SccProjectUniqueName3 = StackOverflow.Tests\\StackOverflow.Tests.csproj
 		SccProjectName3 = StackOverflow.Tests
 		SccLocalPath3 = StackOverflow.Tests
+		SccProjectUniqueName4 = StackOverflow.Net.Silverlight\\StackOverflow.Net.Silverlight.csproj
+		SccProjectName4 = StackOverflow.Net.Silverlight
+		SccLocalPath4 = StackOverflow.Net.Silverlight
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = StackOverflow.vsmdi
@@ -72,6 +77,16 @@ Global
 		{C65BE476-9979-4004-93A6-9B08D56E67BD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C65BE476-9979-4004-93A6-9B08D56E67BD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C65BE476-9979-4004-93A6-9B08D56E67BD}.Release|x86.ActiveCfg = Release|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C888BD6E-3362-48BE-AFD4-20D307FD917D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

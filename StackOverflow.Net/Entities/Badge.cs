@@ -9,8 +9,8 @@ namespace StackOverflow
     {
         [JsonProperty("badge_id")]
         public int Id { get; set; }
-        [JsonProperty("class")]
-        public string Class { get; set; }
+        [JsonProperty("class"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public BadgeClass Class { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("description")]

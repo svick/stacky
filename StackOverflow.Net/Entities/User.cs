@@ -9,8 +9,8 @@ namespace StackOverflow
     {
         [JsonProperty("user_id")]
         public long Id { get; set; }
-        [JsonProperty("user_type")]
-        public string Type { get; set; }
+        [JsonProperty("user_type"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public UserType Type { get; set; }
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
         [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]

@@ -17,9 +17,16 @@ namespace StackOverflow
         public int OwnerUserId { get; set; }
         [JsonProperty("owner_display_name")]
         public string OwnerDisplayName { get; set; }
-        [JsonProperty("post_type")]
-        public string PostType { get; set; }
+        [JsonProperty("post_type"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PostType PostType { get; set; }
         [JsonProperty("score")]
         public int Score { get; set; }
+    }
+
+    public enum PostType
+    {
+        Answer,
+        Question,
+        Comment
     }
 }

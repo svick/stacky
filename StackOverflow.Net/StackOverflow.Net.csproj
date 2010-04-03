@@ -54,6 +54,7 @@
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\PostEvent.cs" />
+    <Compile Include="Entities\Reputation.cs" />
     <Compile Include="Entities\SiteStats.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />

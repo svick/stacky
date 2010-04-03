@@ -296,6 +296,18 @@ namespace StackOverflow
             });
         }
 
+        public IList<Reputation> GetUserReputation(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return MakeRequest<List<Reputation>>("users", false, new string[] { userId.ToString(), "reputation" }, new
+            {
+                key = Config.ApiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+        }
+
         #endregion
 
         #region Badge Methods

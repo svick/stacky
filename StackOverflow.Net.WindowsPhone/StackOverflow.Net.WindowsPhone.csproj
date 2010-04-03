@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99DE2A55-F4C0-4D75-B135-524FF8D1B6F4}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StackOverflow.Net.WindowsPhone</RootNamespace>
+    <AssemblyName>StackOverflow.Net.WindowsPhone</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json.Silverlight">
+      <HintPath>..\Dependancies\Newtonsoft.Json.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\StackOverflow.Net.Silverlight\Helpers\Config.cs">
+      <Link>Helpers\Config.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net.Silverlight\Interfaces\IWebClient.cs">
+      <Link>Interfaces\IWebClient.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net.Silverlight\StackOverflowClient.cs">
+      <Link>StackOverflowClient.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\ApiException.cs">
+      <Link>ApiException.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Answer.cs">
+      <Link>Entities\Answer.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Badge.cs">
+      <Link>Entities\Badge.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Comment.cs">
+      <Link>Entities\Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\PostEvent.cs">
+      <Link>Entities\PostEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Question.cs">
+      <Link>Entities\Question.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Reputation.cs">
+      <Link>Entities\Reputation.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\ResponseError.cs">
+      <Link>Entities\ResponseError.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\SiteStats.cs">
+      <Link>Entities\SiteStats.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Tag.cs">
+      <Link>Entities\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\User.cs">
+      <Link>Entities\User.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\UserEvent.cs">
+      <Link>Entities\UserEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Helpers\DateHelper.cs">
+      <Link>Helpers\DateHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Helpers\Require.cs">
+      <Link>Helpers\Require.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Helpers\SerializationHelper.cs">
+      <Link>Helpers\SerializationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Helpers\UnixDateTimeConverter.cs">
+      <Link>Helpers\UnixDateTimeConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Helpers\UrlHelper.cs">
+      <Link>Helpers\UrlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Interfaces\IProtocol.cs">
+      <Link>Interfaces\IProtocol.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Interfaces\IResponse.cs">
+      <Link>Interfaces\IResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Protocols\JsonProtocol.cs">
+      <Link>Protocols\JsonProtocol.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Protocols\JsonResponse.cs">
+      <Link>Protocols\JsonResponse.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -14,7 +14,7 @@ namespace StackOverflow
 
         public static string ApiKey
         {
-            get { return "knockknock"; }
+            get { return ""; }
         }
     }
 }

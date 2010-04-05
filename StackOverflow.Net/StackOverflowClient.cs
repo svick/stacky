@@ -213,14 +213,14 @@ namespace StackOverflow
 
         public Question GetQuestion(int id, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<Question>("questions", false, new string[] { id.ToString() }, new
+            return MakeRequest<List<Question>>("questions", false, new string[] { id.ToString() }, new
             {
                 key = Config.ApiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            });
+            }).FirstOrDefault();
         }
 
         public IList<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
@@ -270,10 +270,10 @@ namespace StackOverflow
 
         public User GetUser(int userId)
         {
-            return MakeRequest<User>("users", false, new string[] { userId.ToString() }, new
+            return MakeRequest<List<User>>("users", false, new string[] { userId.ToString() }, new
             {
                 key = Config.ApiKey
-            });
+            }).FirstOrDefault();
         }
 
         public IList<Comment> GetUserMentions(int userId, DateTime? fromDate = null, DateTime? toDate = null)
@@ -447,10 +447,10 @@ namespace StackOverflow
 
         public SiteStats GetSiteStats()
         {
-            return MakeRequest<SiteStats>("stats", false, null, new
+            return MakeRequest<List<SiteStats>>("stats", false, null, new
             {
                 key = Config.ApiKey
-            });
+            }).FirstOrDefault();
         }
 
         #endregion

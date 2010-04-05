@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -182,14 +183,14 @@ namespace StackOverflow.Net
 
         public void GetQuestion(int id, Action<Question> callback, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            MakeRequest<Question>("questions", false, new string[] { id.ToString() }, new
+            MakeRequest<List<Question>>("questions", false, new string[] { id.ToString() }, new
             {
                 key = Config.ApiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, callback);
+            }, returnedQuestions => callback(returnedQuestions.FirstOrDefault()));
         }
 
         public void GetQuestionTimeline(int questionId, Action<List<PostEvent>> callback, DateTime? fromDate = null, DateTime? toDate = null)
@@ -239,10 +240,10 @@ namespace StackOverflow.Net
 
         public void GetUser(int userId, Action<User> callback)
         {
-            MakeRequest<User>("users", false, new string[] { userId.ToString() }, new
+            MakeRequest<List<User>>("users", false, new string[] { userId.ToString() }, new
             {
                 key = Config.ApiKey
-            }, callback);
+            }, results => callback(results.FirstOrDefault()));
         }
 
         public void GetUserMentions(int userId, Action<List<Comment>> callback, DateTime? fromDate = null, DateTime? toDate = null)
@@ -416,10 +417,10 @@ namespace StackOverflow.Net
 
         public void GetSiteStats(Action<SiteStats> callback)
         {
-            MakeRequest<SiteStats>("stats", false, null, new
+            MakeRequest<List<SiteStats>>("stats", false, null, new
             {
                 key = Config.ApiKey
-            }, callback);
+            }, results => callback(results.FirstOrDefault()));
         }
 
         #endregion

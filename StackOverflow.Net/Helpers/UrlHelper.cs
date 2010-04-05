@@ -42,7 +42,7 @@ namespace StackOverflow
                 foreach (string param in urlParameters)
                 {
 #if PHONE
-                    urlBase += String.Format("{0}/", param);
+                    urlBase += String.Format("{0}/", Uri.EscapeUriString(param));
 #else
                     urlBase += String.Format("{0}/", HttpUtility.UrlEncode(param));
 #endif
@@ -66,7 +66,7 @@ namespace StackOverflow
             foreach (KeyValuePair<string, string> pair in parameters)
             {
 #if PHONE
-                s.AppendFormat("{0}={1}&", pair.Key, pair.Value);
+                s.AppendFormat("{0}={1}&", Uri.EscapeUriString(pair.Key), Uri.EscapeUriString(pair.Value));
 #else
                 s.AppendFormat("{0}={1}&", HttpUtility.UrlEncode(pair.Key), HttpUtility.UrlEncode(pair.Value));
 #endif

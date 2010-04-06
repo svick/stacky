@@ -22,11 +22,4 @@ namespace StackOverflow
         [JsonProperty("award_count")]
         public int AwardCount { get; set; }
     }
-
-    public enum BadgeClass
-    {
-        Gold,
-        Silver,
-        Bronze
-    }
 }

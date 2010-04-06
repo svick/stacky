@@ -29,13 +29,4 @@ namespace StackOverflow
         [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreationDate { get; set; }
     }
-
-    public enum UserEventType
-    {
-        Comment,
-        AskOrAnswered,
-        Badge,
-        Revision,
-        Accepted
-    }
 }

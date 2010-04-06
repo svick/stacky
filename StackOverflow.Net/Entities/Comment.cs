@@ -28,11 +28,4 @@ namespace StackOverflow
         [JsonProperty("score")]
         public int Score { get; set; }
     }
-
-    public enum PostType
-    {
-        Answer,
-        Question,
-        Comment
-    }
 }

@@ -59,8 +59,19 @@
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserEvent.cs" />
+    <Compile Include="Enums\BadgeClass.cs" />
+    <Compile Include="Enums\CommentSort.cs" />
+    <Compile Include="Enums\PostEventType.cs" />
+    <Compile Include="Enums\PostType.cs" />
+    <Compile Include="Enums\QuestionSort.cs" />
+    <Compile Include="Enums\SortArgsAttribute.cs" />
+    <Compile Include="Enums\FavoriteQuestionsSort.cs" />
+    <Compile Include="Enums\TagSort.cs" />
+    <Compile Include="Enums\UserEventType.cs" />
+    <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\Require.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
@@ -74,6 +85,7 @@
     <Compile Include="Entities\ResponseError.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="ApiException.cs" />
+    <Compile Include="Enums\QuestionsByUserSort.cs" />
     <Compile Include="StackOverflowClient.cs" />
     <Compile Include="WebClient.cs" />
   </ItemGroup>

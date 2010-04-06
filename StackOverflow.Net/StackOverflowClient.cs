@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SILVERLIGHT
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -222,22 +223,17 @@ namespace StackOverflow
 
         #region Badge Methods
 
+        public IList<Badge> GetBadges(BadgeSort sortBy = BadgeSort.Name)
+        {
+            return GetBadges("badges", new string[] { sortBy.ToString().ToLower() });
+        }
+
         private IList<Badge> GetBadges(string method, string[] sort)
         {
             return MakeRequest<List<Badge>>(method, false, sort, new
             {
                 key = Config.ApiKey
             });
-        }
-
-        public IList<Badge> GetBadgesByName()
-        {
-            return GetBadges("badges", new string[] { "name" });
-        }
-
-        public IList<Badge> GetBadgesByTag()
-        {
-            return GetBadges("badges", new string[] { "tags" });
         }
 
         public IList<Badge> GetBadgesByUser(int userId)
@@ -273,7 +269,7 @@ namespace StackOverflow
 
         #region Answer Methods
 
-        public IList<Answer> GetUsersRecentAnswers(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public IList<Answer> GetUsersAnswers(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             return MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers", sortBy.ToString().ToLower() }, new
             {
@@ -289,7 +285,7 @@ namespace StackOverflow
 
         #region Comment Methods
 
-        public IList<Comment> GetCommentsTo(int fromUserId, CommentSort sortBy = CommentSort.Recent, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public IList<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Recent, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
@@ -328,3 +324,4 @@ namespace StackOverflow
         #endregion
     }
 }
+#endif

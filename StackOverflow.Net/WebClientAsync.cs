@@ -1,30 +1,17 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using HttpClient = System.Net.WebClient;
+using System.Net;
 
 namespace StackOverflow
 {
-    public interface IWebClient
-    {
-        void MakeRequest(Uri url, Action<HttpResponse> callback);
-    }
-
-    public class HttpResponse
-    {
-        public string Body { get; set; }
-        public Uri Url { get; set; }
-        public Exception Error { get; set; }
-    }
-
+#if SILVERLIGHT
     public class WebClient : IWebClient
+#else
+    public class WebClientAsync : IWebClientAsync
+#endif
     {
         private Action<HttpResponse> callback;
         private Uri url;
@@ -50,5 +37,4 @@ namespace StackOverflow
             callback(response);
         }
     }
-
 }

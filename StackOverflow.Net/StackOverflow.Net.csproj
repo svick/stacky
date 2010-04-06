@@ -60,6 +60,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserEvent.cs" />
     <Compile Include="Enums\BadgeClass.cs" />
+    <Compile Include="Enums\BadgeSort.cs" />
     <Compile Include="Enums\CommentSort.cs" />
     <Compile Include="Enums\PostEventType.cs" />
     <Compile Include="Enums\PostType.cs" />
@@ -76,9 +77,11 @@
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="HttpResponse.cs" />
     <Compile Include="Interfaces\IProtocol.cs" />
     <Compile Include="Interfaces\IResponse.cs" />
     <Compile Include="Interfaces\IWebClient.cs" />
+    <Compile Include="Interfaces\IWebClientAsync.cs" />
     <Compile Include="Protocols\JsonProtocol.cs" />
     <Compile Include="Protocols\JsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,7 +90,9 @@
     <Compile Include="ApiException.cs" />
     <Compile Include="Enums\QuestionsByUserSort.cs" />
     <Compile Include="StackOverflowClient.cs" />
+    <Compile Include="StackOverflowClientAsync.cs" />
     <Compile Include="WebClient.cs" />
+    <Compile Include="WebClientAsync.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

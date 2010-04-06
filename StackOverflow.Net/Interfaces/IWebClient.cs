@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !SILVERLIGHT
+using System;
 
 namespace StackOverflow
 {
@@ -7,3 +8,4 @@ namespace StackOverflow
         string MakeRequest(Uri url);
     }
 }
+#endif

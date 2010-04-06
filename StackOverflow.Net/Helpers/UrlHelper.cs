@@ -6,12 +6,6 @@ using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-#if SILVERLIGHT && !PHONE
-using System.Windows.Browser;
-#endif
-#if !PHONE && !SILVERLIGHT
-using System.Web;
-#endif
 
 #endregion
 
@@ -41,11 +35,7 @@ namespace StackOverflow
             {
                 foreach (string param in urlParameters)
                 {
-#if PHONE
                     urlBase += String.Format("{0}/", Uri.EscapeUriString(param));
-#else
-                    urlBase += String.Format("{0}/", HttpUtility.UrlEncode(param));
-#endif
                 }
             }
             Uri url = new Uri(urlBase);
@@ -65,11 +55,7 @@ namespace StackOverflow
             StringBuilder s = new StringBuilder();
             foreach (KeyValuePair<string, string> pair in parameters)
             {
-#if PHONE
                 s.AppendFormat("{0}={1}&", Uri.EscapeUriString(pair.Key), Uri.EscapeUriString(pair.Value));
-#else
-                s.AppendFormat("{0}={1}&", HttpUtility.UrlEncode(pair.Key), HttpUtility.UrlEncode(pair.Value));
-#endif
             }
             if (s.Length > 0)
                 s.Remove(s.Length - 1, 1);
@@ -101,7 +87,6 @@ namespace StackOverflow
                     }
                 }
             }
-
             return values;
         }
     }

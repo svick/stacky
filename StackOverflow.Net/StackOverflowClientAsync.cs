@@ -66,28 +66,42 @@ namespace StackOverflow
 
         #region Methods
 
-        private void MakeRequest<T>(string method, bool secure, string[] urlArguments, object queryStringArguments, Action<T> callback)
+        private void MakeRequest<T>(string method, bool secure, string[] urlArguments, object queryStringArguments, Action<T> callback, Action<ApiException> onError)
             where T : new()
         {
-            MakeRequest<T>(method, secure, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), callback);
+            MakeRequest<T>(method, secure, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), callback, onError);
         }
 
-        private void MakeRequest<T>(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> callback)
+        private void MakeRequest<T>(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> callback, Action<ApiException> onError)
              where T : new()
         {
-            GetResponse(method, secure, urlArguments, queryStringArguments, response =>
+            try
             {
-                IResponse<T> r = protocol.GetResponse<T>(response.Body);
-                if (response.Error != null)
-                    throw new ApiException(r.Error.ErrorCode);
-                callback(r.Data);
-            });
+                GetResponse(method, secure, urlArguments, queryStringArguments, response =>
+                {
+                    IResponse<T> r = protocol.GetResponse<T>(response.Body);
+                    if (response.Error != null)
+                    {
+                        if(onError != null)
+                            onError(new ApiException(r.Error.ErrorCode));
+                        return;
+                    }
+                    else
+                    {
+                        callback(r.Data);
+                    }
+                }, onError);
+            }
+            catch (Exception e)
+            {
+                onError(new ApiException(Int32.MinValue, e));
+            }
         }
 
-        private void GetResponse(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> callback)
+        private void GetResponse(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> callback, Action<ApiException> onError)
         {
             Uri url = UrlHelper.BuildUrl(method, secure, ServiceUrl, urlArguments, queryStringArguments);
-            client.MakeRequest(url, callback);
+            client.MakeRequest(url, callback, onError);
         }
 
         #endregion
@@ -96,23 +110,23 @@ namespace StackOverflow
 
         #region Question Methods
 
-        public void GetQuestions(Action<List<Question>> callback, QuestionSort sortBy = QuestionSort.Active, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError = null, QuestionSort sortBy = QuestionSort.Active, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
-            GetQuestions(callback, "questions", sortArgs.Args, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "questions", sortArgs.Args, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public void GetQuestionsByUser(int userId, Action<List<Question>> callback, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetQuestionsByUser(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            GetQuestions(callback, "users", new string[] { userId.ToString(), "questions", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "questions", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public void GetFavoriteQuestions(int userId, Action<List<Question>> callback, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetFavoriteQuestions(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            GetQuestions(callback, "users", new string[] { userId.ToString(), "favorites", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "favorites", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private void GetQuestions(Action<List<Question>> callback, string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError, string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
             MakeRequest<List<Question>>(method, false, sort, new
             {
@@ -124,10 +138,10 @@ namespace StackOverflow
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 tagged = tags == null ? (string)null : String.Join(" ", tags)
-            }, callback);
+            }, callback, onError);
         }
 
-        public void GetQuestion(int id, Action<Question> callback, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetQuestion(int id, Action<Question> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             MakeRequest<List<Question>>("questions", false, new string[] { id.ToString() }, new
             {
@@ -136,24 +150,24 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, returnedQuestions => callback(returnedQuestions.FirstOrDefault()));
+            }, returnedQuestions => callback(returnedQuestions.FirstOrDefault()), onError);
         }
 
-        public void GetQuestionTimeline(int questionId, Action<List<PostEvent>> callback, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetQuestionTimeline(int questionId, Action<List<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<List<PostEvent>>("questions", false, new string[] { questionId.ToString(), "timeline" }, new
             {
                 key = Config.ApiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback);
+            }, callback, onError);
         }
 
         #endregion
 
         #region User Methods
 
-        public void GetUsers(Action<List<User>> callback, UserSort sortBy = UserSort.Reputation, int? page = null, int? pageSize = null, string filter = null)
+        public void GetUsers(Action<List<User>> callback, Action<ApiException> onError = null, UserSort sortBy = UserSort.Reputation, int? page = null, int? pageSize = null, string filter = null)
         {
             MakeRequest<List<User>>("users", false, new string[] { sortBy.ToString().ToLower() }, new
             {
@@ -161,38 +175,38 @@ namespace StackOverflow
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 filter = filter
-            }, callback);
+            }, callback, onError);
         }
 
-        public void GetUser(int userId, Action<User> callback)
+        public void GetUser(int userId, Action<User> callback, Action<ApiException> onError = null)
         {
             MakeRequest<List<User>>("users", false, new string[] { userId.ToString() }, new
             {
                 key = Config.ApiKey
-            }, results => callback(results.FirstOrDefault()));
+            }, results => callback(results.FirstOrDefault()), onError);
         }
 
-        public void GetUserMentions(int userId, Action<List<Comment>> callback, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetUserMentions(int userId, Action<List<Comment>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<List<Comment>>("users", false, new string[] { userId.ToString(), "mentioned" }, new
             {
                 key = Config.ApiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback);
+            }, callback, onError);
         }
 
-        public void GetUserTimeline(int userId, Action<List<UserEvent>> callback, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetUserTimeline(int userId, Action<List<UserEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<List<UserEvent>>("users", false, new string[] { userId.ToString(), "timeline" }, new
             {
                 key = Config.ApiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback);
+            }, callback, onError);
         }
 
-        public void GetUserReputation(int userId, Action<List<Reputation>> callback, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetUserReputation(int userId, Action<List<Reputation>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<List<Reputation>>("users", false, new string[] { userId.ToString(), "reputation" }, new
             {
@@ -201,60 +215,60 @@ namespace StackOverflow
                 pagesize = pageSize ?? null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback);
+            }, callback, onError);
         }
 
         #endregion
 
         #region Badge Methods
 
-        public void GetBadges(Action<List<Badge>> callback, BadgeSort sortBy = BadgeSort.Name)
+        public void GetBadges(Action<List<Badge>> callback, Action<ApiException> onError = null, BadgeSort sortBy = BadgeSort.Name)
         {
-            GetBadges(callback, "badges", new string[] { sortBy.ToString().ToLower() });
+            GetBadges(callback, onError, "badges", new string[] { sortBy.ToString().ToLower() });
         }
 
-        private void GetBadges(Action<List<Badge>> callback, string method, string[] sort)
+        private void GetBadges(Action<List<Badge>> callback, Action<ApiException> onError, string method, string[] sort)
         {
             MakeRequest<List<Badge>>(method, false, sort, new
             {
                 key = Config.ApiKey
-            }, callback);
+            }, callback, onError);
         }
 
-        public void GetBadgesByUser(int userId, Action<List<Badge>> callback)
+        public void GetBadgesByUser(int userId, Action<List<Badge>> callback, Action<ApiException> onError = null)
         {
-            GetBadges(callback, "users", new string[] { userId.ToString(), "badges" });
+            GetBadges(callback, onError, "users", new string[] { userId.ToString(), "badges" });
         }
 
         #endregion
 
         #region Tag Methods
 
-        public void GetTags(Action<List<Tag>> callback, TagSort sortBy = TagSort.Popular, int? page = null, int? pageSize = null)
+        public void GetTags(Action<List<Tag>> callback, Action<ApiException> onError = null, TagSort sortBy = TagSort.Popular, int? page = null, int? pageSize = null)
         {
-            GetTags(callback, "tags", new string[] { sortBy.ToString().ToLower() }, page, pageSize);
+            GetTags(callback, onError, "tags", new string[] { sortBy.ToString().ToLower() }, page, pageSize);
         }
 
-        private void GetTags(Action<List<Tag>> callback, string method, string[] urlParameters, int? page = null, int? pageSize = null)
+        private void GetTags(Action<List<Tag>> callback, Action<ApiException> onError, string method, string[] urlParameters, int? page = null, int? pageSize = null)
         {
             MakeRequest<List<Tag>>(method, false, urlParameters, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, callback);
+            }, callback, onError);
         }
 
-        public void GetTagsByUser(int userId, Action<List<Tag>> callback, int? page = null, int? pageSize = null)
+        public void GetTagsByUser(int userId, Action<List<Tag>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null)
         {
-            GetTags(callback, "users", new string[] { userId.ToString(), "tags" }, page, pageSize);
+            GetTags(callback, onError, "users", new string[] { userId.ToString(), "tags" }, page, pageSize);
         }
 
         #endregion
 
         #region Answer Methods
 
-        public void GetUsersAnswers(int userId, Action<List<Answer>> callback, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetUsersAnswers(int userId, Action<List<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers", sortBy.ToString().ToLower() }, new
             {
@@ -263,14 +277,14 @@ namespace StackOverflow
                 pagesize = pageSize ?? null,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null
-            }, callback);
+            }, callback, onError);
         }
 
         #endregion
 
         #region Comment Methods
 
-        public void GetComments(int fromUserId, Action<List<Comment>> callback, CommentSort sortBy = CommentSort.Recent, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Recent, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
@@ -289,19 +303,19 @@ namespace StackOverflow
                 pagesize = pageSize ?? null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback);
+            }, callback, onError);
         }
 
         #endregion
 
         #region Stats Methods
 
-        public void GetSiteStats(Action<SiteStats> callback)
+        public void GetSiteStats(Action<SiteStats> callback, Action<ApiException> onError = null)
         {
             MakeRequest<List<SiteStats>>("stats", false, null, new
             {
                 key = Config.ApiKey
-            }, results => callback(results.FirstOrDefault()));
+            }, results => callback(results.FirstOrDefault()), onError);
         }
 
         #endregion

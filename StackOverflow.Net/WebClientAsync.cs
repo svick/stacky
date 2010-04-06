@@ -14,12 +14,14 @@ namespace StackOverflow
 #endif
     {
         private Action<HttpResponse> callback;
+        Action<ApiException> onError;
         private Uri url;
 
-        public void MakeRequest(Uri url, Action<HttpResponse> callback)
+        public void MakeRequest(Uri url, Action<HttpResponse> callback, Action<ApiException> onError)
         {
             this.callback = callback;
             this.url = url;
+            this.onError = onError;
 
             var client = new HttpClient();
             client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(client_DownloadStringCompleted);
@@ -28,11 +30,17 @@ namespace StackOverflow
 
         void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                if (onError != null)
+                    onError(new ApiException(Int32.MinValue, e.Error));
+                return;
+            }
+
             var response = new HttpResponse
             {
                 Body = e.Result,
-                Url = url,
-                Error = e.Error
+                Url = url
             };
             callback(response);
         }

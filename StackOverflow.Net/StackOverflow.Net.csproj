@@ -67,6 +67,7 @@
     <Compile Include="Enums\QuestionSort.cs" />
     <Compile Include="Enums\SortArgsAttribute.cs" />
     <Compile Include="Enums\FavoriteQuestionsSort.cs" />
+    <Compile Include="Enums\SortDirection.cs" />
     <Compile Include="Enums\TagSort.cs" />
     <Compile Include="Enums\UserEventType.cs" />
     <Compile Include="Enums\UserSort.cs" />

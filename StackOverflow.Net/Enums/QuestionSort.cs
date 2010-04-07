@@ -16,11 +16,11 @@
         Month,
         [SortArgs("votes")]
         Votes,
-        [SortArgs("unanswered")]
+        [SortArgs(null, "unanswered")]
         Unanswered,
-        [SortArgs("unanswered", "newest")]
+        [SortArgs("newest", "unanswered")]
         UnansweredNewest,
-        [SortArgs("unanswered", "votes")]
+        [SortArgs("votes", "unanswered")]
         UnansweredVotes
     }
 }

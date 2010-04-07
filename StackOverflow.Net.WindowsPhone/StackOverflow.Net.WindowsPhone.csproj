@@ -60,12 +60,6 @@
     <Compile Include="..\StackOverflow.Net.Silverlight\Helpers\Config.cs">
       <Link>Helpers\Config.cs</Link>
     </Compile>
-    <Compile Include="..\StackOverflow.Net.Silverlight\Interfaces\IWebClient.cs">
-      <Link>Interfaces\IWebClient.cs</Link>
-    </Compile>
-    <Compile Include="..\StackOverflow.Net.Silverlight\StackOverflowClient.cs">
-      <Link>StackOverflowClient.cs</Link>
-    </Compile>
     <Compile Include="..\StackOverflow.Net\ApiException.cs">
       <Link>ApiException.cs</Link>
     </Compile>
@@ -102,8 +96,50 @@
     <Compile Include="..\StackOverflow.Net\Entities\UserEvent.cs">
       <Link>Entities\UserEvent.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\BadgeClass.cs">
+      <Link>Enums\BadgeClass.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\BadgeSort.cs">
+      <Link>Enums\BadgeSort.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\CommentSort.cs">
+      <Link>Enums\CommentSort.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\FavoriteQuestionsSort.cs">
+      <Link>Enums\FavoriteQuestionsSort.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\PostEventType.cs">
+      <Link>Enums\PostEventType.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\PostType.cs">
+      <Link>Enums\PostType.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\QuestionsByUserSort.cs">
+      <Link>Enums\QuestionsByUserSort.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\QuestionSort.cs">
+      <Link>Enums\QuestionSort.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\SortArgsAttribute.cs">
+      <Link>Enums\SortArgsAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\SortDirection.cs">
+      <Link>Enums\SortDirection.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\TagSort.cs">
+      <Link>Enums\TagSort.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\UserEventType.cs">
+      <Link>Enums\UserEventType.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\UserSort.cs">
+      <Link>Enums\UserSort.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Helpers\DateHelper.cs">
       <Link>Helpers\DateHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Helpers\EnumHelper.cs">
+      <Link>Helpers\EnumHelper.cs</Link>
     </Compile>
     <Compile Include="..\StackOverflow.Net\Helpers\Require.cs">
       <Link>Helpers\Require.cs</Link>
@@ -117,6 +153,9 @@
     <Compile Include="..\StackOverflow.Net\Helpers\UrlHelper.cs">
       <Link>Helpers\UrlHelper.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\HttpResponse.cs">
+      <Link>HttpResponse.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Interfaces\IProtocol.cs">
       <Link>Interfaces\IProtocol.cs</Link>
     </Compile>
@@ -129,6 +168,10 @@
     <Compile Include="..\StackOverflow.Net\Protocols\JsonResponse.cs">
       <Link>Protocols\JsonResponse.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync.cs">
+      <Link>StackOverflowClientAsync.cs</Link>
+    </Compile>
+    <Compile Include="Interfaces\IWebClientAsync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

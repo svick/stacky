@@ -113,22 +113,22 @@ namespace StackOverflow
         public void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError = null, QuestionSort sortBy = QuestionSort.Active, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
-            GetQuestions(callback, onError, "questions", sortArgs.Args, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "questions", sortArgs.UrlArgs, sortArgs.Sort, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public void GetQuestionsByUser(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "questions", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public void GetFavoriteQuestions(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "favorites", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError, string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError, string method, string[] urlArgs, string sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            MakeRequest<List<Question>>(method, false, sort, new
+            MakeRequest<List<Question>>(method, false, urlArgs, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
@@ -137,7 +137,8 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
-                tagged = tags == null ? (string)null : String.Join(" ", tags)
+                tagged = tags == null ? (string)null : String.Join(" ", tags),
+                sort = sort
             }, callback, onError);
         }
 

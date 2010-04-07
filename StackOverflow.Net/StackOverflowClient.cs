@@ -114,22 +114,22 @@ namespace StackOverflow
         public IList<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
-            return GetQuestions("questions", sortArgs.Args, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions("users", new string[] { userId.ToString(), "questions", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
         public IList<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions("users", new string[] { userId.ToString(), "favorites", sortBy.ToString().ToLower() }, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private IList<Question> GetQuestions(string method, string[] sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private IList<Question> GetQuestions(string method, string[] urlArguments, string sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            return MakeRequest<List<Question>>(method, false, sort, new
+            return MakeRequest<List<Question>>(method, false, urlArguments, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
@@ -138,7 +138,8 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
-                tagged = tags == null ? (string)null : String.Join(" ", tags)
+                tagged = tags == null ? (string)null : String.Join(" ", tags),
+                sort = sort
             });
         }
 
@@ -168,14 +169,15 @@ namespace StackOverflow
 
         #region User Methods
 
-        public IList<User> GetUsers(UserSort sortBy = UserSort.Reputation, int? page = null, int? pageSize = null, string filter = null)
+        public IList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
         {
             return MakeRequest<List<User>>("users", false, new string[] { sortBy.ToString().ToLower() }, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
-                filter = filter
+                filter = filter,
+                order = sortDirection == SortDirection.Ascending ? "asc" : "desc"
             });
         }
 

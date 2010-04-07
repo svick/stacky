@@ -4,11 +4,12 @@ namespace StackOverflow
 {
     public class SortArgsAttribute : Attribute
     {
-        public SortArgsAttribute(params string[] args)
+        public SortArgsAttribute(string sort, params string[] urlArgs)
         {
-            Args = args;
+            UrlArgs = urlArgs;
         }
 
-        public string[] Args { get; private set; }
+        public string[] UrlArgs { get; private set; }
+        public string Sort { get; set; }
     }
 }

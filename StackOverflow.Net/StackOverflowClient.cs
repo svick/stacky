@@ -48,31 +48,13 @@ namespace StackOverflow
 
         private string GetResponse(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments)
         {
-            ClearLastResponse();
-#if DEBUG
-            LastMethod = method;
-#endif
-
             Uri url = UrlHelper.BuildUrl(method, secure, ServiceUrl, urlArguments, queryStringArguments);
-#if DEBUG
-            LastRequest = url;
-#endif
-
-            string response = client.MakeRequest(url);
-
-#if DEBUG
-            LastResponse = response;
-#endif
-            return response;
+            return client.MakeRequest(url);
         }
 
-        private void ClearLastResponse()
+        private string GetSortDirection(SortDirection direction)
         {
-#if DEBUG
-            LastMethod = null;
-            LastRequest = null;
-            LastResponse = null;
-#endif
+            return direction == SortDirection.Ascending ? "asc" : "desc";
         }
 
         #endregion
@@ -111,23 +93,23 @@ namespace StackOverflow
 
         #region Question Methods
 
-        public IList<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public IList<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
-            return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public IList<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions("users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IList<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public IList<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private IList<Question> GetQuestions(string method, string[] urlArguments, string sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private IList<Question> GetQuestions(string method, string[] urlArguments, string sort, string sortDirection, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
             return MakeRequest<List<Question>>(method, false, urlArguments, new
             {
@@ -139,7 +121,8 @@ namespace StackOverflow
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
-                sort = sort
+                sort = sort,
+                order = sortDirection
             });
         }
 
@@ -169,15 +152,16 @@ namespace StackOverflow
 
         #region User Methods
 
-        public IList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
+        public IList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, string filter = null)
         {
-            return MakeRequest<List<User>>("users", false, new string[] { sortBy.ToString().ToLower() }, new
+            return MakeRequest<List<User>>("users", false, null, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 filter = filter,
-                order = sortDirection == SortDirection.Ascending ? "asc" : "desc"
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             });
         }
 
@@ -247,39 +231,44 @@ namespace StackOverflow
 
         #region Tag Methods
 
-        public IList<Tag> GetTags(TagSort sortBy = TagSort.Popular, int? page = null, int? pageSize = null)
+        public IList<Tag> GetTags(TagSort sortBy = TagSort.Popular, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
         {
-            return GetTags("tags", new string[] { sortBy.ToString().ToLower() }, page, pageSize);
+            return GetTags("tags", null, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize);
         }
 
-        private IList<Tag> GetTags(string method, string[] urlParameters, int? page = null, int? pageSize = null)
+        private IList<Tag> GetTags(string method, string[] urlParameters, string sort, string order, int? page = null, int? pageSize = null)
         {
             return MakeRequest<List<Tag>>(method, false, urlParameters, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
-                pagesize = pageSize ?? null
+                pagesize = pageSize ?? null,
+                sort = sort,
+                order = order
             });
         }
 
         public IList<Tag> GetTagsByUser(int userId, int? page = null, int? pageSize = null)
         {
-            return GetTags("users", new string[] { userId.ToString(), "tags" }, page, pageSize);
+            //TODO: does this method support sort and order?
+            return GetTags("users", new string[] { userId.ToString(), "tags" }, null, null, page, pageSize);
         }
 
         #endregion
 
         #region Answer Methods
 
-        public IList<Answer> GetUsersAnswers(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public IList<Answer> GetUsersAnswers(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers", sortBy.ToString().ToLower() }, new
+            return MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers" }, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 body = includeBody ? (bool?)true : null,
-                comments = includeComments ? (bool?)true : null
+                comments = includeComments ? (bool?)true : null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             });
         }
 
@@ -287,16 +276,16 @@ namespace StackOverflow
 
         #region Comment Methods
 
-        public IList<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Recent, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public IList<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Recent, SortDirection sortDirection = SortDirection.Ascending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments", toUserId.ToString(), sortBy.ToString().ToLower() };
+                urlParameters = new string[] { fromUserId.ToString(), "comments", toUserId.ToString() };
             }
             else
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments", sortBy.ToString().ToLower() };
+                urlParameters = new string[] { fromUserId.ToString(), "comments" };
             }
 
             return MakeRequest<List<Comment>>("users", false, urlParameters, new
@@ -305,7 +294,9 @@ namespace StackOverflow
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             });
         }
 

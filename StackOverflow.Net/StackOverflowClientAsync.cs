@@ -104,29 +104,34 @@ namespace StackOverflow
             client.MakeRequest(url, callback, onError);
         }
 
+        private string GetSortDirection(SortDirection direction)
+        {
+            return direction == SortDirection.Ascending ? "asc" : "desc";
+        }
+
         #endregion
 
         #region API Methods
 
         #region Question Methods
 
-        public void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError = null, QuestionSort sortBy = QuestionSort.Active, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError = null, QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
-            GetQuestions(callback, onError, "questions", sortArgs.UrlArgs, sortArgs.Sort, page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public void GetQuestionsByUser(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetQuestionsByUser(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public void GetFavoriteQuestions(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetFavoriteQuestions(int userId, Action<List<Question>> callback, Action<ApiException> onError = null, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
-            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
+            GetQuestions(callback, onError, "users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError, string method, string[] urlArgs, string sort, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private void GetQuestions(Action<List<Question>> callback, Action<ApiException> onError, string method, string[] urlArgs, string sort, string order, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
             MakeRequest<List<Question>>(method, false, urlArgs, new
             {
@@ -138,7 +143,8 @@ namespace StackOverflow
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
-                sort = sort
+                sort = sort,
+                order = order
             }, callback, onError);
         }
 
@@ -168,14 +174,16 @@ namespace StackOverflow
 
         #region User Methods
 
-        public void GetUsers(Action<List<User>> callback, Action<ApiException> onError = null, UserSort sortBy = UserSort.Reputation, int? page = null, int? pageSize = null, string filter = null)
+        public void GetUsers(Action<List<User>> callback, Action<ApiException> onError = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, string filter = null)
         {
-            MakeRequest<List<User>>("users", false, new string[] { sortBy.ToString().ToLower() }, new
+            MakeRequest<List<User>>("users", false, null, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
-                filter = filter
+                filter = filter,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             }, callback, onError);
         }
 
@@ -245,39 +253,44 @@ namespace StackOverflow
 
         #region Tag Methods
 
-        public void GetTags(Action<List<Tag>> callback, Action<ApiException> onError = null, TagSort sortBy = TagSort.Popular, int? page = null, int? pageSize = null)
+        public void GetTags(Action<List<Tag>> callback, Action<ApiException> onError = null, TagSort sortBy = TagSort.Popular, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
         {
-            GetTags(callback, onError, "tags", new string[] { sortBy.ToString().ToLower() }, page, pageSize);
+            GetTags(callback, onError, "tags", null, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize);
         }
 
-        private void GetTags(Action<List<Tag>> callback, Action<ApiException> onError, string method, string[] urlParameters, int? page = null, int? pageSize = null)
+        private void GetTags(Action<List<Tag>> callback, Action<ApiException> onError, string method, string[] urlParameters, string sort, string order, int? page = null, int? pageSize = null)
         {
             MakeRequest<List<Tag>>(method, false, urlParameters, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
-                pagesize = pageSize ?? null
+                pagesize = pageSize ?? null,
+                sort = sort,
+                order = order
             }, callback, onError);
         }
 
         public void GetTagsByUser(int userId, Action<List<Tag>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null)
         {
-            GetTags(callback, onError, "users", new string[] { userId.ToString(), "tags" }, page, pageSize);
+            //TODO: does this method support sort and order?
+            GetTags(callback, onError, "users", new string[] { userId.ToString(), "tags" }, null, null, page, pageSize);
         }
 
         #endregion
 
         #region Answer Methods
 
-        public void GetUsersAnswers(int userId, Action<List<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetUsersAnswers(int userId, Action<List<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Recent, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers", sortBy.ToString().ToLower() }, new
+            MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers" }, new
             {
                 key = Config.ApiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 body = includeBody ? (bool?)true : null,
-                comments = includeComments ? (bool?)true : null
+                comments = includeComments ? (bool?)true : null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             }, callback, onError);
         }
 
@@ -285,16 +298,16 @@ namespace StackOverflow
 
         #region Comment Methods
 
-        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Recent, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Recent, SortDirection sortDirection = SortDirection.Ascending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments", toUserId.ToString(), sortBy.ToString().ToLower() };
+                urlParameters = new string[] { fromUserId.ToString(), "comments", toUserId.ToString() };
             }
             else
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments", sortBy.ToString().ToLower() };
+                urlParameters = new string[] { fromUserId.ToString(), "comments" };
             }
 
             MakeRequest<List<Comment>>("users", false, urlParameters, new
@@ -303,7 +316,9 @@ namespace StackOverflow
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             }, callback, onError);
         }
 

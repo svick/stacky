@@ -16,9 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.Net.Silverlig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.Net.WindowsPhone", "StackOverflow.Net.WindowsPhone\StackOverflow.Net.WindowsPhone.csproj", "{99DE2A55-F4C0-4D75-B135-524FF8D1B6F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.IntegrationTests", "StackOverflow.IntegrationTests\StackOverflow.IntegrationTests.csproj", "{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs07.codeplex.com/
 		SccLocalPath0 = .
@@ -34,6 +36,9 @@ Global
 		SccProjectUniqueName4 = StackOverflow.Net.WindowsPhone\\StackOverflow.Net.WindowsPhone.csproj
 		SccProjectName4 = StackOverflow.Net.WindowsPhone
 		SccLocalPath4 = StackOverflow.Net.WindowsPhone
+		SccProjectUniqueName5 = StackOverflow.IntegrationTests\\StackOverflow.IntegrationTests.csproj
+		SccProjectName5 = StackOverflow.IntegrationTests
+		SccLocalPath5 = StackOverflow.IntegrationTests
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = StackOverflow.vsmdi
@@ -87,6 +92,16 @@ Global
 		{99DE2A55-F4C0-4D75-B135-524FF8D1B6F4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{99DE2A55-F4C0-4D75-B135-524FF8D1B6F4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{99DE2A55-F4C0-4D75-B135-524FF8D1B6F4}.Release|x86.ActiveCfg = Release|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B605A6CB-48CD-4DD5-886B-6F0EE966EA0B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -162,6 +162,9 @@
     <Compile Include="..\StackOverflow.Net\Interfaces\IResponse.cs">
       <Link>Interfaces\IResponse.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Interfaces\IWebClientAsync.cs">
+      <Link>Interfaces\IWebClientAsync.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Protocols\JsonProtocol.cs">
       <Link>Protocols\JsonProtocol.cs</Link>
     </Compile>
@@ -171,7 +174,6 @@
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync.cs">
       <Link>StackOverflowClientAsync.cs</Link>
     </Compile>
-    <Compile Include="Interfaces\IWebClientAsync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

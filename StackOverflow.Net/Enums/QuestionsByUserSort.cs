@@ -2,9 +2,9 @@
 {
     public enum QuestionsByUserSort
     {
-        Recent,
+        Activity,
         Views,
-        Newest,
+        Creation,
         Votes
     }
 }

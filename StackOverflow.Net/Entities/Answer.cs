@@ -18,6 +18,9 @@ namespace StackOverflow
         [JsonProperty("title")]
         public string Title { get; set; }
 
+        [JsonProperty("body")]
+        public string Body { get; set; }
+
         [JsonProperty("accepted")]
         public bool Accepted { get; set; }
 
@@ -32,6 +35,12 @@ namespace StackOverflow
 
         [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreationDate { get; set; }
+
+        [JsonProperty("last_activity_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LastActivityDate { get; set; }
+
+        [JsonProperty("last_edit_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LastEditDate { get; set; }
 
         [JsonProperty("up_vote_count")]
         public int UpVoteCount { get; set; }

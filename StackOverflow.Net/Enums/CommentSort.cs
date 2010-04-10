@@ -2,7 +2,7 @@
 {
     public enum CommentSort
     {
-        Recent,
-        Score
+        Creation,
+        Votes
     }
 }

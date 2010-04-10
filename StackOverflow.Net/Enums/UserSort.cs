@@ -3,7 +3,7 @@
     public enum UserSort
     {
         Reputation,
-        Newest,
+        Creation,
         Oldest,
         Name
     }

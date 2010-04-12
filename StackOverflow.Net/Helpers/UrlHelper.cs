@@ -25,6 +25,7 @@ namespace StackOverflow
 
         private static Uri BuildUrl(string method, bool secure, string serviceUrl, string[] urlParameters, string queryString)
         {
+            //TODO: Consider Code contracts
             Require.NotNullOrEmpty(method, "method");
             Require.NotNullOrEmpty(serviceUrl, "serviceUrl");
 

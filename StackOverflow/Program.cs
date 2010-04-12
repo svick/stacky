@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using Ninject;
 
 namespace StackOverflow
 {
@@ -13,12 +14,31 @@ namespace StackOverflow
             IWebClient webClient = new WebClient();
             IProtocol protocol = new JsonProtocol();
 
-            var client = new StackOverflowClient(Config.ServiceVersion, webClient, protocol);
-            var reputation = client.GetUserReputation(22656);
-            foreach (var rep in reputation)
+            IKernel kernel = new StandardKernel();
+            kernel.Bind<IWebClient>().To<WebClient>();
+            kernel.Bind<IProtocol>().To<JsonProtocol>();
+            kernel.Bind<StackOverflowClient>().ToSelf().WithConstructorArgument("version", Config.ServiceVersion);
+
+            kernel.Bind<IWebClientAsync>().To<WebClientAsync>();
+            kernel.Bind<StackOverflowClientAsync>().ToSelf().WithConstructorArgument("version", Config.ServiceVersion);
+
+            var client = kernel.Get<StackOverflowClient>();
+            var questions = client.GetQuestions();
+            foreach (var question in questions)
             {
-                Console.WriteLine(rep.Title);
+                Console.WriteLine(question.Title);
             }
+
+            Console.WriteLine();
+
+            var async = kernel.Get<StackOverflowClientAsync>();
+            async.GetQuestions(items =>
+                {
+                    foreach (var question in items)
+                    {
+                        Console.WriteLine(question.Title);
+                    }
+                });
                         
             Console.ReadLine();
         }

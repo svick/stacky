@@ -9,7 +9,7 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Ascending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)

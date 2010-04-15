@@ -9,7 +9,7 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetUsersAnswers(int userId, Action<List<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetUsersAnswers(int userId, Action<List<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers" }, new
             {

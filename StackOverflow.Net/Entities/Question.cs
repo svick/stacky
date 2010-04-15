@@ -42,6 +42,15 @@ namespace StackOverflow
         [JsonProperty("last_edit_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime LastEditDate { get; set; }
 
+        [JsonProperty("locked_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LockedDate { get; set; }
+
+        [JsonProperty("closed_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime ClosedDate { get; set; }
+
+        [JsonProperty("closed_reason")]
+        public int ClosedReason { get; set; }
+
         [JsonProperty("up_vote_count")]
         public int UpVoteCount { get; set; }
 
@@ -62,6 +71,9 @@ namespace StackOverflow
 
         [JsonProperty("accepted_answer_id")]
         public int AcceptedAnswerId { get; set; }
+
+        [JsonProperty("bounty_amount")]
+        public int BountyAmount { get; set; }
 
         public List<string> Tags { get; set; }
 

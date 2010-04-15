@@ -6,7 +6,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public IList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, string filter = null)
+        public IList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
         {
             return MakeRequest<List<User>>("users", false, null, new
             {

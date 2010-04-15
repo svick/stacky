@@ -16,13 +16,16 @@ namespace StackOverflow
         [JsonProperty("user_id")]
         public int UserId { get; set; }
 
-        [JsonProperty("action_user_id")]
-        public int ActionUserId { get; set; }
+        [JsonProperty("owner_user_id")]
+        public int OwnerUserId { get; set; }
 
         [JsonProperty("action")]
         public string Action { get; set; }
 
         [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreationDate { get; set; }
+
+        [JsonProperty("revision_guid")]
+        public Guid RevisionGuid { get; set; }
     }
 }

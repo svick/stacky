@@ -11,7 +11,7 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetUsers(Action<List<User>> callback, Action<ApiException> onError = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Ascending, int? page = null, int? pageSize = null, string filter = null)
+        public void GetUsers(Action<List<User>> callback, Action<ApiException> onError = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
         {
             MakeRequest<List<User>>("users", false, null, new
             {

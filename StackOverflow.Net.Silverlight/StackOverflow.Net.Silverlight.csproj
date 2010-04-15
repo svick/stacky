@@ -87,6 +87,9 @@
     <Compile Include="..\StackOverflow.Net\Entities\ResponseError.cs">
       <Link>Entities\ResponseError.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\Revision.cs">
+      <Link>Entities\Revision.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Entities\SiteStats.cs">
       <Link>Entities\SiteStats.cs</Link>
     </Compile>
@@ -174,8 +177,32 @@
     <Compile Include="..\StackOverflow.Net\Protocols\JsonResponse.cs">
       <Link>Protocols\JsonResponse.cs</Link>
     </Compile>
-    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync.cs">
-      <Link>StackOverflowClientAsync.cs</Link>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\AnswerMethods.cs">
+      <Link>StackOverflowClient\AnswerMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\BadgeMethods.cs">
+      <Link>StackOverflowClient\BadgeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\CommentMethods.cs">
+      <Link>StackOverflowClient\CommentMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\QuestionMethods.cs">
+      <Link>StackOverflowClient\QuestionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\RevisionMethods.cs">
+      <Link>StackOverflowClient\RevisionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\StackOverflowClientAsync.cs">
+      <Link>StackOverflowClient\StackOverflowClientAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\StatsMethods.cs">
+      <Link>StackOverflowClient\StatsMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\TagMethods.cs">
+      <Link>StackOverflowClient\TagMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\UserMethods.cs">
+      <Link>StackOverflowClient\UserMethods.cs</Link>
     </Compile>
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

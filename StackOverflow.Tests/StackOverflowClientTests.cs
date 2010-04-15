@@ -9,10 +9,13 @@ namespace StackOverflow.Tests
     [TestClass]
     public class StackOverflowClientTests
     {
+        private static string version = "0.6";
+        private static string apiKey = "speakfriendandenter";
+
         [TestMethod]
         public void GetQuestion_ReturnsSingleQuestion()
         {
-            StackOverflowClient client = new StackOverflowClient("0.5", new WebClient(), new JsonProtocol());
+            var client = new StackOverflowClient(version, apiKey, new WebClient(), new JsonProtocol());
             var question = client.GetQuestion(2573290);
             Assert.IsNotNull(question);
         }
@@ -20,7 +23,7 @@ namespace StackOverflow.Tests
         [TestMethod]
         public void SiteStats_ReturnsSingleItem()
         {
-            StackOverflowClient client = new StackOverflowClient("0.5", new WebClient(), new JsonProtocol());
+            var client = new StackOverflowClient(version, apiKey, new WebClient(), new JsonProtocol());
             var stats = client.GetSiteStats();
             Assert.IsNotNull(stats);
         }

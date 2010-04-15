@@ -11,7 +11,8 @@ namespace StackOverflow
             var request = WebRequest.Create(url) as HttpWebRequest;
             if (request != null)
             {
-                request.UserAgent = Config.UserAgent;
+                //TODO: Figure out what user agent to use for the request
+                request.UserAgent = "";
                 try
                 {
                     using (var response = request.GetResponse() as HttpWebResponse)

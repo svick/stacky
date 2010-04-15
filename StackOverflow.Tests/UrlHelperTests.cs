@@ -11,46 +11,47 @@ namespace StackOverflow.Tests
     {
         public TestContext TestContext { get; set; }
         private string ServiceUrl = "api.stackoverflow.com";
+        private static string version = "0.6";
 
         #region BuildUrl
 
         [TestMethod]
         public void BuildUrl_UsesHttps_WhenSecureIsTrue()
         {
-            Uri url = UrlHelper.BuildUrl("TestMethod", true, ServiceUrl, null, null);
+            Uri url = UrlHelper.BuildUrl("TestMethod", version, true, ServiceUrl, null, null);
             Assert.AreEqual(url.Scheme, Uri.UriSchemeHttps);
         }
 
         [TestMethod]
         public void BuildUrl_UsesHttp_WhenSecureIsFalse()
         {
-            Uri url = UrlHelper.BuildUrl("TestMethod", false, ServiceUrl, null, null);
+            Uri url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, null, null);
             Assert.AreEqual(url.Scheme, Uri.UriSchemeHttp);
         }
 
         [TestMethod]
         public void BuildUrl_UrlParameters_IncludedInResult()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", false, ServiceUrl, new string[] { "item1", "item2" }, null);
-            Assert.AreEqual("http://api.stackoverflow.com/TestMethod/item1/item2/", url.ToString());
+            var url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, new string[] { "item1", "item2" }, null);
+            Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/item1/item2/", url.ToString());
         }
 
         [TestMethod]
         public void BuildUrl_NullUrlParameters_ResultsInNoUrlParameters()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", false, ServiceUrl, null, null);
-            Assert.AreEqual("http://api.stackoverflow.com/TestMethod/", url.ToString());
+            var url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, null, null);
+            Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/", url.ToString());
         }
 
         [TestMethod]
         public void BuildUrl_UrlParamatersAndQueryStringParameters_BuiltCorrectly()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", false, ServiceUrl, new string[] { "item1", "item2" }, new
+            var url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, new string[] { "item1", "item2" }, new
             {
                 key = "key",
                 config = "1"
             });
-            Assert.AreEqual("http://api.stackoverflow.com/TestMethod/item1/item2/?key=key&config=1", url.ToString());
+            Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/item1/item2/?key=key&config=1", url.ToString());
         }
 
         #endregion
@@ -123,7 +124,7 @@ namespace StackOverflow.Tests
         public void BuildParameters_ValuesAreUrlEncoded()
         {
             string s = "I Owe $100";
-            string encoded = HttpUtility.UrlEncode(s);
+            string encoded = Uri.EscapeUriString(s);
             string queryString = UrlHelper.BuildParameters(new {Key = s});
             Assert.AreEqual("Key=" + encoded, queryString);
         }
@@ -141,7 +142,7 @@ namespace StackOverflow.Tests
             string s = "I Owe $100";
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["Key"] = s;
-            string encoded = HttpUtility.UrlEncode(s);
+            string encoded = Uri.EscapeUriString(s);
             string queryString = UrlHelper.BuildParameters(parameters);
             Assert.AreEqual("Key=" + encoded, queryString);
         }

@@ -13,14 +13,20 @@ namespace StackOverflow
         {
             IWebClient webClient = new WebClient();
             IProtocol protocol = new JsonProtocol();
+            string serviceVersion = "0.6";
+            string apiKey = "speakfriendandenter";
 
             IKernel kernel = new StandardKernel();
             kernel.Bind<IWebClient>().To<WebClient>();
             kernel.Bind<IProtocol>().To<JsonProtocol>();
-            kernel.Bind<StackOverflowClient>().ToSelf().WithConstructorArgument("version", Config.ServiceVersion);
+            kernel.Bind<StackOverflowClient>().ToSelf()
+                .WithConstructorArgument("version", serviceVersion)
+                .WithConstructorArgument("apiKey", apiKey);
 
             kernel.Bind<IWebClientAsync>().To<WebClientAsync>();
-            kernel.Bind<StackOverflowClientAsync>().ToSelf().WithConstructorArgument("version", Config.ServiceVersion);
+            kernel.Bind<StackOverflowClientAsync>().ToSelf()
+                .WithConstructorArgument("version", serviceVersion)
+                .WithConstructorArgument("apiKey", apiKey);
 
             var client = kernel.Get<StackOverflowClient>();
             var questions = client.GetQuestions();

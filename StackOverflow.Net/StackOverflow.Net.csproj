@@ -55,6 +55,7 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\PostEvent.cs" />
     <Compile Include="Entities\Reputation.cs" />
+    <Compile Include="Entities\Revision.cs" />
     <Compile Include="Entities\SiteStats.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Enums\TagSort.cs" />
     <Compile Include="Enums\UserEventType.cs" />
     <Compile Include="Enums\UserSort.cs" />
-    <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\Require.cs" />
@@ -90,8 +90,24 @@
     <Compile Include="Entities\Question.cs" />
     <Compile Include="ApiException.cs" />
     <Compile Include="Enums\QuestionsByUserSort.cs" />
-    <Compile Include="StackOverflowClient.cs" />
-    <Compile Include="StackOverflowClientAsync.cs" />
+    <Compile Include="StackOverflowClientAsync\AnswerMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\BadgeMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\CommentMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\QuestionMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\RevisionMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\StatsMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\TagMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\UserMethods.cs" />
+    <Compile Include="StackOverflowClient\AnswerMethods.cs" />
+    <Compile Include="StackOverflowClient\BadgeMethods.cs" />
+    <Compile Include="StackOverflowClient\CommentMethods.cs" />
+    <Compile Include="StackOverflowClient\QuestionMethods.cs" />
+    <Compile Include="StackOverflowClient\RevisionMethods.cs" />
+    <Compile Include="StackOverflowClient\StackOverflowClient.cs" />
+    <Compile Include="StackOverflowClientAsync\StackOverflowClientAsync.cs" />
+    <Compile Include="StackOverflowClient\StatsMethods.cs" />
+    <Compile Include="StackOverflowClient\TagMethods.cs" />
+    <Compile Include="StackOverflowClient\UserMethods.cs" />
     <Compile Include="WebClient.cs" />
     <Compile Include="WebClientAsync.cs" />
   </ItemGroup>

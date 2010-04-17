@@ -33,6 +33,9 @@ namespace StackOverflow
         [JsonProperty("owner_display_name")]
         public string OwnerDisplayName { get; set; }
 
+        [JsonProperty("owner_email_hash")]
+        public string OwnerEmailHash { get; set; }
+
         [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreationDate { get; set; }
 

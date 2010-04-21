@@ -6,7 +6,12 @@ namespace StackOverflow
     {
         public IList<Answer> GetUsersAnswers(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<Answer>>("users", false, new string[] { userId.ToString(), "answers" }, new
+            return GetUsersAnswers(userId.ToArray(), sortBy, sortDirection, page, pageSize, includeBody, includeComments);
+        }
+
+        public IList<Answer> GetUsersAnswers(IEnumerable<int> userIds, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        {
+            return MakeRequest<List<Answer>>("users", false, new string[] { userIds.Vectorize(), "answers" }, new
             {
                 key = apiKey,
                 page = page ?? null,

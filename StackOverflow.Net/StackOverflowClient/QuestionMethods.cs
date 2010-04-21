@@ -40,26 +40,36 @@ namespace StackOverflow
             });
         }
 
-        public Question GetQuestion(int id, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public IList<Question> GetQuestions(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<Question>>("questions", false, new string[] { id.ToString() }, new
+            return MakeRequest<List<Question>>("questions", false, new string[] { questionIds.Vectorize() }, new
             {
                 key = apiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }).FirstOrDefault();
+            });
         }
 
-        public IList<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
+        public Question GetQuestion(int questionId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<PostEvent>>("questions", false, new string[] { questionId.ToString(), "timeline" }, new
+            return GetQuestions(questionId.ToArray(), page, pageSize, includeBody, includeComments).FirstOrDefault();
+        }
+
+        public IList<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return MakeRequest<List<PostEvent>>("questions", false, new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
             });
+        }
+
+        public IList<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return GetQuestionTimeline(questionId.ToArray(), fromDate, toDate);
         }
     }
 }

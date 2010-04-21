@@ -24,7 +24,12 @@ namespace StackOverflow
 
         public void GetBadgesByUser(int userId, Action<List<Badge>> callback, Action<ApiException> onError = null)
         {
-            GetBadges(callback, onError, "users", new string[] { userId.ToString(), "badges" });
+            GetBadgesByUser(userId.ToArray(), callback, onError);
+        }
+
+        public void GetBadgesByUser(IEnumerable<int> userIds, Action<List<Badge>> callback, Action<ApiException> onError = null)
+        {
+            GetBadges(callback, onError, "users", new string[] { userIds.Vectorize(), "badges" });
         }
     }
 }

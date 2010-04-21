@@ -24,17 +24,27 @@ namespace StackOverflow
             }, callback, onError);
         }
 
-        public void GetUser(int userId, Action<User> callback, Action<ApiException> onError = null)
+        public void GetUsers(IEnumerable<int> userIds, Action<List<User>> callback, Action<ApiException> onError = null)
         {
-            MakeRequest<List<User>>("users", false, new string[] { userId.ToString() }, new
+            MakeRequest<List<User>>("users", false, new string[] { userIds.Vectorize() }, new
             {
                 key = apiKey
-            }, results => callback(results.FirstOrDefault()), onError);
+            }, callback, onError);
+        }
+
+        public void GetUser(int userId, Action<User> callback, Action<ApiException> onError = null)
+        {
+            GetUsers(new int[] { userId }, results => callback(results.FirstOrDefault()), onError);
         }
 
         public void GetUserMentions(int userId, Action<List<Comment>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<Comment>>("users", false, new string[] { userId.ToString(), "mentioned" }, new
+            GetUserMentions(new int[] { userId }, callback, onError, fromDate, toDate);
+        }
+
+        public void GetUserMentions(IEnumerable<int> userIds, Action<List<Comment>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            MakeRequest<List<Comment>>("users", false, new string[] { userIds.Vectorize(), "mentioned" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
@@ -44,7 +54,12 @@ namespace StackOverflow
 
         public void GetUserTimeline(int userId, Action<List<UserEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<UserEvent>>("users", false, new string[] { userId.ToString(), "timeline" }, new
+            GetUserTimeline(new int[] { userId }, callback, onError, fromDate, toDate);
+        }
+
+        public void GetUserTimeline(IEnumerable<int> userIds, Action<List<UserEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            MakeRequest<List<UserEvent>>("users", false, new string[] { userIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
@@ -54,7 +69,12 @@ namespace StackOverflow
 
         public void GetUserReputation(int userId, Action<List<Reputation>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<Reputation>>("users", false, new string[] { userId.ToString(), "reputation" }, new
+            GetUserReputation(new int[] { userId }, callback, onError, page, pageSize, fromDate, toDate);
+        }
+
+        public void GetUserReputation(IEnumerable<int> userIds, Action<List<Reputation>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            MakeRequest<List<Reputation>>("users", false, new string[] { userIds.Vectorize(), "reputation" }, new
             {
                 key = apiKey,
                 page = page ?? null,

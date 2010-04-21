@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 
 #endregion
 
@@ -90,6 +91,20 @@ namespace StackOverflow
                 }
             }
             return values;
+        }
+
+        /// <summary>
+        /// Converts a list of items to a delimited string to be used
+        /// by vectorized (multi-key) requests
+        /// </summary>
+        public static string Vectorize<T>(this IEnumerable<T> items)
+        {
+            return String.Join(";", items.Select(i => i.ToString()).ToArray());
+        }
+
+        public static int[] ToArray(this int item)
+        {
+            return new int[] { item };
         }
     }
 }

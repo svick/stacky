@@ -44,26 +44,36 @@ namespace StackOverflow
             }, callback, onError);
         }
 
-        public void GetQuestion(int id, Action<Question> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetQuestions(IEnumerable<int> questionIds, Action<List<Question>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            MakeRequest<List<Question>>("questions", false, new string[] { id.ToString() }, new
+            MakeRequest<List<Question>>("questions", false, new string[] { questionIds.Vectorize() }, new
             {
                 key = apiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, returnedQuestions => callback(returnedQuestions.FirstOrDefault()), onError);
+            }, callback, onError);
         }
 
-        public void GetQuestionTimeline(int questionId, Action<List<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetQuestion(int questionId, Action<Question> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            MakeRequest<List<PostEvent>>("questions", false, new string[] { questionId.ToString(), "timeline" }, new
+            GetQuestions(questionId.ToArray(), returnedQuestions => callback(returnedQuestions.FirstOrDefault()), onError, page, pageSize, includeBody, includeComments);
+        }
+
+        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<List<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            MakeRequest<List<PostEvent>>("questions", false, new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
             }, callback, onError);
+        }
+
+        public void GetQuestionTimeline(int questionId, Action<List<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            GetQuestionTimeline(questionId.ToArray(), callback, onError, fromDate, toDate);
         }
     }
 }

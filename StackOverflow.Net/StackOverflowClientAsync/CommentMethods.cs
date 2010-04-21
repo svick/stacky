@@ -9,16 +9,16 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetComments(IEnumerable<int> fromUserIds, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments", toUserId.ToString() };
+                urlParameters = new string[] { fromUserIds.Vectorize(), "comments", toUserId.ToString() };
             }
             else
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments" };
+                urlParameters = new string[] { fromUserIds.Vectorize(), "comments" };
             }
 
             MakeRequest<List<Comment>>("users", false, urlParameters, new
@@ -31,6 +31,11 @@ namespace StackOverflow
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
             }, callback, onError);
+        }
+
+        public void GetComments(int fromUserId, Action<List<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            GetComments(fromUserId.ToArray(), callback, onError, sortBy, sortDirection, toUserId, page, pageSize, fromDate, toDate);
         }
     }
 }

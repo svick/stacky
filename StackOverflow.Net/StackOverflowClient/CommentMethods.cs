@@ -5,16 +5,16 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public IList<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public IList<Comment> GetComments(IEnumerable<int> fromUserIds, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments", toUserId.ToString() };
+                urlParameters = new string[] { fromUserIds.Vectorize(), "comments", toUserId.ToString() };
             }
             else
             {
-                urlParameters = new string[] { fromUserId.ToString(), "comments" };
+                urlParameters = new string[] { fromUserIds.Vectorize(), "comments" };
             }
 
             return MakeRequest<List<Comment>>("users", false, urlParameters, new
@@ -27,6 +27,11 @@ namespace StackOverflow
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
             });
+        }
+
+        public IList<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return GetComments(fromUserId.ToArray(), sortBy, sortDirection, toUserId, page, pageSize, fromDate, toDate);
         }
     }
 }

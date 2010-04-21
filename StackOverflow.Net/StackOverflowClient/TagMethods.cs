@@ -23,8 +23,13 @@ namespace StackOverflow
 
         public IList<Tag> GetTagsByUser(int userId, int? page = null, int? pageSize = null)
         {
+            return GetTagsByUser(userId.ToArray(), page, pageSize);
+        }
+
+        public IList<Tag> GetTagsByUser(IEnumerable<int> userIds, int? page = null, int? pageSize = null)
+        {
             //TODO: does this method support sort and order?
-            return GetTags("users", new string[] { userId.ToString(), "tags" }, null, null, page, pageSize);
+            return GetTags("users", new string[] { userIds.Vectorize(), "tags" }, null, null, page, pageSize);
         }
     }
 }

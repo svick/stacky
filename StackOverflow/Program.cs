@@ -13,8 +13,8 @@ namespace StackOverflow
         {
             IWebClient webClient = new WebClient();
             IProtocol protocol = new JsonProtocol();
-            string serviceVersion = "0.6";
-            string apiKey = "speakfriendandenter";
+            string serviceVersion = "0.7";
+            string apiKey = "0xDEADBEEF";
 
             IKernel kernel = new StandardKernel();
             kernel.Bind<IWebClient>().To<WebClient>();

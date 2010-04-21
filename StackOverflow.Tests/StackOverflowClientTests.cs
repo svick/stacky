@@ -9,8 +9,8 @@ namespace StackOverflow.Tests
     [TestClass]
     public class StackOverflowClientTests
     {
-        private static string version = "0.6";
-        private static string apiKey = "speakfriendandenter";
+        private static string version = "0.7";
+        private static string apiKey = "0xDEADBEEF";
 
         [TestMethod]
         public void GetQuestion_ReturnsSingleQuestion()

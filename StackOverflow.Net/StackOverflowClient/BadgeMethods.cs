@@ -19,7 +19,12 @@ namespace StackOverflow
 
         public IList<Badge> GetBadgesByUser(int userId)
         {
-            return GetBadges("users", new string[] { userId.ToString(), "badges" });
+            return GetBadgesByUser(userId.ToArray());
+        }
+
+        public IList<Badge> GetBadgesByUser(IEnumerable<int> userIds)
+        {
+            return GetBadges("users", new string[] { userIds.Vectorize(), "badges" });
         }
     }
 }

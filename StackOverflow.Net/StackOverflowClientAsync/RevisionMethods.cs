@@ -11,7 +11,7 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetRevisions(IEnumerable<int> ids, Action<List<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<List<Revision>>("revisions", false, new string[] { ids.Vectorize() }, new
             {
@@ -21,7 +21,7 @@ namespace StackOverflow
             }, callback, onError);
         }
 
-        public void GetRevisions(int id, Action<List<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetRevisions(int id, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             GetRevisions(id.ToArray(), callback, onError, fromDate, toDate);
         }

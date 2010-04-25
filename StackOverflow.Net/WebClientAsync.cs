@@ -33,7 +33,7 @@ namespace StackOverflow
             if (e.Error != null)
             {
                 if (onError != null)
-                    onError(new ApiException(Int32.MinValue, e.Error));
+                    onError(new ApiException(null, e.Error));
                 return;
             }
 

@@ -17,15 +17,27 @@ namespace StackOverflow
                 {
                     using (var response = request.GetResponse() as HttpWebResponse)
                     {
-                        if (response != null)
+                        using (var responseStream = response.GetResponseStream())
                         {
-                            var reader = new StreamReader(response.GetResponseStream());
+                            var reader = new StreamReader(responseStream);
                             return reader.ReadToEnd();
                         }
                     }
                 }
                 catch (WebException e)
                 {
+                    if (e.Status == WebExceptionStatus.ProtocolError && e.Response != null)
+                    {
+                        var response = (HttpWebResponse)e.Response;
+                        if (response.StatusCode != HttpStatusCode.NotFound)
+                        {
+                            using (var responseStream = response.GetResponseStream())
+                            {
+                                var reader = new StreamReader(responseStream);
+                                return reader.ReadToEnd();
+                            }
+                        }
+                    }
                     throw;
                 }
             }

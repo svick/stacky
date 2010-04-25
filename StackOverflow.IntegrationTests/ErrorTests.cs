@@ -3,13 +3,15 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net;
+using System.IO;
 
 namespace StackOverflow.IntegrationTests
 {
     [TestClass]
     public class ErrorTests : IntegrationTest
     {
-        //[TestMethod, ExpectedException(typeof(System.Net.WebException))]
+        [TestMethod, ExpectedException(typeof(System.Net.WebException))]
         public void ErrorCode_404_NotFound_ThrowsError()
         {
             var error = Client.GetError(ErrorCode.NotFound);
@@ -18,22 +20,30 @@ namespace StackOverflow.IntegrationTests
             Assert.AreEqual(error.Code, ErrorCode.NotFound);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void ErrorCode_InvalidApplicationPublicKey()
         {
-            var error = Client.GetError(ErrorCode.InvalidApplicationPublicKey);
-
-            Assert.IsNotNull(error);
-            Assert.AreEqual(error.Code, ErrorCode.InvalidApplicationPublicKey);
+            try
+            {
+                Client.GetError(ErrorCode.InvalidApplicationPublicKey);
+            }
+            catch (ApiException e)
+            {
+                Assert.AreEqual(e.Error.Code, ErrorCode.InvalidApplicationPublicKey);
+            }
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void ErrorCode_InvalidVectorFormat()
         {
-            var error = Client.GetError(ErrorCode.InvalidVectorFormat);
-
-            Assert.IsNotNull(error);
-            Assert.AreEqual(error.Code, ErrorCode.InvalidVectorFormat);
+            try
+            {
+                Client.GetError(ErrorCode.InvalidVectorFormat);
+            }
+            catch (ApiException e)
+            {
+                Assert.AreEqual(e.Error.Code, ErrorCode.InvalidVectorFormat);
+            }            
         }
     }
 }

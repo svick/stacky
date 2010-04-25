@@ -8,10 +8,13 @@ namespace StackOverflow.IntegrationTests
 {
     public abstract class IntegrationTest
     {
+        private static string version = "0.7";
+        private static string apiKey = "0xDEADBEEF";
+
         public IntegrationTest()
         {
-            Client = new StackOverflowClient("0.5", new WebClient(), new JsonProtocol());
-            ClientAsync = new StackOverflowClientAsync("0.5", new WebClientAsync(), new JsonProtocol());
+            Client = new StackOverflowClient(version, apiKey, new WebClient(), new JsonProtocol());
+            ClientAsync = new StackOverflowClientAsync(version, apiKey, new WebClientAsync(), new JsonProtocol());
         }
 
         public StackOverflowClient Client { get; set; }
@@ -27,7 +30,7 @@ namespace StackOverflow.IntegrationTests
             var questions = Client.GetQuestions();
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count);
+            Assert.AreEqual(30, questions.Count());
         }
 
         #region GetQuestions - Sort By Active
@@ -38,7 +41,7 @@ namespace StackOverflow.IntegrationTests
             var questions = Client.GetQuestions(sortBy: QuestionSort.Active, sortDirection: SortDirection.Descending);
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count);
+            Assert.AreEqual(30, questions.Count());
         }
 
         [TestMethod]
@@ -47,7 +50,7 @@ namespace StackOverflow.IntegrationTests
             var questions = Client.GetQuestions(sortBy: QuestionSort.Active, sortDirection: SortDirection.Ascending);
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count);
+            Assert.AreEqual(30, questions.Count());
         }
 
         [TestMethod]
@@ -56,7 +59,7 @@ namespace StackOverflow.IntegrationTests
             var questions = Client.GetQuestions(sortBy: QuestionSort.Active, page: 4, pageSize: 5);
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(5, questions.Count);
+            Assert.AreEqual(5, questions.Count());
         }
 
         [TestMethod]
@@ -69,7 +72,7 @@ namespace StackOverflow.IntegrationTests
             }
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count);
+            Assert.AreEqual(30, questions.Count());
         }
 
         [TestMethod]
@@ -78,7 +81,7 @@ namespace StackOverflow.IntegrationTests
             var questions = Client.GetQuestions(sortBy: QuestionSort.Active, fromDate: new DateTime(2010, 1, 1), toDate: new DateTime(2010, 1, 25));
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count);
+            Assert.AreEqual(30, questions.Count());
         }
 
         [TestMethod]
@@ -92,7 +95,7 @@ namespace StackOverflow.IntegrationTests
             }
 
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count);
+            Assert.AreEqual(30, questions.Count());
         }
 
         #endregion

@@ -69,6 +69,9 @@
     <Compile Include="..\StackOverflow.Net\Entities\Badge.cs">
       <Link>Entities\Badge.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\BadgeCounts.cs">
+      <Link>Entities\BadgeCounts.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Entities\Comment.cs">
       <Link>Entities\Comment.cs</Link>
     </Compile>

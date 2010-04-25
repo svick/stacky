@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Entities\Answer.cs" />
     <Compile Include="Entities\Badge.cs" />
+    <Compile Include="Entities\BadgeCounts.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\PostEvent.cs" />
     <Compile Include="Entities\Reputation.cs" />

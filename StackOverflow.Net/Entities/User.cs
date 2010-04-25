@@ -7,6 +7,11 @@ namespace StackOverflow
 {
     public class User
     {
+        public User()
+        {
+            BadgeCounts = new BadgeCounts();
+        }
+
         [JsonProperty("user_id")]
         public long Id { get; set; }
 
@@ -56,6 +61,9 @@ namespace StackOverflow
 
         [JsonProperty("accept_rate")]
         public int? AcceptRate { get; set; }
+
+        [JsonProperty("badge_counts")]
+        public BadgeCounts BadgeCounts { get; set; }
     }
 
     public enum UserType

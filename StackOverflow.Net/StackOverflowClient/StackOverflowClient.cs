@@ -29,7 +29,7 @@ namespace StackOverflow
             string resposneText = GetResponse(method, secure, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments));
             IResponse response = protocol.GetResponse(resposneText);
             if (response.Error != null)
-                throw new ApiException(response.Error.ErrorCode);
+                throw new ApiException((int)response.Error.Code);
         }
 
         private T MakeRequest<T>(string method, bool secure, string[] urlArguments, object queryStringArguments)
@@ -44,7 +44,7 @@ namespace StackOverflow
             string resposneText = GetResponse(method, secure, urlArguments, queryStringArguments);
             IResponse<T> response = protocol.GetResponse<T>(resposneText);
             if (response.Error != null)
-                throw new ApiException(response.Error.ErrorCode);
+                throw new ApiException((int)response.Error.Code);
             return response.Data;
         }
 

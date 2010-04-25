@@ -25,7 +25,7 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
     }
 }

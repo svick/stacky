@@ -6,10 +6,10 @@ namespace StackOverflow
     [JsonObject]
     public class ResponseError
     {
-        [XmlAttribute("Code"), JsonProperty("Code")]
-        public int ErrorCode { get; set; }
+        [JsonProperty("code")]
+        public ErrorCode Code { get; set; }
 
-        [XmlAttribute("Message"), JsonProperty("Message")]
+        [JsonProperty("message")]
         public string Message { get; set; }
     }
 }

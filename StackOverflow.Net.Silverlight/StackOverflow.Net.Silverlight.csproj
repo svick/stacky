@@ -114,6 +114,9 @@
     <Compile Include="..\StackOverflow.Net\Enums\CommentSort.cs">
       <Link>Enums\CommentSort.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\ErrorCode.cs">
+      <Link>Enums\ErrorCode.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Enums\FavoriteQuestionsSort.cs">
       <Link>Enums\FavoriteQuestionsSort.cs</Link>
     </Compile>
@@ -188,6 +191,9 @@
     </Compile>
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\CommentMethods.cs">
       <Link>StackOverflowClient\CommentMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\ErrorMethods.cs">
+      <Link>StackOverflowClient\ErrorMethods.cs</Link>
     </Compile>
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\QuestionMethods.cs">
       <Link>StackOverflowClient\QuestionMethods.cs</Link>

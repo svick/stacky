@@ -64,6 +64,33 @@ namespace StackOverflow
 
         [JsonProperty("badge_counts")]
         public BadgeCounts BadgeCounts { get; set; }
+
+        [JsonProperty("user_questions_url")]
+        public string QuestionsUrl { get; set; }
+
+        [JsonProperty("user_answers_url")]
+        public string AnswersUrl { get; set; }
+
+        [JsonProperty("user_favorites_url")]
+        public string FavoritesUrl { get; set; }
+
+        [JsonProperty("user_tags_url")]
+        public string TagsUrl { get; set; }
+
+        [JsonProperty("user_badges_url")]
+        public string BadgesUrl { get; set; }
+
+        [JsonProperty("user_timeline_url")]
+        public string TimelineUrl { get; set; }
+
+        [JsonProperty("user_mentioned_url")]
+        public string MentionedUrl { get; set; }
+
+        [JsonProperty("user_comments_url")]
+        public string CommentsUrl { get; set; }
+
+        [JsonProperty("user_reputation_url")]
+        public string ReputationUrl { get; set; }
     }
 
     public enum UserType

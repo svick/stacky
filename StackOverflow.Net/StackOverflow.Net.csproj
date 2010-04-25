@@ -54,6 +54,7 @@
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\BadgeCounts.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Enums\ErrorCode.cs" />
     <Compile Include="Entities\PostEvent.cs" />
     <Compile Include="Entities\Reputation.cs" />
     <Compile Include="Entities\Revision.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="StackOverflowClientAsync\AnswerMethods.cs" />
     <Compile Include="StackOverflowClientAsync\BadgeMethods.cs" />
     <Compile Include="StackOverflowClientAsync\CommentMethods.cs" />
+    <Compile Include="StackOverflowClientAsync\ErrorMethods.cs" />
     <Compile Include="StackOverflowClientAsync\QuestionMethods.cs" />
     <Compile Include="StackOverflowClientAsync\RevisionMethods.cs" />
     <Compile Include="StackOverflowClientAsync\StatsMethods.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="StackOverflowClient\AnswerMethods.cs" />
     <Compile Include="StackOverflowClient\BadgeMethods.cs" />
     <Compile Include="StackOverflowClient\CommentMethods.cs" />
+    <Compile Include="StackOverflowClient\ErrorMethods.cs" />
     <Compile Include="StackOverflowClient\QuestionMethods.cs" />
     <Compile Include="StackOverflowClient\RevisionMethods.cs" />
     <Compile Include="StackOverflowClient\StackOverflowClient.cs" />

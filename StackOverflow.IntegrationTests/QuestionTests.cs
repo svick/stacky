@@ -99,5 +99,15 @@ namespace StackOverflow.IntegrationTests
         }
 
         #endregion
+
+        [TestMethod]
+        public void Question_Contains_Urls()
+        {
+            var question = Client.GetQuestion(31415);
+
+            Assert.IsNotNull(question);
+            Assert.IsFalse(String.IsNullOrEmpty(question.CommentsUrl));
+            Assert.IsFalse(String.IsNullOrEmpty(question.TimelineUrl));
+        }
     }
 }

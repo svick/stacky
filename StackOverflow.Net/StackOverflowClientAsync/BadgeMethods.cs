@@ -19,7 +19,7 @@ namespace StackOverflow
             MakeRequest<List<Badge>>(method, false, sort, new
             {
                 key = apiKey
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetBadgesByUser(int userId, Action<IEnumerable<Badge>> callback, Action<ApiException> onError = null)

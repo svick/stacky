@@ -61,5 +61,8 @@ namespace StackOverflow
         public bool CommunityOwned { get; set; }
 
         public List<Comment> Comments { get; set; }
+
+        [JsonProperty("answer_comments_url")]
+        public string CommentsUrl { get; set; }
     }
 }

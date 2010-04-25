@@ -21,7 +21,7 @@ namespace StackOverflow
                 filter = filter,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetUsers(IEnumerable<int> userIds, Action<IEnumerable<User>> callback, Action<ApiException> onError = null)
@@ -29,7 +29,7 @@ namespace StackOverflow
             MakeRequest<List<User>>("users", false, new string[] { userIds.Vectorize() }, new
             {
                 key = apiKey
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetUser(int userId, Action<User> callback, Action<ApiException> onError = null)
@@ -49,7 +49,7 @@ namespace StackOverflow
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetUserTimeline(int userId, Action<IEnumerable<UserEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
@@ -64,7 +64,7 @@ namespace StackOverflow
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetUserReputation(int userId, Action<IEnumerable<Reputation>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
@@ -81,7 +81,7 @@ namespace StackOverflow
                 pagesize = pageSize ?? null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
     }
 }

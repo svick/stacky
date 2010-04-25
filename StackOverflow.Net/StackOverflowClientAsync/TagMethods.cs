@@ -23,7 +23,7 @@ namespace StackOverflow
                 pagesize = pageSize ?? null,
                 sort = sort,
                 order = order
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetTagsByUser(int userId, Action<IEnumerable<Tag>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null)

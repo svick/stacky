@@ -78,6 +78,12 @@ namespace StackOverflow
         [JsonProperty("bounty_amount")]
         public int BountyAmount { get; set; }
 
+        [JsonProperty("question_timeline_url")]
+        public string TimelineUrl { get; set; }
+
+        [JsonProperty("question_comments_url")]
+        public string CommentsUrl { get; set; }
+
         public List<string> Tags { get; set; }
 
         public List<Answer> Answers { get; set; }

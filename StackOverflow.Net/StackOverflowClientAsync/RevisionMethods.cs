@@ -18,7 +18,7 @@ namespace StackOverflow
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetRevisions(int id, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)

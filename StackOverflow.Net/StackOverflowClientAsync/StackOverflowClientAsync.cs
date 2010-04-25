@@ -77,7 +77,7 @@ namespace StackOverflow
                     if (response.Error != null)
                     {
                         if(onError != null)
-                            onError(new ApiException(r.Error.ErrorCode));
+                            onError(new ApiException((int)r.Error.Code));
                         return;
                     }
                     else

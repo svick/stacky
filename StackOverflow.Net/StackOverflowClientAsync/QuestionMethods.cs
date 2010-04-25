@@ -41,7 +41,7 @@ namespace StackOverflow
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
                 sort = sort,
                 order = order
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetQuestions(IEnumerable<int> questionIds, Action<IEnumerable<Question>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
@@ -53,7 +53,7 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetQuestion(int questionId, Action<Question> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
@@ -68,7 +68,7 @@ namespace StackOverflow
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, callback, onError);
+            }, (items) => callback(items), onError);
         }
 
         public void GetQuestionTimeline(int questionId, Action<IEnumerable<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)

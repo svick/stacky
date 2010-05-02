@@ -9,12 +9,12 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        private IWebClient client;
+        private IUrlClient client;
         private IProtocol protocol;
         private string version;
         private string apiKey;
 
-        public StackOverflowClient(string version, string apiKey, IWebClient client, IProtocol protocol)
+        public StackOverflowClient(string version, string apiKey, IUrlClient client, IProtocol protocol)
         {
             this.version = version;
             this.apiKey = apiKey;
@@ -63,7 +63,7 @@ namespace StackOverflow
 
         #region Properties
 
-        public IWebClient WebClient
+        public IUrlClient WebClient
         {
             get { return client; }
             set { client = value; }

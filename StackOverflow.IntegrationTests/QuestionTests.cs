@@ -13,8 +13,8 @@ namespace StackOverflow.IntegrationTests
 
         public IntegrationTest()
         {
-            Client = new StackOverflowClient(version, apiKey, new WebClient(), new JsonProtocol());
-            ClientAsync = new StackOverflowClientAsync(version, apiKey, new WebClientAsync(), new JsonProtocol());
+            Client = new StackOverflowClient(version, apiKey, new UrlClient(), new JsonProtocol());
+            ClientAsync = new StackOverflowClientAsync(version, apiKey, new UrlClientAsync(), new JsonProtocol());
         }
 
         public StackOverflowClient Client { get; set; }

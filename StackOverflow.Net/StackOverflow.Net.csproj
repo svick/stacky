@@ -83,8 +83,8 @@
     <Compile Include="HttpResponse.cs" />
     <Compile Include="Interfaces\IProtocol.cs" />
     <Compile Include="Interfaces\IResponse.cs" />
-    <Compile Include="Interfaces\IWebClient.cs" />
-    <Compile Include="Interfaces\IWebClientAsync.cs" />
+    <Compile Include="Interfaces\IUrlClient.cs" />
+    <Compile Include="Interfaces\IUrlClientAsync.cs" />
     <Compile Include="Protocols\JsonProtocol.cs" />
     <Compile Include="Protocols\JsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,8 +112,8 @@
     <Compile Include="StackOverflowClient\StatsMethods.cs" />
     <Compile Include="StackOverflowClient\TagMethods.cs" />
     <Compile Include="StackOverflowClient\UserMethods.cs" />
-    <Compile Include="WebClient.cs" />
-    <Compile Include="WebClientAsync.cs" />
+    <Compile Include="UrlClient.cs" />
+    <Compile Include="UrlClientAsync.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

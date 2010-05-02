@@ -3,7 +3,7 @@ using System;
 
 namespace StackOverflow
 {
-    public interface IWebClient
+    public interface IUrlClient
     {
         string MakeRequest(Uri url);
     }

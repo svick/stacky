@@ -4,7 +4,7 @@ using System.Net;
 
 namespace StackOverflow
 {
-    public class WebClient : IWebClient
+    public class UrlClient : IUrlClient
     {
         public string MakeRequest(Uri url)
         {
@@ -13,6 +13,8 @@ namespace StackOverflow
             {
                 //TODO: Figure out what user agent to use for the request
                 request.UserAgent = "";
+                request.Accept = "gzip,deflate";
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
                 try
                 {
                     using (var response = request.GetResponse() as HttpWebResponse)

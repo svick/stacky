@@ -3,9 +3,9 @@
 namespace StackOverflow
 {
 #if SILVERLIGHT
-    public interface IWebClient
+    public interface IUrlClient
 #else
-    public interface IWebClientAsync
+    public interface IUrlClientAsync
 #endif
     {
         void MakeRequest(Uri url, Action<HttpResponse> callback, Action<ApiException> onError);

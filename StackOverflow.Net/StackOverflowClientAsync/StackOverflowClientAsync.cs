@@ -12,18 +12,18 @@ namespace StackOverflow
 #endif
     {
 #if SILVERLIGHT
-        private IWebClient client;
+        private IUrlClient client;
 #else
-        private IWebClientAsync client;
+        private IUrlClientAsync client;
 #endif
         private IProtocol protocol;
         private string version;
         private string apiKey;
 
         #if SILVERLIGHT
-        public StackOverflowClient(string version, IWebClient client, IProtocol protocol)
+        public StackOverflowClient(string version, string apiKey, IUrlClient client, IProtocol protocol)
 #else
-        public StackOverflowClientAsync(string version, string apiKey, IWebClientAsync client, IProtocol protocol)
+        public StackOverflowClientAsync(string version, string apiKey, IUrlClientAsync client, IProtocol protocol)
 #endif
         {
             this.version = version;
@@ -35,9 +35,9 @@ namespace StackOverflow
         #region Properties
 
 #if SILVERLIGHT
-        public IWebClient WebClient
+        public IUrlClient WebClient
 #else
-        public IWebClientAsync WebClient
+        public IUrlClientAsync WebClient
 #endif
         {
             get { return client; }

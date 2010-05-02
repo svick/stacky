@@ -11,19 +11,19 @@ namespace StackOverflow
     {
         static void Main(string[] args)
         {
-            IWebClient webClient = new WebClient();
+            IUrlClient webClient = new UrlClient();
             IProtocol protocol = new JsonProtocol();
             string serviceVersion = "0.7";
             string apiKey = "0xDEADBEEF";
 
             IKernel kernel = new StandardKernel();
-            kernel.Bind<IWebClient>().To<WebClient>();
+            kernel.Bind<IUrlClient>().To<UrlClient>();
             kernel.Bind<IProtocol>().To<JsonProtocol>();
             kernel.Bind<StackOverflowClient>().ToSelf()
                 .WithConstructorArgument("version", serviceVersion)
                 .WithConstructorArgument("apiKey", apiKey);
 
-            kernel.Bind<IWebClientAsync>().To<WebClientAsync>();
+            kernel.Bind<IUrlClientAsync>().To<UrlClientAsync>();
             kernel.Bind<StackOverflowClientAsync>().ToSelf()
                 .WithConstructorArgument("version", serviceVersion)
                 .WithConstructorArgument("apiKey", apiKey);

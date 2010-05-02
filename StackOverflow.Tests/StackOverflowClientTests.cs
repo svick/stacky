@@ -15,7 +15,7 @@ namespace StackOverflow.Tests
         [TestMethod]
         public void GetQuestion_ReturnsSingleQuestion()
         {
-            var client = new StackOverflowClient(version, apiKey, new WebClient(), new JsonProtocol());
+            var client = new StackOverflowClient(version, apiKey, new UrlClient(), new JsonProtocol());
             var question = client.GetQuestion(2573290);
             Assert.IsNotNull(question);
         }
@@ -23,7 +23,7 @@ namespace StackOverflow.Tests
         [TestMethod]
         public void SiteStats_ReturnsSingleItem()
         {
-            var client = new StackOverflowClient(version, apiKey, new WebClient(), new JsonProtocol());
+            var client = new StackOverflowClient(version, apiKey, new UrlClient(), new JsonProtocol());
             var stats = client.GetSiteStats();
             Assert.IsNotNull(stats);
         }

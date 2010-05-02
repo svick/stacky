@@ -52,7 +52,7 @@ namespace StackOverflow
         public DateTime ClosedDate { get; set; }
 
         [JsonProperty("closed_reason")]
-        public int ClosedReason { get; set; }
+        public string ClosedReason { get; set; }
 
         [JsonProperty("up_vote_count")]
         public int UpVoteCount { get; set; }

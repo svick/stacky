@@ -68,6 +68,7 @@
     <Compile Include="Enums\PostEventType.cs" />
     <Compile Include="Enums\PostType.cs" />
     <Compile Include="Enums\QuestionSort.cs" />
+    <Compile Include="Enums\SearchSort.cs" />
     <Compile Include="Enums\SortArgsAttribute.cs" />
     <Compile Include="Enums\FavoriteQuestionsSort.cs" />
     <Compile Include="Enums\SortDirection.cs" />

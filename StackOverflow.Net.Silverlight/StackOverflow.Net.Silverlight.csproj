@@ -132,6 +132,9 @@
     <Compile Include="..\StackOverflow.Net\Enums\QuestionSort.cs">
       <Link>Enums\QuestionSort.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\SearchSort.cs">
+      <Link>Enums\SearchSort.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Enums\SortArgsAttribute.cs">
       <Link>Enums\SortArgsAttribute.cs</Link>
     </Compile>

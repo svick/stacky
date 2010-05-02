@@ -75,5 +75,28 @@ namespace StackOverflow
         {
             GetQuestionTimeline(questionId.ToArray(), callback, onError, fromDate, toDate);
         }
+
+        public void Search(Action<IEnumerable<Question>> callback, Action<ApiException> onError = null, string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
+        {
+            string taggedString = null;
+            if (tagged != null)
+                taggedString = String.Join(" ", tagged.ToArray());
+
+            string notTaggedString = null;
+            if (notTagged != null)
+                notTaggedString = String.Join(" ", notTagged.ToArray());
+
+            MakeRequest<List<Question>>("search", false, null, new
+            {
+                key = apiKey,
+                intitle = inTitle,
+                tagged = taggedString,
+                nottagged = notTaggedString,
+                sort = sortBy,
+                order = GetSortDirection(sortDirection),
+                page = page ?? null,
+                pagesize = pageSize ?? null
+            }, (items) => callback(items), onError);
+        }
     }
 }

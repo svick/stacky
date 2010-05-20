@@ -17,5 +17,12 @@ namespace StackOverflow.IntegrationTests
             Assert.IsNotNull(answer);
             Assert.IsFalse(String.IsNullOrEmpty(answer.CommentsUrl));
         }
+
+        [TestMethod]
+        public void Answer_GetQuestionAnswers()
+        {
+            var answers = Client.GetQuestionAnswers(31415);
+            Assert.IsNotNull(answers);
+        }
     }
 }

@@ -16,14 +16,14 @@ namespace StackOverflow
 
         private void GetTags(Action<IEnumerable<Tag>> callback, Action<ApiException> onError, string method, string[] urlParameters, string sort, string order, int? page = null, int? pageSize = null)
         {
-            MakeRequest<List<Tag>>(method, false, urlParameters, new
+            MakeRequest<TagResponse>(method, urlParameters, new
             {
                 key = apiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 sort = sort,
                 order = order
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Tags), onError);
         }
 
         public void GetTagsByUser(int userId, Action<IEnumerable<Tag>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null)

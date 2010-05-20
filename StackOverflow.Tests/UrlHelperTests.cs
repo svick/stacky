@@ -16,37 +16,23 @@ namespace StackOverflow.Tests
         #region BuildUrl
 
         [TestMethod]
-        public void BuildUrl_UsesHttps_WhenSecureIsTrue()
-        {
-            Uri url = UrlHelper.BuildUrl("TestMethod", version, true, ServiceUrl, null, null);
-            Assert.AreEqual(url.Scheme, Uri.UriSchemeHttps);
-        }
-
-        [TestMethod]
-        public void BuildUrl_UsesHttp_WhenSecureIsFalse()
-        {
-            Uri url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, null, null);
-            Assert.AreEqual(url.Scheme, Uri.UriSchemeHttp);
-        }
-
-        [TestMethod]
         public void BuildUrl_UrlParameters_IncludedInResult()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, new string[] { "item1", "item2" }, null);
+            var url = UrlHelper.BuildUrl("TestMethod", version, ServiceUrl, new string[] { "item1", "item2" }, null);
             Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/item1/item2/", url.ToString());
         }
 
         [TestMethod]
         public void BuildUrl_NullUrlParameters_ResultsInNoUrlParameters()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, null, null);
+            var url = UrlHelper.BuildUrl("TestMethod", version, ServiceUrl, null, null);
             Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/", url.ToString());
         }
 
         [TestMethod]
         public void BuildUrl_UrlParamatersAndQueryStringParameters_BuiltCorrectly()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", version, false, ServiceUrl, new string[] { "item1", "item2" }, new
+            var url = UrlHelper.BuildUrl("TestMethod", version, ServiceUrl, new string[] { "item1", "item2" }, new
             {
                 key = "key",
                 config = "1"

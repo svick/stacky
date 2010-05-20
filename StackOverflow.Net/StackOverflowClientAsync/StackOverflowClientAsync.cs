@@ -60,18 +60,18 @@ namespace StackOverflow
 
         #region Methods
 
-        private void MakeRequest<T>(string method, bool secure, string[] urlArguments, object queryStringArguments, Action<T> callback, Action<ApiException> onError)
+        private void MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments, Action<T> callback, Action<ApiException> onError)
             where T : new()
         {
-            MakeRequest<T>(method, secure, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), callback, onError);
+            MakeRequest<T>(method, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), callback, onError);
         }
 
-        private void MakeRequest<T>(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> callback, Action<ApiException> onError)
+        private void MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> callback, Action<ApiException> onError)
              where T : new()
         {
             try
             {
-                GetResponse(method, secure, urlArguments, queryStringArguments, response =>
+                GetResponse(method, urlArguments, queryStringArguments, response =>
                 {
                     IResponse<T> r = protocol.GetResponse<T>(response.Body);
                     if (response.Error != null)
@@ -92,9 +92,9 @@ namespace StackOverflow
             }
         }
 
-        private void GetResponse(string method, bool secure, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> callback, Action<ApiException> onError)
+        private void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> callback, Action<ApiException> onError)
         {
-            Uri url = UrlHelper.BuildUrl(method, version, secure, protocol.BaseUrl, urlArguments, queryStringArguments);
+            Uri url = UrlHelper.BuildUrl(method, version, protocol.BaseUrl, urlArguments, queryStringArguments);
             client.MakeRequest(url, callback, onError);
         }
 

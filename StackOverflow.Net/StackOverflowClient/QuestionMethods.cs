@@ -25,7 +25,7 @@ namespace StackOverflow
 
         private IEnumerable<Question> GetQuestions(string method, string[] urlArguments, string sort, string sortDirection, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            return MakeRequest<List<Question>>(method, false, urlArguments, new
+            return MakeRequest<QuestionResponse>(method, urlArguments, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -37,19 +37,19 @@ namespace StackOverflow
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
                 sort = sort,
                 order = sortDirection
-            });
+            }).Questions;
         }
 
         public IEnumerable<Question> GetQuestions(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<Question>>("questions", false, new string[] { questionIds.Vectorize() }, new
+            return MakeRequest<QuestionResponse>("questions", new string[] { questionIds.Vectorize() }, new
             {
                 key = apiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            });
+            }).Questions;
         }
 
         public Question GetQuestion(int questionId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
@@ -59,12 +59,12 @@ namespace StackOverflow
 
         public IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return MakeRequest<List<PostEvent>>("questions", false, new string[] { questionIds.Vectorize(), "timeline" }, new
+            return MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            });
+            }).Events;
         }
 
         public IEnumerable<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
@@ -82,7 +82,7 @@ namespace StackOverflow
             if (notTagged != null)
                 notTaggedString = String.Join(" ", notTagged);
 
-            return MakeRequest<List<Question>>("search", false, null, new
+            return MakeRequest<QuestionResponse>("search", null, new
             {
                 key = apiKey,
                 intitle = inTitle,
@@ -92,7 +92,7 @@ namespace StackOverflow
                 order = GetSortDirection(sortDirection),
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            });
+            }).Questions;
         }
     }
 }

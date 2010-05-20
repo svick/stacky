@@ -186,6 +186,42 @@
     <Compile Include="..\StackOverflow.Net\Protocols\JsonResponse.cs">
       <Link>Protocols\JsonResponse.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\AnswerResponse.cs">
+      <Link>Responses\AnswerResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\BadgeResponse.cs">
+      <Link>Responses\BadgeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\CommentResponse.cs">
+      <Link>Responses\CommentResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\QuestionResponse.cs">
+      <Link>Responses\QuestionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\QuestionTimelineResponse.cs">
+      <Link>Responses\QuestionTimelineResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\ReputationResponse.cs">
+      <Link>Responses\ReputationResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\Response.cs">
+      <Link>Responses\Response.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\RevisionResponse.cs">
+      <Link>Responses\RevisionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\StatsResponse.cs">
+      <Link>Responses\StatsResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\TagResponse.cs">
+      <Link>Responses\TagResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\UserEventResponse.cs">
+      <Link>Responses\UserEventResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\UserResponse.cs">
+      <Link>Responses\UserResponse.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\AnswerMethods.cs">
       <Link>StackOverflowClient\AnswerMethods.cs</Link>
     </Compile>
@@ -194,9 +230,6 @@
     </Compile>
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\CommentMethods.cs">
       <Link>StackOverflowClient\CommentMethods.cs</Link>
-    </Compile>
-    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\ErrorMethods.cs">
-      <Link>StackOverflowClient\ErrorMethods.cs</Link>
     </Compile>
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\QuestionMethods.cs">
       <Link>StackOverflowClient\QuestionMethods.cs</Link>

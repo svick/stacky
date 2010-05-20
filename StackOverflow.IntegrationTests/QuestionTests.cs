@@ -1,36 +1,23 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace StackOverflow.IntegrationTests
 {
-    public abstract class IntegrationTest
-    {
-        private static string version = "0.7";
-        private static string apiKey = "0xDEADBEEF";
-
-        public IntegrationTest()
-        {
-            Client = new StackOverflowClient(version, apiKey, new UrlClient(), new JsonProtocol());
-            ClientAsync = new StackOverflowClientAsync(version, apiKey, new UrlClientAsync(), new JsonProtocol());
-        }
-
-        public StackOverflowClient Client { get; set; }
-        public StackOverflowClientAsync ClientAsync { get; set; }
-    }
-
     [TestClass]
     public class QuestionTests : IntegrationTest
     {
         [TestMethod]
-        public void GetQuestions_DefaultParamaters()
+        public void Question_GetQuestions()
         {
             var questions = Client.GetQuestions();
-
             Assert.IsNotNull(questions);
-            Assert.AreEqual(30, questions.Count());
+        }
+
+        [TestMethod]
+        public void Question_GetQuestions_Async()
+        {
+            ClientAsync.GetQuestions(questions => Assert.IsNotNull(questions));
         }
 
         #region GetQuestions - Sort By Active
@@ -108,6 +95,33 @@ namespace StackOverflow.IntegrationTests
             Assert.IsNotNull(question);
             Assert.IsFalse(String.IsNullOrEmpty(question.CommentsUrl));
             Assert.IsFalse(String.IsNullOrEmpty(question.TimelineUrl));
+        }
+
+        [TestMethod]
+        public void Question_GetQuestionTimeline()
+        {
+            var events = Client.GetQuestionTimeline(31415);
+
+            Assert.IsNotNull(events);
+        }
+
+        [TestMethod]
+        public void Question_GetQuestionTimeline_Async()
+        {
+            ClientAsync.GetQuestionTimeline(31415, events => Assert.IsNotNull(events));
+        }
+
+        [TestMethod]
+        public void Question_Search()
+        {
+            var questions = Client.Search("Thread");
+            Assert.IsNotNull(questions);
+        }
+
+        [TestMethod]
+        public void Question_Search_Async()
+        {
+            ClientAsync.Search(questions => Assert.IsNotNull(questions), inTitle: "Thread");
         }
     }
 }

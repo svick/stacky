@@ -13,7 +13,7 @@ namespace StackOverflow
     {
         public void GetUsers(Action<IEnumerable<User>> callback, Action<ApiException> onError = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
         {
-            MakeRequest<List<User>>("users", false, null, new
+            MakeRequest<UserResponse>("users", null, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -21,12 +21,12 @@ namespace StackOverflow
                 filter = filter,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Users), onError);
         }
 
         public void GetUsers(IEnumerable<int> userIds, Action<IEnumerable<User>> callback, Action<ApiException> onError = null)
         {
-            MakeRequest<List<User>>("users", false, new string[] { userIds.Vectorize() }, new
+            MakeRequest<List<User>>("users", new string[] { userIds.Vectorize() }, new
             {
                 key = apiKey
             }, (items) => callback(items), onError);
@@ -44,12 +44,12 @@ namespace StackOverflow
 
         public void GetUserMentions(IEnumerable<int> userIds, Action<IEnumerable<Comment>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<Comment>>("users", false, new string[] { userIds.Vectorize(), "mentioned" }, new
+            MakeRequest<CommentResponse>("users", new string[] { userIds.Vectorize(), "mentioned" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Comments), onError);
         }
 
         public void GetUserTimeline(int userId, Action<IEnumerable<UserEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
@@ -59,12 +59,12 @@ namespace StackOverflow
 
         public void GetUserTimeline(IEnumerable<int> userIds, Action<IEnumerable<UserEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<UserEvent>>("users", false, new string[] { userIds.Vectorize(), "timeline" }, new
+            MakeRequest<UserEventResponse>("users", new string[] { userIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Events), onError);
         }
 
         public void GetUserReputation(int userId, Action<IEnumerable<Reputation>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
@@ -74,14 +74,14 @@ namespace StackOverflow
 
         public void GetUserReputation(IEnumerable<int> userIds, Action<IEnumerable<Reputation>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<Reputation>>("users", false, new string[] { userIds.Vectorize(), "reputation" }, new
+            MakeRequest<ReputationResponse>("users", new string[] { userIds.Vectorize(), "reputation" }, new
             {
                 key = apiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Reputation), onError);
         }
     }
 }

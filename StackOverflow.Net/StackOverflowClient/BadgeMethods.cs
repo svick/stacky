@@ -11,10 +11,10 @@ namespace StackOverflow
 
         private IEnumerable<Badge> GetBadges(string method, string[] sort)
         {
-            return MakeRequest<List<Badge>>(method, false, sort, new
+            return MakeRequest<BadgeResponse>(method, sort, new
             {
                 key = apiKey
-            });
+            }).Badges;
         }
 
         public IEnumerable<Badge> GetBadgesByUser(int userId)

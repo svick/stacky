@@ -14,26 +14,24 @@ namespace StackOverflow
 {
     public static class UrlHelper
     {
-        public static Uri BuildUrl(string method, string version, bool secure, string serviceUrl, string[] urlParameters, object queryStringParameters)
+        public static Uri BuildUrl(string method, string version,string serviceUrl, string[] urlParameters, object queryStringParameters)
         {
-            return BuildUrl(method, version, secure, serviceUrl, urlParameters, BuildParameters(queryStringParameters));
+            return BuildUrl(method, version, serviceUrl, urlParameters, BuildParameters(queryStringParameters));
         }
 
-        public static Uri BuildUrl(string method, string version, bool secure, string serviceUrl, string[] urlParameters, Dictionary<string, string> queryStringParameters)
+        public static Uri BuildUrl(string method, string version, string serviceUrl, string[] urlParameters, Dictionary<string, string> queryStringParameters)
         {
-            return BuildUrl(method, version, secure, serviceUrl, urlParameters, BuildParameters(queryStringParameters));
+            return BuildUrl(method, version, serviceUrl, urlParameters, BuildParameters(queryStringParameters));
         }
 
-        private static Uri BuildUrl(string method, string version, bool secure, string serviceUrl, string[] urlParameters, string queryString)
+        private static Uri BuildUrl(string method, string version, string serviceUrl, string[] urlParameters, string queryString)
         {
             //TODO: Consider Code contracts
             Require.NotNullOrEmpty(method, "method");
             Require.NotNullOrEmpty(serviceUrl, "serviceUrl");
             Require.NotNullOrEmpty(version, "version");
 
-            string scheme = secure ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
-
-            string urlBase = String.Format(CultureInfo.CurrentCulture, "{0}://{1}/{2}/{3}/", scheme, serviceUrl, version, method);
+            string urlBase = String.Format(CultureInfo.CurrentCulture, "{0}://{1}/{2}/{3}/", Uri.UriSchemeHttp, serviceUrl, version, method);
             if (urlParameters != null)
             {
                 foreach (string param in urlParameters)

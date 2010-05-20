@@ -12,10 +12,10 @@ namespace StackOverflow
     {
         public void GetSiteStats(Action<SiteStats> callback, Action<ApiException> onError = null)
         {
-            MakeRequest<List<SiteStats>>("stats", false, null, new
+            MakeRequest<StatsResponse>("stats", null, new
             {
                 key = apiKey
-            }, results => callback(results.FirstOrDefault()), onError);
+            }, results => callback(results.Statistics.FirstOrDefault()), onError);
         }
     }
 }

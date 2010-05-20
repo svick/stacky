@@ -11,7 +11,7 @@ namespace StackOverflow
 
         public IEnumerable<Answer> GetUsersAnswers(IEnumerable<int> userIds, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<Answer>>("users", false, new string[] { userIds.Vectorize(), "answers" }, new
+            return MakeRequest<AnswerResponse>("users", new string[] { userIds.Vectorize(), "answers" }, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -20,12 +20,12 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            });
+            }).Answers;
         }
 
         public IEnumerable<Answer> GetQuestionAnswers(IEnumerable<int> questionIds, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<List<Answer>>("questions", false, new string[] { questionIds.Vectorize(), "answers" }, new
+            return MakeRequest<AnswerResponse>("questions", new string[] { questionIds.Vectorize(), "answers" }, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -33,7 +33,7 @@ namespace StackOverflow
                 body = includeBody ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            });
+            }).Answers;
         }
 
         public IEnumerable<Answer> GetQuestionAnswers(int questionId, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)

@@ -7,10 +7,10 @@ namespace StackOverflow
     {
         public SiteStats GetSiteStats()
         {
-            return MakeRequest<List<SiteStats>>("stats", false, null, new
+            return MakeRequest<StatsResponse>("stats", null, new
             {
                 key = apiKey
-            }).FirstOrDefault();
+            }).Statistics.FirstOrDefault();
         }
     }
 }

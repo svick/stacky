@@ -16,7 +16,7 @@ namespace StackOverflow
 
         public void GetUsersAnswers(IEnumerable<int> userIds, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            MakeRequest<List<Answer>>("users", false, new string[] { userIds.Vectorize(), "answers" }, new
+            MakeRequest<AnswerResponse>("users", new string[] { userIds.Vectorize(), "answers" }, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -25,7 +25,7 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Answers), onError);
         }
 
         public void GetQuestionAnswers(int questionId, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)
@@ -35,7 +35,7 @@ namespace StackOverflow
 
         public void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)
         {
-            MakeRequest<List<Answer>>("questions", false, new string[] { questionIds.Vectorize(), "answers" }, new
+            MakeRequest<AnswerResponse>("questions", new string[] { questionIds.Vectorize(), "answers" }, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -43,7 +43,7 @@ namespace StackOverflow
                 body = includeBody ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Answers), onError);
         }
     }
 }

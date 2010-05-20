@@ -24,7 +24,7 @@ namespace StackOverflow
 
         [JsonProperty("total_badges")]
         public long TotalBadges { get; set; }
-
+         
         [JsonProperty("total_users")]
         public long TotalUsers { get; set; }
 

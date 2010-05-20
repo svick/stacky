@@ -13,12 +13,12 @@ namespace StackOverflow
     {
         public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<Revision>>("revisions", false, new string[] { ids.Vectorize() }, new
+            MakeRequest<RevisionResponse>("revisions", new string[] { ids.Vectorize() }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Revisions), onError);
         }
 
         public void GetRevisions(int id, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
@@ -28,10 +28,10 @@ namespace StackOverflow
 
         public void GetRevision(int id, Guid revision, Action<Revision> callback, Action<ApiException> onError = null)
         {
-            MakeRequest<List<Revision>>("revisions", false, new string[] { id.ToString(), revision.ToString() }, new
+            MakeRequest<RevisionResponse>("revisions", new string[] { id.ToString(), revision.ToString() }, new
             {
                 key = apiKey
-            }, returnedItems => callback(returnedItems.FirstOrDefault()), onError);
+            }, returnedItems => callback(returnedItems.Revisions.FirstOrDefault()), onError);
         }
     }
 }

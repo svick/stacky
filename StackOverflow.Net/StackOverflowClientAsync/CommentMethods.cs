@@ -21,7 +21,7 @@ namespace StackOverflow
                 urlParameters = new string[] { fromUserIds.Vectorize(), "comments" };
             }
 
-            MakeRequest<List<Comment>>("users", false, urlParameters, new
+            MakeRequest<CommentResponse>("users", urlParameters, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -30,7 +30,7 @@ namespace StackOverflow
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Comments), onError);
         }
 
         public void GetComments(int fromUserId, Action<IEnumerable<Comment>> callback, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)

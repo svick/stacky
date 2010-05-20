@@ -29,7 +29,7 @@ namespace StackOverflow
 
         private void GetQuestions(Action<IEnumerable<Question>> callback, Action<ApiException> onError, string method, string[] urlArgs, string sort, string order, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            MakeRequest<List<Question>>(method, false, urlArgs, new
+            MakeRequest<QuestionResponse>(method, urlArgs, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -41,19 +41,19 @@ namespace StackOverflow
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
                 sort = sort,
                 order = order
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Questions), onError);
         }
 
         public void GetQuestions(IEnumerable<int> questionIds, Action<IEnumerable<Question>> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            MakeRequest<List<Question>>("questions", false, new string[] { questionIds.Vectorize() }, new
+            MakeRequest<QuestionResponse>("questions", new string[] { questionIds.Vectorize() }, new
             {
                 key = apiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Questions), onError);
         }
 
         public void GetQuestion(int questionId, Action<Question> callback, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
@@ -63,12 +63,12 @@ namespace StackOverflow
 
         public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IEnumerable<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            MakeRequest<List<PostEvent>>("questions", false, new string[] { questionIds.Vectorize(), "timeline" }, new
+            MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Events), onError);
         }
 
         public void GetQuestionTimeline(int questionId, Action<IEnumerable<PostEvent>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
@@ -86,7 +86,7 @@ namespace StackOverflow
             if (notTagged != null)
                 notTaggedString = String.Join(" ", notTagged.ToArray());
 
-            MakeRequest<List<Question>>("search", false, null, new
+            MakeRequest<List<Question>>("search", null, new
             {
                 key = apiKey,
                 intitle = inTitle,

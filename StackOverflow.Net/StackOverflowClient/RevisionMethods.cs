@@ -9,12 +9,12 @@ namespace StackOverflow
     {
         public IEnumerable<Revision> GetRevisions(IEnumerable<int> ids, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return MakeRequest<List<Revision>>("revisions", false, new string[] { ids.Vectorize() }, new
+            return MakeRequest<RevisionResponse>("revisions", new string[] { ids.Vectorize() }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            });
+            }).Revisions;
         }
 
         public IEnumerable<Revision> GetRevisions(int id, DateTime? fromDate = null, DateTime? toDate = null)
@@ -24,10 +24,10 @@ namespace StackOverflow
 
         public Revision GetRevision(int id, Guid revision)
         {
-            return MakeRequest<List<Revision>>("revisions", false, new string[] { id.ToString(), revision.ToString() }, new
+            return MakeRequest<RevisionResponse>("revisions", new string[] { id.ToString(), revision.ToString() }, new
             {
                 key = apiKey
-            }).FirstOrDefault();
+            }).Revisions.FirstOrDefault();
         }
     }
 }

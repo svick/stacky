@@ -16,10 +16,10 @@ namespace StackOverflow
 
         private void GetBadges(Action<IEnumerable<Badge>> callback, Action<ApiException> onError, string method, string[] sort)
         {
-            MakeRequest<List<Badge>>(method, false, sort, new
+            MakeRequest<BadgeResponse>(method, sort, new
             {
                 key = apiKey
-            }, (items) => callback(items), onError);
+            }, (items) => callback(items.Badges), onError);
         }
 
         public void GetBadgesByUser(int userId, Action<IEnumerable<Badge>> callback, Action<ApiException> onError = null)

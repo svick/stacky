@@ -11,14 +11,14 @@ namespace StackOverflow
 
         private IEnumerable<Tag> GetTags(string method, string[] urlParameters, string sort, string order, int? page = null, int? pageSize = null)
         {
-            return MakeRequest<List<Tag>>(method, false, urlParameters, new
+            return MakeRequest<TagResponse>(method, urlParameters, new
             {
                 key = apiKey,
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 sort = sort,
                 order = order
-            });
+            }).Tags;
         }
 
         public IEnumerable<Tag> GetTagsByUser(int userId, int? page = null, int? pageSize = null)

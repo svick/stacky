@@ -120,6 +120,9 @@
     <Compile Include="..\StackOverflow.Net\Enums\FavoriteQuestionsSort.cs">
       <Link>Enums\FavoriteQuestionsSort.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\HostSite.cs">
+      <Link>Enums\HostSite.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Enums\PostEventType.cs">
       <Link>Enums\PostEventType.cs</Link>
     </Compile>
@@ -194,6 +197,9 @@
     </Compile>
     <Compile Include="..\StackOverflow.Net\Responses\CommentResponse.cs">
       <Link>Responses\CommentResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\Responses\ErrorResponse.cs">
+      <Link>Responses\ErrorResponse.cs</Link>
     </Compile>
     <Compile Include="..\StackOverflow.Net\Responses\QuestionResponse.cs">
       <Link>Responses\QuestionResponse.cs</Link>

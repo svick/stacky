@@ -13,11 +13,18 @@ namespace StackOverflow
         private IProtocol protocol;
         private string version;
         private string apiKey;
+        private string baseUrl;
 
-        public StackOverflowClient(string version, string apiKey, IUrlClient client, IProtocol protocol)
+        public StackOverflowClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
+            : this(version, apiKey, String.Format("api.{0}.com", site.ToString().ToLower()), client, protocol)
+        {
+        }
+
+        public StackOverflowClient(string version, string apiKey, string baseUrl, IUrlClient client, IProtocol protocol)
         {
             this.version = version;
             this.apiKey = apiKey;
+            this.baseUrl = baseUrl;
             this.client = client;
             this.protocol = protocol;
         }
@@ -34,12 +41,15 @@ namespace StackOverflow
              where T : new()
         {
             string responseText = GetResponse(method, urlArguments, queryStringArguments);
-            return SerializationHelper.DeserializeJson<T>(responseText);
+            var response = protocol.GetResponse<T>(responseText);
+            if (response.Error != null)
+                throw new ApiException(response.Error);
+            return response.Data;
         }
 
         private string GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
         {
-            Uri url = UrlHelper.BuildUrl(method, version, protocol.BaseUrl, urlArguments, queryStringArguments);
+            Uri url = UrlHelper.BuildUrl(method, version, baseUrl, urlArguments, queryStringArguments);
             return client.MakeRequest(url);
         }
 

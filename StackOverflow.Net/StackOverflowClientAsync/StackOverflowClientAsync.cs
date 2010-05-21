@@ -19,15 +19,26 @@ namespace StackOverflow
         private IProtocol protocol;
         private string version;
         private string apiKey;
+        private string baseUrl;
 
-        #if SILVERLIGHT
-        public StackOverflowClient(string version, string apiKey, IUrlClient client, IProtocol protocol)
+#if SILVERLIGHT
+        public StackOverflowClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
 #else
-        public StackOverflowClientAsync(string version, string apiKey, IUrlClientAsync client, IProtocol protocol)
+        public StackOverflowClientAsync(string version, string apiKey, HostSite site, IUrlClientAsync client, IProtocol protocol)
+#endif
+            : this(version, apiKey, String.Format("api.{0}.com", site.ToString().ToLower()), client, protocol)
+        {
+        }
+
+#if SILVERLIGHT
+        public StackOverflowClient(string version, string apiKey, string baseUrl, IUrlClient client, IProtocol protocol)
+#else
+        public StackOverflowClientAsync(string version, string apiKey, string baseUrl, IUrlClientAsync client, IProtocol protocol)
 #endif
         {
             this.version = version;
             this.client = client;
+            this.baseUrl = baseUrl;
             this.protocol = protocol;
             this.apiKey = apiKey;
         }
@@ -94,7 +105,7 @@ namespace StackOverflow
 
         private void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> callback, Action<ApiException> onError)
         {
-            Uri url = UrlHelper.BuildUrl(method, version, protocol.BaseUrl, urlArguments, queryStringArguments);
+            Uri url = UrlHelper.BuildUrl(method, version, baseUrl, urlArguments, queryStringArguments);
             client.MakeRequest(url, callback, onError);
         }
 

@@ -65,6 +65,7 @@
     <Compile Include="Enums\BadgeClass.cs" />
     <Compile Include="Enums\BadgeSort.cs" />
     <Compile Include="Enums\CommentSort.cs" />
+    <Compile Include="Enums\HostSite.cs" />
     <Compile Include="Enums\PostEventType.cs" />
     <Compile Include="Enums\PostType.cs" />
     <Compile Include="Enums\QuestionSort.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Responses\AnswerResponse.cs" />
     <Compile Include="Responses\BadgeResponse.cs" />
     <Compile Include="Responses\CommentResponse.cs" />
+    <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\QuestionResponse.cs" />
     <Compile Include="Responses\QuestionTimelineResponse.cs" />
     <Compile Include="Responses\ReputationResponse.cs" />

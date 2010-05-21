@@ -6,7 +6,7 @@ namespace StackOverflow
     [JsonObject]
     public class ResponseError
     {
-        [JsonProperty("code")]
+        [JsonProperty("code"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ErrorCode Code { get; set; }
 
         [JsonProperty("message")]

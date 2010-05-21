@@ -1,15 +1,11 @@
 ﻿namespace StackOverflow
 {
-    public interface IResponse
+    public interface IResponse<T>
+        where T : new()
     {
         string Body { get; }
         ResponseError Error { get; }
         string Method { get; }
-    }
-
-    public interface IResponse<T> : IResponse
-        where T : new()
-    {
         T Data { get; set; }
     }
 }

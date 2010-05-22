@@ -7,6 +7,7 @@ namespace StackOverflow
         public SortArgsAttribute(string sort, params string[] urlArgs)
         {
             UrlArgs = urlArgs;
+            Sort = sort;
         }
 
         public string[] UrlArgs { get; private set; }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace StackOverflow
 {
-    internal abstract class Response
+    public abstract class Response
     {
         [JsonProperty("total")]
         public int Total { get; set; }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace StackOverflow
 {
-    internal class BadgeResponse : Response
+    public class BadgeResponse : Response
     {
         [JsonProperty("badges")]
         public List<Badge> Badges { get; set; }

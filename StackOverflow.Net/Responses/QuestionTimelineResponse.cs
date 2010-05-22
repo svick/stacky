@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace StackOverflow
 {
-    internal class QuestionTimelineResponse
+    public class QuestionTimelineResponse
     {
         [JsonProperty("post_timelines")]
         public List<PostEvent> Events { get; set; }

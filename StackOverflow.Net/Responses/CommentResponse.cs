@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace StackOverflow
 {
-    internal class CommentResponse : Response
+    public class CommentResponse : Response
     {
         [JsonProperty("comments")]
         public List<Comment> Comments { get; set; }

@@ -2,7 +2,7 @@
 
 namespace StackOverflow
 {
-    internal class ErrorResponse
+    public class ErrorResponse
     {
         [JsonProperty("error")]
         public ResponseError Error { get; set; }

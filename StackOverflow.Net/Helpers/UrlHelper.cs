@@ -36,7 +36,7 @@ namespace StackOverflow
             {
                 foreach (string param in urlParameters)
                 {
-                    urlBase += String.Format("{0}/", Uri.EscapeUriString(param));
+                    urlBase += String.Format("{0}/", Uri.EscapeDataString(param));
                 }
             }
             Uri url = new Uri(urlBase);
@@ -56,7 +56,7 @@ namespace StackOverflow
             StringBuilder s = new StringBuilder();
             foreach (KeyValuePair<string, string> pair in parameters)
             {
-                s.AppendFormat("{0}={1}&", Uri.EscapeUriString(pair.Key), Uri.EscapeUriString(pair.Value));
+                s.AppendFormat("{0}={1}&", Uri.EscapeDataString(pair.Key), Uri.EscapeDataString(pair.Value));
             }
             if (s.Length > 0)
                 s.Remove(s.Length - 1, 1);

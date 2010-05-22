@@ -110,7 +110,7 @@ namespace StackOverflow.Tests
         public void BuildParameters_ValuesAreUrlEncoded()
         {
             string s = "I Owe $100";
-            string encoded = Uri.EscapeUriString(s);
+            string encoded = Uri.EscapeDataString(s);
             string queryString = UrlHelper.BuildParameters(new {Key = s});
             Assert.AreEqual("Key=" + encoded, queryString);
         }
@@ -128,7 +128,7 @@ namespace StackOverflow.Tests
             string s = "I Owe $100";
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["Key"] = s;
-            string encoded = Uri.EscapeUriString(s);
+            string encoded = Uri.EscapeDataString(s);
             string queryString = UrlHelper.BuildParameters(parameters);
             Assert.AreEqual("Key=" + encoded, queryString);
         }
@@ -186,5 +186,17 @@ namespace StackOverflow.Tests
         }
 
         #endregion
+
+        [TestMethod]
+        public void Bug6099_PoundSignEncodedCorrectly()
+        {
+            var url = UrlHelper.BuildUrl("questions", version, ServiceUrl, null, new
+            {
+                item1 = "test#one",
+                item2 = "anotherOne"
+            });
+
+            Assert.IsTrue(url.ToString().Contains("%23"));
+        }
     }
 }

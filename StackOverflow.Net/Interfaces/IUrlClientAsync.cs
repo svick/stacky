@@ -8,6 +8,6 @@ namespace StackOverflow
     public interface IUrlClientAsync
 #endif
     {
-        void MakeRequest(Uri url, Action<HttpResponse> callback, Action<ApiException> onError);
+        void MakeRequest(Uri url, Action<HttpResponse> onSuccess, Action<ApiException> onError);
     }
 }

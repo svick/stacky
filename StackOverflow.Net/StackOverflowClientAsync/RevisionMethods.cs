@@ -11,27 +11,27 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<RevisionResponse>("revisions", new string[] { ids.Vectorize() }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => callback(items.Revisions), onError);
+            }, (items) => onSuccess(items.Revisions), onError);
         }
 
-        public void GetRevisions(int id, Action<IEnumerable<Revision>> callback, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            GetRevisions(id.ToArray(), callback, onError, fromDate, toDate);
+            GetRevisions(id.ToArray(), onSuccess, onError, fromDate, toDate);
         }
 
-        public void GetRevision(int id, Guid revision, Action<Revision> callback, Action<ApiException> onError = null)
+        public void GetRevision(int id, Guid revision, Action<Revision> onSuccess, Action<ApiException> onError = null)
         {
             MakeRequest<RevisionResponse>("revisions", new string[] { id.ToString(), revision.ToString() }, new
             {
                 key = apiKey
-            }, returnedItems => callback(returnedItems.Revisions.FirstOrDefault()), onError);
+            }, returnedItems => onSuccess(returnedItems.Revisions.FirstOrDefault()), onError);
         }
     }
 }

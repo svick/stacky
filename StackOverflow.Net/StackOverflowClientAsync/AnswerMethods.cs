@@ -9,12 +9,12 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetUsersAnswers(int userId, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetUsersAnswers(int userId, Action<IEnumerable<Answer>> onSuccess, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            GetUsersAnswers(userId.ToArray(), callback, onError, sortBy, sortDirection, page, pageSize, includeBody, includeComments);
+            GetUsersAnswers(userId.ToArray(), onSuccess, onError, sortBy, sortDirection, page, pageSize, includeBody, includeComments);
         }
 
-        public void GetUsersAnswers(IEnumerable<int> userIds, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetUsersAnswers(IEnumerable<int> userIds, Action<IEnumerable<Answer>> onSuccess, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             MakeRequest<AnswerResponse>("users", new string[] { userIds.Vectorize(), "answers" }, new
             {
@@ -25,15 +25,15 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, (items) => callback(items.Answers), onError);
+            }, (items) => onSuccess(items.Answers), onError);
         }
 
-        public void GetQuestionAnswers(int questionId, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)
+        public void GetQuestionAnswers(int questionId, Action<IEnumerable<Answer>> onSuccess, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)
         {
-            GetUsersAnswers(questionId.ToArray(), callback, onError, sortBy, sortDirection, page, pageSize, includeBody);
+            GetUsersAnswers(questionId.ToArray(), onSuccess, onError, sortBy, sortDirection, page, pageSize, includeBody);
         }
 
-        public void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IEnumerable<Answer>> callback, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)
+        public void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IEnumerable<Answer>> onSuccess, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false)
         {
             MakeRequest<AnswerResponse>("questions", new string[] { questionIds.Vectorize(), "answers" }, new
             {
@@ -43,7 +43,7 @@ namespace StackOverflow
                 body = includeBody ? (bool?)true : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }, (items) => callback(items.Answers), onError);
+            }, (items) => onSuccess(items.Answers), onError);
         }
     }
 }

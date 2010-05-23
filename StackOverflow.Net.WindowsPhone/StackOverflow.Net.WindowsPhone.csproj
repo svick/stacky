@@ -57,9 +57,6 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\StackOverflow.Net.Silverlight\Helpers\Config.cs">
-      <Link>Helpers\Config.cs</Link>
-    </Compile>
     <Compile Include="..\StackOverflow.Net\ApiException.cs">
       <Link>ApiException.cs</Link>
     </Compile>

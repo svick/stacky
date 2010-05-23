@@ -71,13 +71,13 @@ namespace StackOverflow
 
         #region Methods
 
-        private void MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments, Action<T> callback, Action<ApiException> onError)
+        private void MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments, Action<T> onSuccess, Action<ApiException> onError)
             where T : new()
         {
-            MakeRequest<T>(method, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), callback, onError);
+            MakeRequest<T>(method, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), onSuccess, onError);
         }
 
-        private void MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> callback, Action<ApiException> onError)
+        private void MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> onSuccess, Action<ApiException> onError)
              where T : new()
         {
             try
@@ -93,7 +93,7 @@ namespace StackOverflow
                     }
                     else
                     {
-                        callback(r.Data);
+                        onSuccess(r.Data);
                     }
                 }, onError);
             }
@@ -103,10 +103,10 @@ namespace StackOverflow
             }
         }
 
-        private void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> callback, Action<ApiException> onError)
+        private void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> onSuccess, Action<ApiException> onError)
         {
             Uri url = UrlHelper.BuildUrl(method, version, baseUrl, urlArguments, queryStringArguments);
-            client.MakeRequest(url, callback, onError);
+            client.MakeRequest(url, onSuccess, onError);
         }
 
         private string GetSortDirection(SortDirection direction)

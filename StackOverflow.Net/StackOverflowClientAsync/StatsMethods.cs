@@ -10,12 +10,12 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetSiteStats(Action<SiteStats> callback, Action<ApiException> onError = null)
+        public void GetSiteStats(Action<SiteStats> onSuccess, Action<ApiException> onError = null)
         {
             MakeRequest<StatsResponse>("stats", null, new
             {
                 key = apiKey
-            }, results => callback(results.Statistics.FirstOrDefault()), onError);
+            }, results => onSuccess(results.Statistics.FirstOrDefault()), onError);
         }
     }
 }

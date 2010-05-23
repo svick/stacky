@@ -17,28 +17,49 @@ namespace StackOverflow
     public class UrlClientAsync : IUrlClientAsync
 #endif
     {
-        private class RequestHelper
+        private class RequestContext
         {
-            public RequestHelper(Uri url, Action<HttpResponse> callback, Action<ApiException> onError)
-            {
-                this.callback = callback;
-                this.url = url;
-                this.onError = onError;
-            }
+            public Uri Url;
+            public Action<HttpResponse> OnSuccess;
+            public Action<ApiException> OnError;
+        }
 
-            private Action<HttpResponse> callback;
-            Action<ApiException> onError;
-            private Uri url;
+        public void MakeRequest(Uri url, Action<HttpResponse> onSuccess, Action<ApiException> onError)
+        {
+            var client = new HttpClient();
+
+            //TODO: Set the User Agent string to something useful
+            //client.Headers[HttpRequestHeader.UserAgent] = "";
+#if !SILVERLIGHT
+            client.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
+            client.Encoding = Encoding.UTF8;
+            client.DownloadDataCompleted += new DownloadDataCompletedEventHandler(client_DownloadDataCompleted);
+            client.DownloadDataAsync(url, new RequestContext{Url = url, OnSuccess = onSuccess, OnError = onError});
+#else
+            client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(client_DownloadStringCompleted);
+            client.DownloadStringAsync(url, new RequestContext{Url = url, OnSuccess = onSuccess, OnError = onError});
+#endif
+        }
 
 #if !SILVERLIGHT
-            public void client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        public void client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        {
+            RequestContext context = e.UserState as RequestContext;
+
+            if (context != null)
             {
                 if (e.Error != null)
                 {
-                    if (onError != null)
-                        onError(new ApiException(null, e.Error));
+                    if (context.OnError != null)
+                        context.OnError(new ApiException(null, e.Error));
                     return;
                 }
+
+                var response = new HttpResponse
+                {
+                    Body = "",
+                    Url = context.Url
+                };
 
                 using (var memoryStream = new MemoryStream(e.Result))
                 {
@@ -49,53 +70,37 @@ namespace StackOverflow
                         while ((i = stream.ReadByte()) != -1)
                             decompressed.Add((byte)i);
                         string decoded = Encoding.UTF8.GetString(decompressed.ToArray());
-                        var response = new HttpResponse
-                        {
-                            Body = decoded,
-                            Url = url
-                        };
-                        callback(response);
+
+                        response.Body = decoded;
                     }
                 }
+
+                context.OnSuccess(response);
             }
+        }
 #endif
 
-            public void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        public void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            RequestContext context = e.UserState as RequestContext;
+
+            if (context != null)
             {
                 if (e.Error != null)
                 {
-                    if (onError != null)
-                        onError(new ApiException(null, e.Error));
+                    if (context.OnError != null)
+                        context.OnError(new ApiException(null, e.Error));
                     return;
                 }
 
                 var response = new HttpResponse
                 {
                     Body = e.Result,
-                    Url = url
+                    Url = context.Url
                 };
-                callback(response);
+
+                context.OnSuccess(response);
             }
-        }
-
-        public void MakeRequest(Uri url, Action<HttpResponse> callback, Action<ApiException> onError)
-        {
-            var client = new HttpClient();
-            var requestHelper = new RequestHelper(url, callback, onError);
-
-            //TODO: Set the User Agent string to something useful
-            //client.Headers[HttpRequestHeader.UserAgent] = "";
-#if !SILVERLIGHT
-            client.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
-            client.Encoding = Encoding.UTF8;
-            client.DownloadDataCompleted += new DownloadDataCompletedEventHandler(requestHelper.client_DownloadDataCompleted);
-            client.DownloadDataAsync(url);
-#else
-            // TODO: This assumes that the client app will not start new web request before the previous one has completed
-            // Need to create a wrapper instance per request
-            client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(requestHelper.client_DownloadStringCompleted);
-            client.DownloadStringAsync(url);
-#endif
         }
     }
 }

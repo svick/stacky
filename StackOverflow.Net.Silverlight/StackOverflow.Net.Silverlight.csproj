@@ -258,7 +258,6 @@
     <Compile Include="..\StackOverflow.Net\UrlClientAsync.cs">
       <Link>UrlClientAsync.cs</Link>
     </Compile>
-    <Compile Include="Helpers\Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -5,7 +5,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public SiteStats GetSiteStats()
+        public virtual SiteStats GetSiteStats()
         {
             return MakeRequest<StatsResponse>("stats", null, new
             {

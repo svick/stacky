@@ -7,18 +7,18 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public IEnumerable<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public virtual IEnumerable<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
             return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IEnumerable<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public virtual IEnumerable<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions("users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public IEnumerable<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public virtual IEnumerable<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
@@ -40,7 +40,7 @@ namespace StackOverflow
             }).Questions;
         }
 
-        public IEnumerable<Question> GetQuestions(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public virtual IEnumerable<Question> GetQuestions(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             return MakeRequest<QuestionResponse>("questions", new string[] { questionIds.Vectorize() }, new
             {
@@ -52,12 +52,12 @@ namespace StackOverflow
             }).Questions;
         }
 
-        public Question GetQuestion(int questionId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public virtual Question GetQuestion(int questionId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             return GetQuestions(questionId.ToArray(), page, pageSize, includeBody, includeComments).FirstOrDefault();
         }
 
-        public IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
@@ -67,12 +67,12 @@ namespace StackOverflow
             }).Events;
         }
 
-        public IEnumerable<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetQuestionTimeline(questionId.ToArray(), fromDate, toDate);
         }
 
-        public IEnumerable<Question> Search(string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
+        public virtual IEnumerable<Question> Search(string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
         {
             string taggedString = null;
             if (tagged != null)

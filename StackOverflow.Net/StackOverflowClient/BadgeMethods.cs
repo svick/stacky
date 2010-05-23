@@ -4,7 +4,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public IEnumerable<Badge> GetBadges(BadgeSort sortBy = BadgeSort.Name)
+        public virtual IEnumerable<Badge> GetBadges(BadgeSort sortBy = BadgeSort.Name)
         {
             return GetBadges("badges", new string[] { sortBy.ToString().ToLower() });
         }
@@ -17,12 +17,12 @@ namespace StackOverflow
             }).Badges;
         }
 
-        public IEnumerable<Badge> GetBadgesByUser(int userId)
+        public virtual IEnumerable<Badge> GetBadgesByUser(int userId)
         {
             return GetBadgesByUser(userId.ToArray());
         }
 
-        public IEnumerable<Badge> GetBadgesByUser(IEnumerable<int> userIds)
+        public virtual IEnumerable<Badge> GetBadgesByUser(IEnumerable<int> userIds)
         {
             return GetBadges("users", new string[] { userIds.Vectorize(), "badges" });
         }

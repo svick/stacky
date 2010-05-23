@@ -7,7 +7,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public IEnumerable<Revision> GetRevisions(IEnumerable<int> ids, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<Revision> GetRevisions(IEnumerable<int> ids, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return MakeRequest<RevisionResponse>("revisions", new string[] { ids.Vectorize() }, new
             {
@@ -17,12 +17,12 @@ namespace StackOverflow
             }).Revisions;
         }
 
-        public IEnumerable<Revision> GetRevisions(int id, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<Revision> GetRevisions(int id, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetRevisions(id.ToArray(), fromDate, toDate);
         }
 
-        public Revision GetRevision(int id, Guid revision)
+        public virtual Revision GetRevision(int id, Guid revision)
         {
             return MakeRequest<RevisionResponse>("revisions", new string[] { id.ToString(), revision.ToString() }, new
             {

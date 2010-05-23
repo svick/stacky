@@ -6,7 +6,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public IEnumerable<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
+        public virtual IEnumerable<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
         {
             return MakeRequest<UserResponse>("users", null, new
             {
@@ -19,7 +19,7 @@ namespace StackOverflow
             }).Users;
         }
 
-        public IEnumerable<User> GetUsers(IEnumerable<int> userIds)
+        public virtual IEnumerable<User> GetUsers(IEnumerable<int> userIds)
         {
            return MakeRequest<UserResponse>("users", new string[] { userIds.Vectorize() }, new
            {
@@ -27,17 +27,17 @@ namespace StackOverflow
            }).Users;
         }
 
-        public User GetUser(int userId)
+        public virtual User GetUser(int userId)
         {
             return GetUsers(userId.ToArray()).FirstOrDefault();
         }
 
-        public IEnumerable<Comment> GetUserMentions(int userId, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<Comment> GetUserMentions(int userId, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetUserMentions(userId.ToArray(), fromDate, toDate);
         }
 
-        public IEnumerable<Comment> GetUserMentions(IEnumerable<int> userIds, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<Comment> GetUserMentions(IEnumerable<int> userIds, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return MakeRequest<CommentResponse>("users", new string[] { userIds.Vectorize(), "mentioned" }, new
             {
@@ -47,12 +47,12 @@ namespace StackOverflow
             }).Comments;
         }
 
-        public IEnumerable<UserEvent> GetUserTimeline(int userId, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<UserEvent> GetUserTimeline(int userId, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetUserTimeline(userId.ToArray(), fromDate, toDate);
         }
 
-        public IEnumerable<UserEvent> GetUserTimeline(IEnumerable<int> userIds, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<UserEvent> GetUserTimeline(IEnumerable<int> userIds, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return MakeRequest<UserEventResponse>("users", new string[] { userIds.Vectorize(), "timeline" }, new
             {
@@ -62,12 +62,12 @@ namespace StackOverflow
             }).Events;
         }
 
-        public IEnumerable<Reputation> GetUserReputation(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<Reputation> GetUserReputation(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetUserReputation(userId.ToArray(), page, pageSize, fromDate, toDate);
         }
 
-        public IEnumerable<Reputation> GetUserReputation(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<Reputation> GetUserReputation(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return MakeRequest<ReputationResponse>("users", new string[] { userIds.Vectorize(), "reputation" }, new
             {

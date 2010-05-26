@@ -83,10 +83,12 @@
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="HttpResponse.cs" />
+    <Compile Include="Interfaces\IPagedList.cs" />
     <Compile Include="Interfaces\IProtocol.cs" />
     <Compile Include="Interfaces\IResponse.cs" />
     <Compile Include="Interfaces\IUrlClient.cs" />
     <Compile Include="Interfaces\IUrlClientAsync.cs" />
+    <Compile Include="PagedList.cs" />
     <Compile Include="Protocols\JsonProtocol.cs" />
     <Compile Include="Protocols\JsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

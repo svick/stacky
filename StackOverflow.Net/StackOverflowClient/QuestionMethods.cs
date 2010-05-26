@@ -7,25 +7,25 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public virtual IEnumerable<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public virtual IPagedList<Question> GetQuestions(QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
             return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public virtual IEnumerable<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public virtual IPagedList<Question> GetQuestionsByUser(int userId, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions("users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public virtual IEnumerable<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public virtual IPagedList<Question> GetFavoriteQuestions(int userId, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private IEnumerable<Question> GetQuestions(string method, string[] urlArguments, string sort, string sortDirection, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private IPagedList<Question> GetQuestions(string method, string[] urlArguments, string sort, string sortDirection, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
-            return MakeRequest<QuestionResponse>(method, urlArguments, new
+            var response = MakeRequest<QuestionResponse>(method, urlArguments, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -37,19 +37,21 @@ namespace StackOverflow
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
                 sort = sort,
                 order = sortDirection
-            }).Questions;
+            });
+            return new PagedList<Question>(response.Questions, response);
         }
 
-        public virtual IEnumerable<Question> GetQuestions(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public virtual IPagedList<Question> GetQuestions(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
-            return MakeRequest<QuestionResponse>("questions", new string[] { questionIds.Vectorize() }, new
+            var response = MakeRequest<QuestionResponse>("questions", new string[] { questionIds.Vectorize() }, new
             {
                 key = apiKey,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }).Questions;
+            });
+            return new PagedList<Question>(response.Questions, response);
         }
 
         public virtual Question GetQuestion(int questionId, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
@@ -72,7 +74,7 @@ namespace StackOverflow
             return GetQuestionTimeline(questionId.ToArray(), fromDate, toDate);
         }
 
-        public virtual IEnumerable<Question> Search(string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
+        public virtual IPagedList<Question> Search(string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
         {
             string taggedString = null;
             if (tagged != null)
@@ -82,7 +84,7 @@ namespace StackOverflow
             if (notTagged != null)
                 notTaggedString = String.Join(" ", notTagged);
 
-            return MakeRequest<QuestionResponse>("search", null, new
+            var response = MakeRequest<QuestionResponse>("search", null, new
             {
                 key = apiKey,
                 intitle = inTitle,
@@ -92,7 +94,8 @@ namespace StackOverflow
                 order = GetSortDirection(sortDirection),
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }).Questions;
+            });
+            return new PagedList<Question>(response.Questions, response);
         }
     }
 }

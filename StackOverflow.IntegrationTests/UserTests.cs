@@ -14,6 +14,16 @@ namespace StackOverflow.IntegrationTests
         }
 
         [TestMethod]
+        public void User_GetUsers_ContainsPagingInformation()
+        {
+            var users = Client.GetUsers();
+            Assert.IsNotNull(users);
+            Assert.IsTrue(users.PageSize > 0);
+            Assert.IsTrue(users.CurrentPage > 0);
+            Assert.IsTrue(users.TotalItems > 0);
+        }
+
+        [TestMethod]
         public void User_GetUsers_Async()
         {
             ClientAsync.GetUsers(users => Assert.IsNotNull(users));
@@ -24,6 +34,16 @@ namespace StackOverflow.IntegrationTests
         {
             var mentions = Client.GetUserMentions(1464);
             Assert.IsNotNull(mentions);
+        }
+
+        [TestMethod]
+        public void User_GetUserMentions_ContainsPagingInformation()
+        {
+            var mentions = Client.GetUserMentions(22656);
+            Assert.IsNotNull(mentions);
+            Assert.IsTrue(mentions.PageSize > 0);
+            Assert.IsTrue(mentions.CurrentPage > 0);
+            Assert.IsTrue(mentions.TotalItems > 0);
         }
 
         [TestMethod]
@@ -40,6 +60,16 @@ namespace StackOverflow.IntegrationTests
         }
 
         [TestMethod]
+        public void User_GetQuestionAnswers_ContainsPagingInformation()
+        {
+            var answers = Client.GetQuestionAnswers(31415);
+            Assert.IsNotNull(answers);
+            Assert.IsTrue(answers.PageSize > 0);
+            Assert.IsTrue(answers.CurrentPage > 0);
+            Assert.IsTrue(answers.TotalItems > 0);
+        }
+
+        [TestMethod]
         public void User_GetQuestionAnswers_Async()
         {
             ClientAsync.GetQuestionAnswers(31415, answers => Assert.IsNotNull(answers));
@@ -53,6 +83,16 @@ namespace StackOverflow.IntegrationTests
         }
 
         [TestMethod]
+        public void User_GetUserTimeline_ContainsPagingInformation()
+        {
+            var events = Client.GetUserTimeline(1464);
+            Assert.IsNotNull(events);
+            Assert.IsTrue(events.PageSize > 0);
+            Assert.IsTrue(events.CurrentPage > 0);
+            Assert.IsTrue(events.TotalItems > 0);
+        }
+
+        [TestMethod]
         public void User_GetUserTimeline_Async()
         {
             ClientAsync.GetUserTimeline(1464, events => Assert.IsNotNull(events));
@@ -63,6 +103,16 @@ namespace StackOverflow.IntegrationTests
         {
             var rep = Client.GetUserReputation(1464);
             Assert.IsNotNull(rep);
+        }
+
+        [TestMethod]
+        public void User_GetUserReputation_ContainsPagingInformation()
+        {
+            var rep = Client.GetUserReputation(1464);
+            Assert.IsNotNull(rep);
+            Assert.IsTrue(rep.PageSize > 0);
+            Assert.IsTrue(rep.CurrentPage > 0);
+            Assert.IsTrue(rep.TotalItems > 0);
         }
 
         [TestMethod]

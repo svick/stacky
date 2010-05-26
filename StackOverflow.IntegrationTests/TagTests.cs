@@ -13,6 +13,16 @@ namespace StackOverflow.IntegrationTests
         }
 
         [TestMethod]
+        public void Tag_GetTags_ContainsPagingInformation()
+        {
+            var tags = Client.GetTags();
+            Assert.IsNotNull(tags);
+            Assert.IsTrue(tags.PageSize > 0);
+            Assert.IsTrue(tags.CurrentPage > 0);
+            Assert.IsTrue(tags.TotalItems > 0);
+        }
+
+        [TestMethod]
         public void Tag_GetTags_Async()
         {
             ClientAsync.GetTags(tags => Assert.IsNotNull(tags));

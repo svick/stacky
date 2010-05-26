@@ -123,5 +123,15 @@ namespace StackOverflow.IntegrationTests
         {
             ClientAsync.Search(questions => Assert.IsNotNull(questions), inTitle: "Thread");
         }
+
+        [TestMethod]
+        public void Question_GetQuestions_HasPagingInformation()
+        {
+            var questions = Client.GetQuestions();
+            Assert.IsNotNull(questions);
+            Assert.IsTrue(questions.PageSize > 0);
+            Assert.IsTrue(questions.CurrentPage > 0);
+            Assert.IsTrue(questions.TotalItems > 0);
+        }
     }
 }

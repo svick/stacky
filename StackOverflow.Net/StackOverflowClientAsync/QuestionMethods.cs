@@ -11,23 +11,23 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetQuestions(Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError = null, QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetQuestions(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError = null, QuestionSort sortBy = QuestionSort.Active, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             var sortArgs = sortBy.GetAttribute<SortArgsAttribute>();
             GetQuestions(onSuccess, onError, "questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public void GetQuestionsByUser(int userId, Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetQuestionsByUser(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError = null, QuestionsByUserSort sortBy = QuestionsByUserSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             GetQuestions(onSuccess, onError, "users", new string[] { userId.ToString(), "questions" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        public void GetFavoriteQuestions(int userId, Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError = null, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
+        public void GetFavoriteQuestions(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError = null, FavoriteQuestionsSort sortBy = FavoriteQuestionsSort.Recent, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, DateTime? fromDate = null, DateTime? toDate = null, string[] tags = null)
         {
             GetQuestions(onSuccess, onError, "users", new string[] { userId.ToString(), "favorites" }, sortBy.ToString().ToLower(), GetSortDirection(sortDirection), page, pageSize, includeBody, includeComments, fromDate, toDate, tags);
         }
 
-        private void GetQuestions(Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError, string method, string[] urlArgs, string sort, string order, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
+        private void GetQuestions(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, string method, string[] urlArgs, string sort, string order, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, params string[] tags)
         {
             MakeRequest<QuestionResponse>(method, urlArgs, new
             {
@@ -41,10 +41,10 @@ namespace StackOverflow
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
                 sort = sort,
                 order = order
-            }, (items) => onSuccess(items.Questions), onError);
+            }, (items) => onSuccess(new PagedList<Question>(items.Questions, items)), onError);
         }
 
-        public void GetQuestions(IEnumerable<int> questionIds, Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
+        public void GetQuestions(IEnumerable<int> questionIds, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
         {
             MakeRequest<QuestionResponse>("questions", new string[] { questionIds.Vectorize() }, new
             {
@@ -53,7 +53,7 @@ namespace StackOverflow
                 comments = includeComments ? (bool?)true : null,
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, (items) => onSuccess(items.Questions), onError);
+            }, (items) => onSuccess(new PagedList<Question>(items.Questions, items)), onError);
         }
 
         public void GetQuestion(int questionId, Action<Question> onSuccess, Action<ApiException> onError = null, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false)
@@ -86,7 +86,7 @@ namespace StackOverflow
             if (notTagged != null)
                 notTaggedString = String.Join(" ", notTagged.ToArray());
 
-            MakeRequest<List<Question>>("search", null, new
+            MakeRequest<QuestionResponse>("search", null, new
             {
                 key = apiKey,
                 intitle = inTitle,
@@ -96,7 +96,7 @@ namespace StackOverflow
                 order = GetSortDirection(sortDirection),
                 page = page ?? null,
                 pagesize = pageSize ?? null
-            }, (items) => onSuccess(items), onError);
+            }, (items) => onSuccess(new PagedList<Question>(items.Questions, items)), onError);
         }
     }
 }

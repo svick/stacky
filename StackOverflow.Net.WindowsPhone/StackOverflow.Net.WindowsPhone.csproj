@@ -168,6 +168,9 @@
     <Compile Include="..\StackOverflow.Net\HttpResponse.cs">
       <Link>HttpResponse.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Interfaces\IPagedList.cs">
+      <Link>Interfaces\IPagedList.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Interfaces\IProtocol.cs">
       <Link>Interfaces\IProtocol.cs</Link>
     </Compile>
@@ -176,6 +179,9 @@
     </Compile>
     <Compile Include="..\StackOverflow.Net\Interfaces\IUrlClientAsync.cs">
       <Link>Interfaces\IUrlClientAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\PagedList.cs">
+      <Link>PagedList.cs</Link>
     </Compile>
     <Compile Include="..\StackOverflow.Net\Protocols\JsonProtocol.cs">
       <Link>Protocols\JsonProtocol.cs</Link>

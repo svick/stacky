@@ -5,7 +5,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public virtual IEnumerable<Comment> GetComments(IEnumerable<int> fromUserIds, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<Comment> GetComments(IEnumerable<int> fromUserIds, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
@@ -17,7 +17,7 @@ namespace StackOverflow
                 urlParameters = new string[] { fromUserIds.Vectorize(), "comments" };
             }
 
-            return MakeRequest<CommentResponse>("users", urlParameters, new
+            var response = MakeRequest<CommentResponse>("users", urlParameters, new
             {
                 key = apiKey,
                 page = page ?? null,
@@ -26,10 +26,11 @@ namespace StackOverflow
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 sort = sortBy.ToString().ToLower(),
                 order = GetSortDirection(sortDirection)
-            }).Comments;
+            });
+            return new PagedList<Comment>(response.Comments, response);
         }
 
-        public virtual IEnumerable<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<Comment> GetComments(int fromUserId, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetComments(fromUserId.ToArray(), sortBy, sortDirection, toUserId, page, pageSize, fromDate, toDate);
         }

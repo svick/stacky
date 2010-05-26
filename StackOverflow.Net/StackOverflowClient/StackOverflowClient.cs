@@ -40,14 +40,18 @@ namespace StackOverflow
         private T MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
              where T : new()
         {
-            string responseText = GetResponse(method, urlArguments, queryStringArguments);
-            var response = protocol.GetResponse<T>(responseText);
+            var httpResponse = GetResponse(method, urlArguments, queryStringArguments);
+            if (httpResponse.Error != null)
+                throw new ApiException("Error retrieving url", null, httpResponse.Error);
+
+            var response = protocol.GetResponse<T>(httpResponse.Body);
             if (response.Error != null)
                 throw new ApiException(response.Error);
+
             return response.Data;
         }
 
-        private string GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
+        private HttpResponse GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
         {
             Uri url = UrlHelper.BuildUrl(method, version, baseUrl, urlArguments, queryStringArguments);
             return client.MakeRequest(url);

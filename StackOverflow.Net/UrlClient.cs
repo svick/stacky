@@ -6,13 +6,16 @@ namespace StackOverflow
 {
     public class UrlClient : IUrlClient
     {
-        public string MakeRequest(Uri url)
+        public HttpResponse MakeRequest(Uri url)
         {
+            HttpResponse httpResponse = new HttpResponse
+            {
+                Url = url
+            };
             var request = WebRequest.Create(url) as HttpWebRequest;
             if (request != null)
             {
-                //TODO: Figure out what user agent to use for the request
-                request.UserAgent = "";
+                request.UserAgent = "StackOverflow.Net";
                 request.Accept = "gzip,deflate";
                 request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
                 try
@@ -22,12 +25,13 @@ namespace StackOverflow
                         using (var responseStream = response.GetResponseStream())
                         {
                             var reader = new StreamReader(responseStream);
-                            return reader.ReadToEnd();
+                            httpResponse.Body = reader.ReadToEnd();
                         }
                     }
                 }
                 catch (WebException e)
                 {
+                    httpResponse.Error = e;
                     if (e.Status == WebExceptionStatus.ProtocolError && e.Response != null)
                     {
                         var response = (HttpWebResponse)e.Response;
@@ -36,14 +40,13 @@ namespace StackOverflow
                             using (var responseStream = response.GetResponseStream())
                             {
                                 var reader = new StreamReader(responseStream);
-                                return reader.ReadToEnd();
+                                httpResponse.Body = reader.ReadToEnd();
                             }
                         }
                     }
-                    throw;
                 }
             }
-            return String.Empty;
+            return httpResponse;
         }
     }
 }

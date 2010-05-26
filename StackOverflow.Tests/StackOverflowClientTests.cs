@@ -30,7 +30,7 @@ namespace StackOverflow.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.Net.WebException))]
+        [ExpectedException(typeof(ApiException))]
         public void InvalidVersionEror()
         {
             var client = new StackOverflowClient("unicorn", apiKey, baseUrl, new UrlClient(), new JsonProtocol());

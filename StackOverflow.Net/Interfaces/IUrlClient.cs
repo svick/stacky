@@ -5,7 +5,7 @@ namespace StackOverflow
 {
     public interface IUrlClient
     {
-        string MakeRequest(Uri url);
+        HttpResponse MakeRequest(Uri url);
     }
 }
 #endif

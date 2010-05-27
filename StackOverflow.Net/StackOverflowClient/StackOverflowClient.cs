@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
-using System.Diagnostics.Contracts;
 
 namespace StackOverflow
 {
@@ -23,10 +22,10 @@ namespace StackOverflow
 
         public StackOverflowClient(string version, string apiKey, string baseUrl, IUrlClient client, IProtocol protocol)
         {
-            Contract.Requires(!String.IsNullOrEmpty(version), "version cannot be null or empty");
-            Contract.Requires(!String.IsNullOrEmpty(baseUrl), "baseUrl cannot be null or empty");
-            Contract.Requires(client != null, "client cannot be null");
-            Contract.Requires(protocol != null, "protocol cannot be null");
+            Require.NotNullOrEmpty(version, "version");
+            Require.NotNullOrEmpty(baseUrl, "baseUrl");
+            Require.NotNull(client, "client");
+            Require.NotNull(client, "client");
 
             this.version = version;
             this.apiKey = apiKey;

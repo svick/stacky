@@ -36,6 +36,11 @@ namespace StackOverflow
         public StackOverflowClientAsync(string version, string apiKey, string baseUrl, IUrlClientAsync client, IProtocol protocol)
 #endif
         {
+            Require.NotNullOrEmpty(version, "version");
+            Require.NotNullOrEmpty(baseUrl, "baseUrl");
+            Require.NotNull(client, "client");
+            Require.NotNull(client, "client");
+
             this.version = version;
             this.client = client;
             this.baseUrl = baseUrl;

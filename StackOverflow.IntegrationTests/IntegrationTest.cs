@@ -2,14 +2,14 @@ namespace StackOverflow.IntegrationTests
 {
     public abstract class IntegrationTest
     {
-        private static string version = "0.8";
-        private static string apiKey = "";
-        private static string baseUrl = "api.stackoverflow.com";
+        public static string Version = "0.8";
+        public static string ApiKey = "";
+        public static string BaseUrl = "api.stackoverflow.com";
 
         public IntegrationTest()
         {
-            Client = new StackOverflowClient(version, apiKey, HostSite.StackOverflow, new UrlClient(), new JsonProtocol());
-            ClientAsync = new StackOverflowClientAsync(version, apiKey, baseUrl, new UrlClientAsync(), new JsonProtocol());
+            Client = new StackOverflowClient(Version, ApiKey, HostSite.StackOverflow, new UrlClient(), new JsonProtocol());
+            ClientAsync = new StackOverflowClientAsync(Version, ApiKey, BaseUrl, new UrlClientAsync(), new JsonProtocol());
         }
 
         public StackOverflowClient Client { get; set; }

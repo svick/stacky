@@ -52,6 +52,7 @@
     <Compile Include="AnswerTests.cs" />
     <Compile Include="BadgeTests.cs" />
     <Compile Include="CommentTests.cs" />
+    <Compile Include="HostSiteTests.cs" />
     <Compile Include="IntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionTests.cs" />

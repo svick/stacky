@@ -16,12 +16,17 @@ namespace StackOverflow
         private string baseUrl;
 
         public StackOverflowClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
-            : this(version, apiKey, String.Format("api.{0}.com", site.ToString().ToLower()), client, protocol)
+            : this(version, apiKey, site.GetAddress(), client, protocol)
         {
         }
 
         public StackOverflowClient(string version, string apiKey, string baseUrl, IUrlClient client, IProtocol protocol)
         {
+            Require.NotNullOrEmpty(version, "version");
+            Require.NotNullOrEmpty(baseUrl, "baseUrl");
+            Require.NotNull(client, "client");
+            Require.NotNull(client, "client");
+
             this.version = version;
             this.apiKey = apiKey;
             this.baseUrl = baseUrl;

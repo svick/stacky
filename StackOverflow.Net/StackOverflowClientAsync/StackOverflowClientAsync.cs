@@ -26,7 +26,7 @@ namespace StackOverflow
 #else
         public StackOverflowClientAsync(string version, string apiKey, HostSite site, IUrlClientAsync client, IProtocol protocol)
 #endif
-            : this(version, apiKey, String.Format("api.{0}.com", site.ToString().ToLower()), client, protocol)
+            : this(version, apiKey, site.GetAddress(), client, protocol)
         {
         }
 
@@ -36,6 +36,11 @@ namespace StackOverflow
         public StackOverflowClientAsync(string version, string apiKey, string baseUrl, IUrlClientAsync client, IProtocol protocol)
 #endif
         {
+            Require.NotNullOrEmpty(version, "version");
+            Require.NotNullOrEmpty(baseUrl, "baseUrl");
+            Require.NotNull(client, "client");
+            Require.NotNull(client, "client");
+
             this.version = version;
             this.client = client;
             this.baseUrl = baseUrl;

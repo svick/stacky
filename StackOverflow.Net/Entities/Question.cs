@@ -27,15 +27,6 @@ namespace StackOverflow
         [JsonProperty("answer_count")]
         public int AnswerCount { get; set; }
 
-        [JsonProperty("owner_user_id")]
-        public int OwnerUserId { get; set; }
-
-        [JsonProperty("owner_display_name")]
-        public string OwnerDisplayName { get; set; }
-
-        [JsonProperty("owner_email_hash")]
-        public string OwnerEmailHash { get; set; }
-
         [JsonProperty("creation_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreationDate { get; set; }
 
@@ -83,6 +74,8 @@ namespace StackOverflow
 
         [JsonProperty("question_comments_url")]
         public string CommentsUrl { get; set; }
+
+        public UserInfo Owner { get; set; }
 
         public List<string> Tags { get; set; }
 

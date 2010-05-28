@@ -45,6 +45,7 @@ namespace StackOverflow
         public void client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             RequestContext context = e.UserState as RequestContext;
+            WebClient client = sender as WebClient;
 
             if (context != null)
             {
@@ -60,6 +61,7 @@ namespace StackOverflow
                     Body = "",
                     Url = context.Url
                 };
+                response.ParseRateLimit(client.ResponseHeaders);
 
                 using (var memoryStream = new MemoryStream(e.Result))
                 {
@@ -83,6 +85,7 @@ namespace StackOverflow
         public void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             RequestContext context = e.UserState as RequestContext;
+            WebClient client = sender as WebClient;
 
             if (context != null)
             {
@@ -99,6 +102,7 @@ namespace StackOverflow
                     Url = context.Url
                 };
 
+                response.ParseRateLimit(client.ResponseHeaders);
                 context.OnSuccess(response);
             }
         }

@@ -46,6 +46,9 @@ namespace StackOverflow
             if (httpResponse.Error != null)
                 throw new ApiException("Error retrieving url", null, httpResponse.Error);
 
+            RemainingRequests = httpResponse.RemainingRequests;
+            MaxRequests = httpResponse.MaxRequests;
+
             var response = Protocol.GetResponse<T>(httpResponse.Body);
             if (response.Error != null)
                 throw new ApiException(response.Error);
@@ -71,6 +74,9 @@ namespace StackOverflow
         public IUrlClient WebClient { get; set; }
         public IProtocol Protocol { get; set; }
         public string BaseUrl { get; set; }
+
+        public int RemainingRequests { get; internal set; }
+        public int MaxRequests { get; internal set; }
 
         #endregion
     }

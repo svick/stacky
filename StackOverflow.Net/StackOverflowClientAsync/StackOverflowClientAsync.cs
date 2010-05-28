@@ -53,12 +53,9 @@ namespace StackOverflow
         public IProtocol Protocol { get; set; }
         public string BaseUrl { get; set; }
 
+        public int RemainingRequests { get; internal set; }
+        public int MaxRequests { get; internal set; }
 
-#if DEBUG
-        public Uri LastRequest { get; set; }
-        public string LastResponse { get; set; }
-        public string LastMethod { get; set; }
-#endif
         #endregion
 
         #region Methods
@@ -76,6 +73,8 @@ namespace StackOverflow
             {
                 GetResponse(method, urlArguments, queryStringArguments, response =>
                 {
+                    RemainingRequests = response.RemainingRequests;
+                    MaxRequests = response.MaxRequests;
                     IResponse<T> r = Protocol.GetResponse<T>(response.Body);
                     if (response.Error != null)
                     {

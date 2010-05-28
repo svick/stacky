@@ -9,8 +9,8 @@ namespace StackOverflow
         public Uri Url { get; set; }
         public Exception Error { get; set; }
 
-        public int CurrentRateLimit { get; set; }
-        public int MaxRateLimit { get; set; }
+        public int RemainingRequests { get; set; }
+        public int MaxRequests { get; set; }
 
         public static string RateLimitCurrent = "X-RateLimit-Current";
         public static string RateLimitMax = "X-RateLimit-Max";
@@ -25,8 +25,8 @@ namespace StackOverflow
             Int32.TryParse(rateLimitCurrent, out current);
             Int32.TryParse(rateLimitMax, out max);
 
-            CurrentRateLimit = current;
-            MaxRateLimit = max;
+            RemainingRequests = current;
+            MaxRequests = max;
         }
     }
 }

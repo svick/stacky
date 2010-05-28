@@ -9,11 +9,8 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        private IUrlClient client;
-        private IProtocol protocol;
         private string version;
         private string apiKey;
-        private string baseUrl;
 
         public StackOverflowClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
             : this(version, apiKey, site.GetAddress(), client, protocol)
@@ -29,9 +26,9 @@ namespace StackOverflow
 
             this.version = version;
             this.apiKey = apiKey;
-            this.baseUrl = baseUrl;
-            this.client = client;
-            this.protocol = protocol;
+            BaseUrl = baseUrl;
+            WebClient = client;
+            Protocol = protocol;
         }
 
         #region Methods
@@ -49,7 +46,7 @@ namespace StackOverflow
             if (httpResponse.Error != null)
                 throw new ApiException("Error retrieving url", null, httpResponse.Error);
 
-            var response = protocol.GetResponse<T>(httpResponse.Body);
+            var response = Protocol.GetResponse<T>(httpResponse.Body);
             if (response.Error != null)
                 throw new ApiException(response.Error);
 
@@ -58,8 +55,8 @@ namespace StackOverflow
 
         private HttpResponse GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
         {
-            Uri url = UrlHelper.BuildUrl(method, version, baseUrl, urlArguments, queryStringArguments);
-            return client.MakeRequest(url);
+            Uri url = UrlHelper.BuildUrl(method, version, BaseUrl, urlArguments, queryStringArguments);
+            return WebClient.MakeRequest(url);
         }
 
         private string GetSortDirection(SortDirection direction)
@@ -71,17 +68,9 @@ namespace StackOverflow
 
         #region Properties
 
-        public IUrlClient WebClient
-        {
-            get { return client; }
-            set { client = value; }
-        }
-
-        public IProtocol Protocol
-        {
-            get { return protocol; }
-            set { protocol = value; }
-        }
+        public IUrlClient WebClient { get; set; }
+        public IProtocol Protocol { get; set; }
+        public string BaseUrl { get; set; }
 
         #endregion
     }

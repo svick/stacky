@@ -11,15 +11,8 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-#if SILVERLIGHT
-        private IUrlClient client;
-#else
-        private IUrlClientAsync client;
-#endif
-        private IProtocol protocol;
         private string version;
         private string apiKey;
-        private string baseUrl;
 
 #if SILVERLIGHT
         public StackOverflowClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
@@ -42,9 +35,9 @@ namespace StackOverflow
             Require.NotNull(client, "client");
 
             this.version = version;
-            this.client = client;
-            this.baseUrl = baseUrl;
-            this.protocol = protocol;
+            WebClient = client;
+            BaseUrl = baseUrl;
+            Protocol = protocol;
             this.apiKey = apiKey;
         }
 
@@ -55,16 +48,10 @@ namespace StackOverflow
 #else
         public IUrlClientAsync WebClient
 #endif
-        {
-            get { return client; }
-            set { client = value; }
-        }
+        { get; set; }
 
-        public IProtocol Protocol
-        {
-            get { return protocol; }
-            set { protocol = value; }
-        }
+        public IProtocol Protocol { get; set; }
+        public string BaseUrl { get; set; }
 
 
 #if DEBUG
@@ -89,7 +76,7 @@ namespace StackOverflow
             {
                 GetResponse(method, urlArguments, queryStringArguments, response =>
                 {
-                    IResponse<T> r = protocol.GetResponse<T>(response.Body);
+                    IResponse<T> r = Protocol.GetResponse<T>(response.Body);
                     if (response.Error != null)
                     {
                         if(onError != null)
@@ -110,8 +97,8 @@ namespace StackOverflow
 
         private void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> onSuccess, Action<ApiException> onError)
         {
-            Uri url = UrlHelper.BuildUrl(method, version, baseUrl, urlArguments, queryStringArguments);
-            client.MakeRequest(url, onSuccess, onError);
+            Uri url = UrlHelper.BuildUrl(method, version, BaseUrl, urlArguments, queryStringArguments);
+            WebClient.MakeRequest(url, onSuccess, onError);
         }
 
         private string GetSortDirection(SortDirection direction)

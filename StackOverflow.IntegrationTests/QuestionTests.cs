@@ -133,5 +133,14 @@ namespace StackOverflow.IntegrationTests
             Assert.IsTrue(questions.CurrentPage > 0);
             Assert.IsTrue(questions.TotalItems > 0);
         }
+
+        [TestMethod]
+        public void Question_GetQuestion_ContainsOwner()
+        {
+            var question = Client.GetQuestion(2930182);
+            Assert.IsNotNull(question);
+            Assert.IsNotNull(question.Owner);
+            Assert.IsNotNull(question.Owner.UserId);
+        }
     }
 }

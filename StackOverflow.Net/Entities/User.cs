@@ -30,6 +30,8 @@ namespace StackOverflow
         [JsonProperty("email_hash")]
         public string EmailHash { get; set; }
 
+        public string GravatarUrl { get { return String.Format("http://www.gravatar.com/avatar/{0}?d=identicon&r=PG", EmailHash); } }
+
         [JsonProperty("age")]
         public int? Age { get; set; }
         [JsonProperty("last_access_date"), JsonConverter(typeof(UnixDateTimeConverter))]

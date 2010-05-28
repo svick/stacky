@@ -105,6 +105,9 @@
     <Compile Include="..\StackOverflow.Net\Entities\UserEvent.cs">
       <Link>Entities\UserEvent.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Entities\UserInfo.cs">
+      <Link>Entities\UserInfo.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Enums\BadgeClass.cs">
       <Link>Enums\BadgeClass.cs</Link>
     </Compile>

@@ -22,6 +22,7 @@ namespace StackOverflow
                 {
                     using (var response = request.GetResponse() as HttpWebResponse)
                     {
+                        httpResponse.ParseRateLimit(response.Headers);
                         using (var responseStream = response.GetResponseStream())
                         {
                             var reader = new StreamReader(responseStream);
@@ -37,6 +38,7 @@ namespace StackOverflow
                         var response = (HttpWebResponse)e.Response;
                         if (response.StatusCode != HttpStatusCode.NotFound)
                         {
+                            httpResponse.ParseRateLimit(response.Headers);
                             using (var responseStream = response.GetResponseStream())
                             {
                                 var reader = new StreamReader(responseStream);

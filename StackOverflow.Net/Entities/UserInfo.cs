@@ -15,10 +15,10 @@ namespace StackOverflow
         public UserType Type { get; set; }
 
         [JsonProperty("display_name")]
-        public string DisplayName { get; internal set; }
+        public string DisplayName { get; set; }
 
         [JsonProperty("reputation")]
-        public int? Reputation { get; internal set; }
+        public int? Reputation { get; set; }
 
         [JsonProperty("email_hash")]
         public string EmailHash { get; set; }

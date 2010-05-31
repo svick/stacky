@@ -75,8 +75,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BadgesController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -90,8 +93,12 @@
   <ItemGroup>
     <Content Include="Content\external-link-ltr-icon.png" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Badges\Badges.aspx" />
+    <Content Include="Views\Questions\Question.aspx" />
     <Content Include="Views\Questions\Questions.aspx" />
     <Content Include="Views\Shared\Header.ascx" />
+    <Content Include="Views\Tags\Tags.aspx" />
+    <Content Include="Views\Users\Users.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

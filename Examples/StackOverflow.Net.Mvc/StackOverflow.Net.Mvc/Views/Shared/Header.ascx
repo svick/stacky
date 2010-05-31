@@ -1,4 +1,9 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StackOverflow.Net.Mvc.HeaderModel>" %>
+<div class="search-container">
+    <% Html.BeginForm(); %>
+    <div class="search-bar"><%: Html.TextBox("SearchText", string.Empty, new { @class = "search-text-box" }) %></div>
+    <% Html.EndForm(); %>
+</div>
 <div class="site-menu-container">
     <ul class="site-menu">
         <% foreach (string key in Model.SupportedSites.Keys)

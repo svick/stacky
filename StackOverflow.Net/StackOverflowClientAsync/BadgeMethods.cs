@@ -9,27 +9,35 @@ namespace StackOverflow
     public partial class StackOverflowClientAsync
 #endif
     {
-        public void GetBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError = null, BadgeSort sortBy = BadgeSort.Name)
+        public void GetBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError = null)
         {
-            GetBadges(onSuccess, onError, "badges", new string[] { sortBy.ToString().ToLower() });
+            GetBadges(onSuccess, onError, "badges", null);
         }
 
-        private void GetBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError, string method, string[] sort)
+        private void GetBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError, string method, string[] urlArguments)
         {
-            MakeRequest<BadgeResponse>(method, sort, new
+            MakeRequest<BadgeResponse>(method, urlArguments, new
             {
                 key = apiKey
             }, (items) => onSuccess(items.Badges), onError);
         }
 
-        public void GetBadgesByUser(int userId, Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError = null)
+        public void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError = null)
         {
-            GetBadgesByUser(userId.ToArray(), onSuccess, onError);
+            GetUsersByBadge(userId.ToArray(), onSuccess, onError);
         }
 
-        public void GetBadgesByUser(IEnumerable<int> userIds, Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError = null)
+        public void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError = null)
         {
-            GetBadges(onSuccess, onError, "users", new string[] { userIds.Vectorize(), "badges" });
+            MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize(), "badges" }, new
+            {
+                key = apiKey
+            }, (items) => onSuccess(new PagedList<User>(items.Users, items)), onError);
+        }
+
+        public void GetTagBasedBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError = null)
+        {
+            GetBadges(onSuccess, onError, "badges", new string[] { "tags" });
         }
     }
 }

@@ -4,27 +4,36 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public virtual IEnumerable<Badge> GetBadges(BadgeSort sortBy = BadgeSort.Name)
+        public virtual IEnumerable<Badge> GetBadges()
         {
-            return GetBadges("badges", new string[] { sortBy.ToString().ToLower() });
+            return GetBadges("badges", null);
         }
 
-        private IEnumerable<Badge> GetBadges(string method, string[] sort)
+        private IEnumerable<Badge> GetBadges(string method, string[] urlArguments)
         {
-            return MakeRequest<BadgeResponse>(method, sort, new
+            return MakeRequest<BadgeResponse>(method, urlArguments, new
             {
                 key = apiKey
             }).Badges;
         }
 
-        public virtual IEnumerable<Badge> GetBadgesByUser(int userId)
+        public virtual IEnumerable<User> GetUsersByBadge(int userId)
         {
-            return GetBadgesByUser(userId.ToArray());
+            return GetUsersByBadge(userId.ToArray());
         }
 
-        public virtual IEnumerable<Badge> GetBadgesByUser(IEnumerable<int> userIds)
+        public virtual IPagedList<User> GetUsersByBadge(IEnumerable<int> userIds)
         {
-            return GetBadges("users", new string[] { userIds.Vectorize(), "badges" });
+            var response = MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize() }, new
+            {
+                key = apiKey
+            });
+            return new PagedList<User>(response.Users, response);
+        }
+
+        public virtual IEnumerable<Badge> GetTagBasedBadges()
+        {
+            return GetBadges("badges", new string[] { "tags" });
         }
     }
 }

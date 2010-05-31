@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading;
 
 namespace StackOverflow.IntegrationTests
 {
@@ -23,16 +24,27 @@ namespace StackOverflow.IntegrationTests
             Assert.IsTrue(users.TotalItems > 0);
         }
 
-        [TestMethod]
+        [TestMethod]        
         public void User_GetUsers_Async()
         {
-            ClientAsync.GetUsers(users => Assert.IsNotNull(users));
+            bool completed = false;
+            ClientAsync.GetUsers(users =>
+                {
+                    Assert.IsNotNull(users);
+                    completed = true;
+                }, onError: error =>
+                {
+                    Assert.Fail(error.Message);
+                    completed = true;
+                });
+            while (!completed)
+                Thread.Sleep(10);
         }
 
         [TestMethod]
         public void User_GetUserMentions()
         {
-            var mentions = Client.GetUserMentions(1464);
+            var mentions = Client.GetUserMentions(22656);
             Assert.IsNotNull(mentions);
         }
 
@@ -49,7 +61,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void User_GetUserMentions_Async()
         {
-            ClientAsync.GetUserMentions(1464, mentions => Assert.IsNotNull(mentions));
+            ClientAsync.GetUserMentions(22656, mentions => Assert.IsNotNull(mentions));
         }
 
         [TestMethod]
@@ -78,14 +90,14 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void User_GetUserTimeline()
         {
-            var events = Client.GetUserTimeline(1464);
+            var events = Client.GetUserTimeline(22656);
             Assert.IsNotNull(events);
         }
 
         [TestMethod]
         public void User_GetUserTimeline_ContainsPagingInformation()
         {
-            var events = Client.GetUserTimeline(1464);
+            var events = Client.GetUserTimeline(22656);
             Assert.IsNotNull(events);
             Assert.IsTrue(events.PageSize > 0);
             Assert.IsTrue(events.CurrentPage > 0);
@@ -95,20 +107,20 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void User_GetUserTimeline_Async()
         {
-            ClientAsync.GetUserTimeline(1464, events => Assert.IsNotNull(events));
+            ClientAsync.GetUserTimeline(22656, events => Assert.IsNotNull(events));
         }
 
         [TestMethod]
         public void User_GetUserReputation()
         {
-            var rep = Client.GetUserReputation(1464);
+            var rep = Client.GetUserReputation(22656);
             Assert.IsNotNull(rep);
         }
 
         [TestMethod]
         public void User_GetUserReputation_ContainsPagingInformation()
         {
-            var rep = Client.GetUserReputation(1464);
+            var rep = Client.GetUserReputation(22656);
             Assert.IsNotNull(rep);
             Assert.IsTrue(rep.PageSize > 0);
             Assert.IsTrue(rep.CurrentPage > 0);
@@ -118,13 +130,13 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void User_GetUserReputation_Async()
         {
-            ClientAsync.GetUserReputation(1464, rep => Assert.IsNotNull(rep));
+            ClientAsync.GetUserReputation(22656, rep => Assert.IsNotNull(rep));
         }
 
         [TestMethod]
         public void User_Returns_Badge_Counts()
         {
-            var user = Client.GetUser(1464);
+            var user = Client.GetUser(22656);
 
             Assert.IsNotNull(user);
             Assert.IsNotNull(user.BadgeCounts);
@@ -134,7 +146,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void User_Contains_Urls()
         {
-            var user = Client.GetUser(1464);
+            var user = Client.GetUser(22656);
 
             Assert.IsNotNull(user);
             Assert.IsFalse(String.IsNullOrEmpty(user.QuestionsUrl));
@@ -146,6 +158,23 @@ namespace StackOverflow.IntegrationTests
             Assert.IsFalse(String.IsNullOrEmpty(user.MentionedUrl));
             Assert.IsFalse(String.IsNullOrEmpty(user.CommentsUrl));
             Assert.IsFalse(String.IsNullOrEmpty(user.ReputationUrl));
+        }
+
+        [TestMethod]
+        public void User_GetUser_Async()
+        {
+            bool completed = false;
+            ClientAsync.GetUser(22656, user =>
+            {
+                Assert.IsNotNull(user);
+                completed = true;
+            }, onError: error =>
+            {
+                Assert.Fail(error.Message);
+                completed = true;
+            });
+            while (!completed)
+                Thread.Sleep(10);
         }
     }
 }

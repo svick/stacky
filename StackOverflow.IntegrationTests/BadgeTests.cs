@@ -17,10 +17,10 @@ namespace StackOverflow.IntegrationTests
         }
 
         [TestMethod]
-        public void Badge_GetBadgesByUser()
+        public void Badge_GetUsersByBadge()
         {
-            var badges = Client.GetBadgesByUser(1464);
-            Assert.IsNotNull(badges);
+            var users = Client.GetUsersByBadge(1464);
+            Assert.IsNotNull(users);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void Badge_GetBadgesByUser_Async()
         {
-            ClientAsync.GetBadgesByUser(1464, badges => Assert.IsNotNull(badges));
+            ClientAsync.GetUsersByBadge(1464, users => Assert.IsNotNull(users));
         }
     }
 }

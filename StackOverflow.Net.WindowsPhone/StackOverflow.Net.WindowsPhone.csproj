@@ -105,9 +105,6 @@
     <Compile Include="..\StackOverflow.Net\Enums\BadgeClass.cs">
       <Link>Enums\BadgeClass.cs</Link>
     </Compile>
-    <Compile Include="..\StackOverflow.Net\Enums\BadgeSort.cs">
-      <Link>Enums\BadgeSort.cs</Link>
-    </Compile>
     <Compile Include="..\StackOverflow.Net\Enums\CommentSort.cs">
       <Link>Enums\CommentSort.cs</Link>
     </Compile>

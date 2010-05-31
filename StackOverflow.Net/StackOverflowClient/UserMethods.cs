@@ -6,7 +6,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public virtual IPagedList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null)
+        public virtual IPagedList<User> GetUsers(UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
             var response = MakeRequest<UserResponse>("users", null, new
             {
@@ -15,16 +15,29 @@ namespace StackOverflow
                 pagesize = pageSize ?? null,
                 filter = filter,
                 sort = sortBy.ToString().ToLower(),
-                order = GetSortDirection(sortDirection)
+                order = GetSortDirection(sortDirection),
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                min = min ?? null,
+                max = max ?? null
             });
             return new PagedList<User>(response.Users, response);
         }
 
-        public virtual IPagedList<User> GetUsers(IEnumerable<int> userIds)
+        public virtual IPagedList<User> GetUsers(IEnumerable<int> userIds, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, string filter = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
            var response = MakeRequest<UserResponse>("users", new string[] { userIds.Vectorize() }, new
            {
-               key = apiKey
+               key = apiKey,
+               page = page ?? null,
+               pagesize = pageSize ?? null,
+               filter = filter,
+               sort = sortBy.ToString().ToLower(),
+               order = GetSortDirection(sortDirection),
+               fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+               todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+               min = min ?? null,
+               max = max ?? null
            });
            return new PagedList<User>(response.Users, response);
         }
@@ -34,34 +47,40 @@ namespace StackOverflow
             return GetUsers(userId.ToArray()).FirstOrDefault();
         }
 
-        public virtual IPagedList<Comment> GetUserMentions(int userId, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<Comment> GetUserMentions(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
-            return GetUserMentions(userId.ToArray(), fromDate, toDate);
+            return GetUserMentions(userId.ToArray(), page, pageSize, fromDate, toDate, min, max);
         }
 
-        public virtual IPagedList<Comment> GetUserMentions(IEnumerable<int> userIds, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<Comment> GetUserMentions(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
             var response = MakeRequest<CommentResponse>("users", new string[] { userIds.Vectorize(), "mentioned" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                min = min ?? null,
+                max = max ?? null
             });
             return new PagedList<Comment>(response.Comments, response);
         }
 
-        public virtual IPagedList<UserEvent> GetUserTimeline(int userId, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<UserEvent> GetUserTimeline(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return GetUserTimeline(userId.ToArray(), fromDate, toDate);
+            return GetUserTimeline(userId.ToArray(), page, pageSize, fromDate, toDate);
         }
 
-        public virtual IPagedList<UserEvent> GetUserTimeline(IEnumerable<int> userIds, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<UserEvent> GetUserTimeline(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             var response = MakeRequest<UserEventResponse>("users", new string[] { userIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                page = page ?? null,
+                pagesize = pageSize ?? null
             });
             return new PagedList<UserEvent>(response.Events, response);
         }
@@ -82,6 +101,19 @@ namespace StackOverflow
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
             });
             return new PagedList<Reputation>(response.Reputation, response);
+        }
+
+        public virtual IEnumerable<Badge> GetUserBadges(int userId)
+        {
+            return GetUserBadges(userId.ToArray());
+        }
+
+        public virtual IEnumerable<Badge> GetUserBadges(IEnumerable<int> userIds)
+        {
+            return MakeRequest<BadgeResponse>("users", new string[] { userIds.Vectorize() }, new
+            {
+                key = apiKey
+            }).Badges;
         }
     }
 }

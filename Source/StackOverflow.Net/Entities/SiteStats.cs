@@ -39,6 +39,9 @@ namespace StackOverflow
 
         [JsonProperty("api_version")]
         public ApiVersion ApiVersion { get; set; }
+
+        [JsonProperty("display_name")]
+        public string DisplayName { get; set; }
     }
 
     public class ApiVersion

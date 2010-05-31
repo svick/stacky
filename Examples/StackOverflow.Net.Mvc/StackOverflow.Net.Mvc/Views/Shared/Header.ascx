@@ -16,3 +16,12 @@
         <% } %>
     </ul>
 </div>
+
+<div class="sub-navigation-menu-container">
+    <ul class="sub-navigation-menu">
+        <% foreach (string key in Model.SubNavigationTabs.Keys)
+           { %>
+           <li class="sub-navigation-menu-item<%: key == Model.CurrentSubNavigationTab ? " sub-navigation-menu-item-selected" : string.Empty %>"><a class="sub-navigation-menu-item-link" href="<%: Model.SubNavigationTabs[key] %>"><span class="sub-navigation-menu-item-link-text"><%: key %></span></a></li>
+        <% } %>
+    </ul>
+</div>

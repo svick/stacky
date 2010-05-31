@@ -16,8 +16,9 @@ namespace StackOverflow.Net.Mvc
         public string PageSize { get; private set; }
         public string Page { get; private set; }
         public string TotalPages { get; private set; }
-        public string ItemCount { get; set; }
-        public string MaxPages { get; set; }
+        public string ItemCount { get; private set; }
+        public string MaxPages { get; private set; }
+        public string QueryString { get; private set; }
 
         public SiteState(System.Web.Mvc.UrlHelper url)
         {
@@ -29,9 +30,11 @@ namespace StackOverflow.Net.Mvc
             PageSize = url.RequestContext.HttpContext.Request.QueryString["PageSize"];
             Page = url.RequestContext.HttpContext.Request.QueryString["Page"];
             TotalPages = url.RequestContext.HttpContext.Request.QueryString["TotalPages"];
+            QueryString = url.RequestContext.HttpContext.Request.QueryString.ToString();
         }
 
-        public SiteState(System.Web.Mvc.UrlHelper url, Response response) : this(url)
+        public SiteState(System.Web.Mvc.UrlHelper url, Response response)
+            : this(url)
         {
             MaxPages = Math.Truncate(Convert.ToDouble(response.PageSize / Convert.ToInt32(PageSize))).ToString();
         }

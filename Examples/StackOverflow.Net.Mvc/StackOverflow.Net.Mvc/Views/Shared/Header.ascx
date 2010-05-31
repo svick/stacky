@@ -4,6 +4,9 @@
     <div class="search-bar"><%: Html.TextBox("SearchText", string.Empty, new { @class = "search-text-box" }) %></div>
     <% Html.EndForm(); %>
 </div>
+
+<% if (Model.SupportedSites.Count > 0)
+   { %>
 <div class="site-menu-container">
     <ul class="site-menu">
         <% foreach (string key in Model.SupportedSites.Keys)
@@ -12,7 +15,10 @@
         <% } %>
     </ul>
 </div>
+<% } %>
 
+<% if (Model.NavigationTabs.Count > 0)
+   { %>
 <div class="navigation-menu-container">
     <ul class="navigation-menu">
         <% foreach (string key in Model.NavigationTabs.Keys)
@@ -21,12 +27,16 @@
         <% } %>
     </ul>
 </div>
+<% } %>
 
+<% if (Model.SubNavigationTabs.Count > 0)
+   { %>
 <div class="sub-navigation-menu-container">
     <ul class="sub-navigation-menu">
         <% foreach (string key in Model.SubNavigationTabs.Keys)
            { %>
-           <li class="sub-navigation-menu-item<%: key == Model.CurrentSubNavigationTab ? " sub-navigation-menu-item-selected" : string.Empty %>"><a class="sub-navigation-menu-item-link" href="<%: Model.SubNavigationTabs[key] %>"><span class="sub-navigation-menu-item-link-text"><%: key %></span></a></li>
+           <li class="sub-navigation-menu-item<%: key == Model.CurrentSubNavigationTab ? " sub-navigation-menu-item-selected" : string.Empty %>"><a class="sub-navigation-menu-item-link" href="<%: Model.SubNavigationTabs[key] %>"><span class="sub-navigation-menu-item-link-text"><%: key%></span></a></li>
         <% } %>
     </ul>
 </div>
+<% } %>

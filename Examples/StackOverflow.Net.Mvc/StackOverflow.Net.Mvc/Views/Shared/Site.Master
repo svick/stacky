@@ -9,9 +9,10 @@
 </head>
 
 <body>
+    <% SiteState state = new SiteState(Url); %>
     <div id="page-container">
         <div id="header-container">
-            <% Html.RenderPartial("Header", new HeaderModel(new SiteState(Url))); %>
+            <% Html.RenderPartial("Header", new HeaderModel(state)); %>
         </div>
         <div id="content-container">
             <div id="page-content">
@@ -22,10 +23,12 @@
             </div>
         </div>
         <div id="footer-container">
+            <% Html.RenderPartial("Footer", new FooterModel(state)); %>
         </div>
     </div>
 
-    <asp:ContentPlaceHolder ID="ScriptContent" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
+    </asp:ContentPlaceHolder>
 
 </body>
 

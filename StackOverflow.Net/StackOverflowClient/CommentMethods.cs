@@ -5,7 +5,7 @@ namespace StackOverflow
 {
     public partial class StackOverflowClient
     {
-        public virtual IPagedList<Comment> GetComments(IEnumerable<int> fromUserIds, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<Comment> GetComments(IEnumerable<int> fromUserIds, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
@@ -25,7 +25,9 @@ namespace StackOverflow
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 sort = sortBy.ToString().ToLower(),
-                order = GetSortDirection(sortDirection)
+                order = GetSortDirection(sortDirection),
+                min = min ?? null,
+                max = max ?? null
             });
             return new PagedList<Comment>(response.Comments, response);
         }

@@ -61,7 +61,7 @@ namespace StackOverflow
                     Body = "",
                     Url = context.Url
                 };
-                response.ParseRateLimit(client.ResponseHeaders);
+                //response.ParseRateLimit(client.ResponseHeaders);
 
                 using (var memoryStream = new MemoryStream(e.Result))
                 {
@@ -102,7 +102,8 @@ namespace StackOverflow
                     Url = context.Url
                 };
 
-                response.ParseRateLimit(client.ResponseHeaders);
+                //TODO: Figure out how to get the ResponseHeaders in Silverlight
+                //response.ParseRateLimit(client.ResponseHeaders);
                 context.OnSuccess(response);
             }
         }

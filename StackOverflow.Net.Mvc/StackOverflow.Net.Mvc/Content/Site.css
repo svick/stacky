@@ -1,0 +1,42 @@
+﻿*
+{
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:transparent none repeat scroll 0 0;
+    border:0 none;
+    font-size:100%;
+    margin:0;
+    padding:0;
+    vertical-align:baseline;
+}
+
+body
+{
+    line-height: 1;
+}
+
+ul
+{
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+.external-link-image
+{
+    display: inline-block;
+    background-image: url('external-link-ltr-icon.png');
+    height: 10px;
+    width: 10px;
+}
+
+.site-menu-item-selected
+{
+    background-color: Gray;
+}
+
+.navigation-menu-item-selected
+{
+    background-color: Gray;
+}

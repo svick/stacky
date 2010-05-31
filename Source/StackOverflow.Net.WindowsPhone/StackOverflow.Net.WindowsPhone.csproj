@@ -144,6 +144,9 @@
     <Compile Include="..\StackOverflow.Net\Enums\UserEventType.cs">
       <Link>Enums\UserEventType.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\Enums\UserMentionSort.cs">
+      <Link>Enums\UserMentionSort.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\Enums\UserSort.cs">
       <Link>Enums\UserSort.cs</Link>
     </Compile>

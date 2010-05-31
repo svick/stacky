@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StackOverflow.Net.Mvc.ViewModels.HeaderModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StackOverflow.Net.Mvc.HeaderModel>" %>
 <div class="site-menu-container">
     <ul class="site-menu">
         <% foreach (string key in Model.SupportedSites.Keys)

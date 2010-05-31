@@ -75,6 +75,7 @@
     <Compile Include="Enums\SortDirection.cs" />
     <Compile Include="Enums\TagSort.cs" />
     <Compile Include="Enums\UserEventType.cs" />
+    <Compile Include="Enums\UserMentionSort.cs" />
     <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />

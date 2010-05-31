@@ -37,18 +37,24 @@ namespace StackOverflow
             GetUsers(new int[] { userId }, results => onSuccess(results.FirstOrDefault()), onError);
         }
 
-        public void GetUserMentions(int userId, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetUserMentions(int userId, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, UserMentionSort sortBy = UserMentionSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
-            GetUserMentions(new int[] { userId }, onSuccess, onError, fromDate, toDate);
+            GetUserMentions(new int[] { userId }, onSuccess, onError, sortBy, sortDirection, page, pageSize, fromDate, toDate, min, max);
         }
 
-        public void GetUserMentions(IEnumerable<int> userIds, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetUserMentions(IEnumerable<int> userIds, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, UserMentionSort sortBy = UserMentionSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
             MakeRequest<CommentResponse>("users", new string[] { userIds.Vectorize(), "mentioned" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                min = min ?? null,
+                max = max ?? null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             }, (items) => onSuccess(new PagedList<Comment>(items.Comments, items)), onError);
         }
 

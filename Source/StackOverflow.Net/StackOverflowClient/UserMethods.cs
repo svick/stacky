@@ -47,12 +47,12 @@ namespace StackOverflow
             return GetUsers(userId.ToArray()).FirstOrDefault();
         }
 
-        public virtual IPagedList<Comment> GetUserMentions(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
+        public virtual IPagedList<Comment> GetUserMentions(int userId, UserMentionSort sortBy = UserMentionSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
-            return GetUserMentions(userId.ToArray(), page, pageSize, fromDate, toDate, min, max);
+            return GetUserMentions(userId.ToArray(), sortBy, sortDirection, page, pageSize, fromDate, toDate, min, max);
         }
 
-        public virtual IPagedList<Comment> GetUserMentions(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
+        public virtual IPagedList<Comment> GetUserMentions(IEnumerable<int> userIds, UserMentionSort sortBy = UserMentionSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null, int? min = null, int? max = null)
         {
             var response = MakeRequest<CommentResponse>("users", new string[] { userIds.Vectorize(), "mentioned" }, new
             {
@@ -62,7 +62,9 @@ namespace StackOverflow
                 page = page ?? null,
                 pagesize = pageSize ?? null,
                 min = min ?? null,
-                max = max ?? null
+                max = max ?? null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection)
             });
             return new PagedList<Comment>(response.Comments, response);
         }

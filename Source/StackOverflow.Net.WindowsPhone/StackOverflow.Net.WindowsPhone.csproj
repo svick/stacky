@@ -1,54 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{34D189F7-AA06-4C2A-9A8F-A6538B6E23E7}</ProjectGuid>
+    <ProjectGuid>{99DE2A55-F4C0-4D75-B135-524FF8D1B6F4}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackOverflow</RootNamespace>
-    <AssemblyName>StackOverflow.Net</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <RootNamespace>StackOverflow.Net.WindowsPhone</RootNamespace>
+    <AssemblyName>StackOverflow.Net.WindowsPhone</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependancies\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json.Silverlight">
+      <HintPath>..\..\Dependancies\Newtonsoft.Json.Silverlight.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\StackOverflow.Net\ApiException.cs">
@@ -171,9 +177,6 @@
     <Compile Include="..\StackOverflow.Net\Interfaces\IResponse.cs">
       <Link>Interfaces\IResponse.cs</Link>
     </Compile>
-    <Compile Include="..\StackOverflow.Net\Interfaces\IUrlClient.cs">
-      <Link>Interfaces\IUrlClient.cs</Link>
-    </Compile>
     <Compile Include="..\StackOverflow.Net\Interfaces\IUrlClientAsync.cs">
       <Link>Interfaces\IUrlClientAsync.cs</Link>
     </Compile>
@@ -225,49 +228,42 @@
     <Compile Include="..\StackOverflow.Net\Responses\UserResponse.cs">
       <Link>Responses\UserResponse.cs</Link>
     </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\AnswerMethods.cs">
+      <Link>StackOverflowClient\AnswerMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\BadgeMethods.cs">
+      <Link>StackOverflowClient\BadgeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\CommentMethods.cs">
+      <Link>StackOverflowClient\CommentMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\QuestionMethods.cs">
+      <Link>StackOverflowClient\QuestionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\RevisionMethods.cs">
+      <Link>StackOverflowClient\RevisionMethods.cs</Link>
+    </Compile>
     <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\StackOverflowClientAsync.cs">
-      <Link>StackOverflowClientAsync\StackOverflowClientAsync.cs</Link>
+      <Link>StackOverflowClient\StackOverflowClientAsync.cs</Link>
     </Compile>
-    <Compile Include="..\StackOverflow.Net\StackOverflowClient\StackOverflowClient.cs">
-      <Link>StackOverflowClient\StackOverflowClient.cs</Link>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\StatsMethods.cs">
+      <Link>StackOverflowClient\StatsMethods.cs</Link>
     </Compile>
-    <Compile Include="..\StackOverflow.Net\UrlClient.cs">
-      <Link>UrlClient.cs</Link>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\TagMethods.cs">
+      <Link>StackOverflowClient\TagMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\StackOverflow.Net\StackOverflowClientAsync\UserMethods.cs">
+      <Link>StackOverflowClient\UserMethods.cs</Link>
     </Compile>
     <Compile Include="..\StackOverflow.Net\UrlClientAsync.cs">
       <Link>UrlClientAsync.cs</Link>
     </Compile>
-    <Compile Include="Options\AnswerOptions.cs" />
-    <Compile Include="Options\CommentOptions.cs" />
-    <Compile Include="Options\FavoriteQuestionOptions.cs" />
-    <Compile Include="Options\QuestionByUserOptions.cs" />
-    <Compile Include="Options\QuestionSearchOptions.cs" />
-    <Compile Include="Options\QuestionsOptionBase.cs" />
-    <Compile Include="Options\QuestionsOptions.cs" />
-    <Compile Include="Options\QuestionTimelineOptions.cs" />
-    <Compile Include="Options\ReputationOptions.cs" />
-    <Compile Include="Options\TagOptions.cs" />
-    <Compile Include="Options\UserOptions.cs" />
-    <Compile Include="Options\UserTimelineOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackOverflowClientAsync\AnswerMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\BadgeMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\CommentMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\QuestionMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\RevisionMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\StatsMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\TagMethods.cs" />
-    <Compile Include="StackOverflowClientAsync\UserMethods.cs" />
-    <Compile Include="StackOverflowClient\AnswerMethods.cs" />
-    <Compile Include="StackOverflowClient\BadgeMethods.cs" />
-    <Compile Include="StackOverflowClient\CommentMethods.cs" />
-    <Compile Include="StackOverflowClient\QuestionMethods.cs" />
-    <Compile Include="StackOverflowClient\RevisionMethods.cs" />
-    <Compile Include="StackOverflowClient\StatsMethods.cs" />
-    <Compile Include="StackOverflowClient\TagMethods.cs" />
-    <Compile Include="StackOverflowClient\UserMethods.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

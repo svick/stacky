@@ -72,16 +72,12 @@ namespace StackOverflow
 
         public virtual Question GetQuestion(int questionId)
         {
-            return GetQuestions(questionId.ToArray()).FirstOrDefault();
+            return GetQuestion(questionId, null, null);
         }
 
         public virtual Question GetQuestion(int questionId, bool? includeBody, bool? includeComments)
         {
-            return GetQuestions(questionId.ToArray(), new QuestionOptions
-                {
-                    IncludeBody = includeBody ?? false,
-                    IncludeComments = includeComments ?? false
-                }).FirstOrDefault();
+            return GetQuestions("questions", new string[] { questionId.ToString() }, null, null, null, null, includeBody ?? false, includeComments ?? false, null, null, null, null, null).FirstOrDefault();
         }
 
         public virtual IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds)

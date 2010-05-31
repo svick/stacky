@@ -28,5 +28,51 @@ namespace StackOverflow.IntegrationTests
             Assert.IsNotNull(questions);
             Assert.AreEqual(30, questions.Count());
         }
+
+        [TestMethod]
+        public void Question_Contains_Urls()
+        {
+            var question = Client.GetQuestion(31415);
+
+            Assert.IsNotNull(question);
+            Assert.IsFalse(String.IsNullOrEmpty(question.CommentsUrl));
+            Assert.IsFalse(String.IsNullOrEmpty(question.TimelineUrl));
+        }
+
+        [TestMethod]
+        public void Question_GetQuestionTimeline()
+        {
+            var events = Client.GetQuestionTimeline(31415);
+            Assert.IsNotNull(events);
+        }
+
+        [TestMethod]
+        public void Question_Search()
+        {
+            var questions = Client.Search(new QuestionSearchOptions
+            {
+                InTitle = "Thread"
+            });
+            Assert.IsNotNull(questions);
+        }
+
+        [TestMethod]
+        public void Question_GetQuestions_HasPagingInformation()
+        {
+            var questions = Client.GetQuestions();
+            Assert.IsNotNull(questions);
+            Assert.IsTrue(questions.PageSize > 0);
+            Assert.IsTrue(questions.CurrentPage > 0);
+            Assert.IsTrue(questions.TotalItems > 0);
+        }
+
+        [TestMethod]
+        public void Question_GetQuestion_ContainsOwner()
+        {
+            var question = Client.GetQuestion(2930182);
+            Assert.IsNotNull(question);
+            Assert.IsNotNull(question.Owner);
+            Assert.IsNotNull(question.Owner.UserId);
+        }
     }
 }

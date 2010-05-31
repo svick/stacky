@@ -8,7 +8,8 @@ namespace StackOverflow.Net.Mvc
     public class FooterModel
     {
         public FooterModel(SiteState state)
-        { 
+        {
+            
         }
     }
 }

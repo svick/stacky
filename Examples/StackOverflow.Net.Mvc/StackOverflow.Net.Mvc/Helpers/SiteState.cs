@@ -13,11 +13,10 @@ namespace StackOverflow.Net.Mvc
         public string SiteAction { get; private set; }
         public string SiteController { get; private set; }
         public string Sort { get; private set; }
-        public string PageSize { get; private set; }
-        public string Page { get; private set; }
-        public string TotalPages { get; private set; }
-        public string ItemCount { get; private set; }
-        public string MaxPages { get; private set; }
+        public int PageSize { get; set; }
+        public int Page { get; set; }
+        public int ItemCount { get; set; }
+        public int MaxPages { get; set; }
         public string QueryString { get; private set; }
 
         public SiteState(System.Web.Mvc.UrlHelper url)
@@ -27,16 +26,28 @@ namespace StackOverflow.Net.Mvc
             SiteAction = url.RequestContext.RouteData.Values["action"].ToString();
             SiteController = url.RequestContext.RouteData.Values["controller"].ToString();
             Sort = url.RequestContext.HttpContext.Request.QueryString["Sort"];
-            PageSize = url.RequestContext.HttpContext.Request.QueryString["PageSize"];
-            Page = url.RequestContext.HttpContext.Request.QueryString["Page"];
-            TotalPages = url.RequestContext.HttpContext.Request.QueryString["TotalPages"];
-            QueryString = url.RequestContext.HttpContext.Request.QueryString.ToString();
-        }
 
-        public SiteState(System.Web.Mvc.UrlHelper url, Response response)
-            : this(url)
-        {
-            MaxPages = Math.Truncate(Convert.ToDouble(response.PageSize / Convert.ToInt32(PageSize))).ToString();
+            int tempInt = 0;
+
+            if (int.TryParse(url.RequestContext.HttpContext.Request.QueryString["Page"], out tempInt))
+            {
+                Page = tempInt;
+            }
+            else
+            {
+                Page = 1;
+            }
+
+            if (int.TryParse(url.RequestContext.HttpContext.Request.QueryString["PageSize"], out tempInt))
+            {
+                PageSize = tempInt;
+            }
+            else
+            {
+                PageSize = 30;
+            }
+
+            QueryString = url.RequestContext.HttpContext.Request.QueryString.ToString();
         }
     }
 }

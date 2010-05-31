@@ -89,6 +89,8 @@
     <Compile Include="ViewModels\FooterModel.cs" />
     <Compile Include="ViewModels\HeaderModel.cs" />
     <Compile Include="Helpers\SiteState.cs" />
+    <Compile Include="ViewModels\PagerModel.cs" />
+    <Compile Include="ViewModels\QuestionsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\external-link-ltr-icon.png" />
@@ -98,6 +100,7 @@
     <Content Include="Views\Questions\Questions.aspx" />
     <Content Include="Views\Shared\Footer.ascx" />
     <Content Include="Views\Shared\Header.ascx" />
+    <Content Include="Views\Shared\Pager.ascx" />
     <Content Include="Views\Tags\Tags.aspx" />
     <Content Include="Views\Users\Users.aspx" />
     <Content Include="Web.config" />

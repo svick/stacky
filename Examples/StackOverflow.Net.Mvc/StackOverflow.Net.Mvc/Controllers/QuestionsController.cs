@@ -13,15 +13,17 @@ namespace StackOverflow.Net.Mvc.Controllers
         {
             SiteState state = new SiteState(Url);
             StackOverflowNetRepository repository = new StackOverflowNetRepository(state);
-            return View("Questions", repository.GetQuestions(sortBy: QuestionSort.Active, includeBody: true));
+
+            return View("Questions", new QuestionsModel(repository.GetQuestions(sortBy: QuestionSort.Active, includeBody: true, page: state.Page, pageSize: state.PageSize), state));
         }
 
         public ActionResult Questions()
         {
             SiteState state = new SiteState(Url);
-            QuestionSort sort = QuestionSort.Hot;
             StackOverflowNetRepository repository = new StackOverflowNetRepository(state);
 
+            QuestionSort sort = QuestionSort.Hot;
+            
             switch (state.Sort)
             {
                 case "Newest":
@@ -43,14 +45,15 @@ namespace StackOverflow.Net.Mvc.Controllers
                     break;
             }
 
-            return View(repository.GetQuestions(sortBy: sort, includeBody: true));
+            return View(new QuestionsModel(repository.GetQuestions(sortBy: sort, includeBody: true, page: state.Page, pageSize: state.PageSize), state));
         }
 
         public ActionResult Unanswered()
         {
             SiteState state = new SiteState(Url);
-            QuestionSort sort = QuestionSort.Unanswered;
             StackOverflowNetRepository repository = new StackOverflowNetRepository(state);
+
+            QuestionSort sort = QuestionSort.Unanswered;
             
             switch (state.Sort)
             {
@@ -63,15 +66,16 @@ namespace StackOverflow.Net.Mvc.Controllers
                 default:
                     break;
             }
-            
-            return View("Questions", repository.GetQuestions(sortBy: sort, includeBody: true));
+
+            return View("Questions", new QuestionsModel(repository.GetQuestions(sortBy: sort, includeBody: true, page: state.Page, pageSize: state.PageSize), state));
         }
 
         public ActionResult Tagged(string id)
         {
             SiteState state = new SiteState(Url);
             StackOverflowNetRepository repository = new StackOverflowNetRepository(state);
-            return View("Questions", repository.GetQuestions(tags: new string[] { id }, includeBody: true));
+
+            return View("Questions", new QuestionsModel(repository.GetQuestions(tags: new string[] { id }, includeBody: true, page: state.Page, pageSize: state.PageSize), state));
         }
 
         public ActionResult Question(int id)

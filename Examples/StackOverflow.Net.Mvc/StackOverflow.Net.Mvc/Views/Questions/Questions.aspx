@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<StackOverflow.PagedList<StackOverflow.Question>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<QuestionsModel>" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
 	Questions
@@ -8,7 +8,7 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="questions-container">
-        <% foreach (var question in Model)
+        <% foreach (var question in Model.Questions)
             { %>
             <div class="question-container">
                 <div class="question-vote-container">
@@ -39,6 +39,7 @@
             </div>
         <% } %>
     </div>
+    <% Html.RenderPartial("Pager", new PagerModel(Model.SiteState)); %>
 </asp:Content>
 
 <asp:Content ID="SidebarContent" ContentPlaceHolderID="SidebarContent" runat="server">Sidebar</asp:Content>

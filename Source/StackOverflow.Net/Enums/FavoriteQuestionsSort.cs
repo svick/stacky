@@ -2,9 +2,10 @@
 {
     public enum FavoriteQuestionsSort
     {
-        Recent,
-        Views,
-        Newest,
-        Added
+        Activity, 
+        Views, 
+        Creation, 
+        Added, 
+        Votes
     }
 }

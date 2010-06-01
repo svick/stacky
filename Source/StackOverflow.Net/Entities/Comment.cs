@@ -29,7 +29,7 @@ namespace StackOverflow
         public int Score { get; set; }
 
         [JsonProperty("reply_to_user_id")]
-        public int ReployToUserId { get; set; }
+        public int ReplyToUserId { get; set; }
 
         [JsonProperty("edit_count")]
         public int EditCount { get; set; }

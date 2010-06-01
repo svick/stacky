@@ -32,11 +32,16 @@ namespace StackOverflow.Net.Mvc
             if (int.TryParse(url.RequestContext.HttpContext.Request.QueryString["Page"], out tempInt))
             {
                 Page = tempInt;
+                if (Page < 1)
+                {
+                    Page = 1;
+                }
             }
             else
             {
                 Page = 1;
             }
+
 
             if (int.TryParse(url.RequestContext.HttpContext.Request.QueryString["PageSize"], out tempInt))
             {

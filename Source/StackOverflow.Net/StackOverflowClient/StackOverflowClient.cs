@@ -33,18 +33,24 @@ namespace StackOverflow
 
         #region Methods
 
-        private T MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments)
+        public T MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments)
             where T : new()
         {
             return MakeRequest<T>(method, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments));
         }
 
-        private T MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
+        public T MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
              where T : new()
         {
             var httpResponse = GetResponse(method, urlArguments, queryStringArguments);
-            if (httpResponse.Error != null)
-                throw new ApiException("Error retrieving url", null, httpResponse.Error);
+            return ParseResponse<T>(httpResponse);
+        }
+
+        public T ParseResponse<T>(HttpResponse httpResponse)
+            where T : new()
+        {
+            if (httpResponse.Error != null && String.IsNullOrEmpty(httpResponse.Body))
+                throw new ApiException("Error retrieving url", null, httpResponse.Error, httpResponse.Url);
 
             RemainingRequests = httpResponse.RemainingRequests;
             MaxRequests = httpResponse.MaxRequests;
@@ -56,7 +62,7 @@ namespace StackOverflow
             return response.Data;
         }
 
-        private HttpResponse GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
+        public HttpResponse GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments)
         {
             Uri url = UrlHelper.BuildUrl(method, version, BaseUrl, urlArguments, queryStringArguments);
             return WebClient.MakeRequest(url);

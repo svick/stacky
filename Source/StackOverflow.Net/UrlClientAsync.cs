@@ -49,35 +49,57 @@ namespace StackOverflow
 
             if (context != null)
             {
-                if (e.Error != null)
-                {
-                    if (context.OnError != null)
-                        context.OnError(new ApiException(null, e.Error));
-                    return;
-                }
-
-                var response = new HttpResponse
+                var httpResponse = new HttpResponse
                 {
                     Body = "",
                     Url = context.Url
                 };
-                //response.ParseRateLimit(client.ResponseHeaders);
 
-                using (var memoryStream = new MemoryStream(e.Result))
+                if (e.Error != null)
                 {
-                    using (var stream = new GZipStream(memoryStream, CompressionMode.Decompress))
+                    httpResponse.Error = e.Error;
+                    var webError = e.Error as WebException;
+                    if (webError != null)
                     {
-                        var decompressed = new List<byte>();
-                        int i;
-                        while ((i = stream.ReadByte()) != -1)
-                            decompressed.Add((byte)i);
-                        string decoded = Encoding.UTF8.GetString(decompressed.ToArray());
-
-                        response.Body = decoded;
+                        if (webError.Status == WebExceptionStatus.ProtocolError && webError.Response != null)
+                        {
+                            var response = (HttpWebResponse)webError.Response;
+                            if (response.StatusCode != HttpStatusCode.NotFound)
+                            {
+                                using (var responseStream = response.GetResponseStream())
+                                {
+                                    httpResponse.Body = DecodeResponseStream(responseStream);
+                                    ErrorResponse errorResponse = SerializationHelper.DeserializeJson<ErrorResponse>(httpResponse.Body);
+                                    if (context.OnError != null)
+                                        context.OnError(new ApiException(errorResponse.Error, e.Error, httpResponse.Url));
+                                    return;
+                                }
+                            }
+                        }
+                        if (context.OnError != null)
+                            context.OnError(new ApiException(e.Error));
+                        return;
                     }
                 }
 
-                context.OnSuccess(response);
+                //response.ParseRateLimit(client.ResponseHeaders);
+                using (var memoryStream = new MemoryStream(e.Result))
+                {
+                    httpResponse.Body = DecodeResponseStream(memoryStream);
+                }
+                context.OnSuccess(httpResponse);
+            }
+        }
+
+        private string DecodeResponseStream(Stream stream)
+        {
+            using (var gzipStream = new GZipStream(stream, CompressionMode.Decompress))
+            {
+                var decompressed = new List<byte>();
+                int i;
+                while ((i = gzipStream.ReadByte()) != -1)
+                    decompressed.Add((byte)i);
+                return Encoding.UTF8.GetString(decompressed.ToArray());
             }
         }
 #endif
@@ -89,22 +111,24 @@ namespace StackOverflow
 
             if (context != null)
             {
-                if (e.Error != null)
+                var httpResponse = new HttpResponse
                 {
-                    if (context.OnError != null)
-                        context.OnError(new ApiException(null, e.Error));
-                    return;
-                }
-
-                var response = new HttpResponse
-                {
-                    Body = e.Result,
                     Url = context.Url
                 };
 
+                if (e.Error != null)
+                {
+                    httpResponse.Error = e.Error;
+                    var webError = e.Error as WebException;
+                    if (context.OnError != null)
+                        context.OnError(new ApiException(e.Error, httpResponse.Url));
+                    return;
+                }
+                
                 //TODO: Figure out how to get the ResponseHeaders in Silverlight
                 //response.ParseRateLimit(client.ResponseHeaders);
-                context.OnSuccess(response);
+                httpResponse.Body = e.Result;
+                context.OnSuccess(httpResponse);
             }
         }
     }

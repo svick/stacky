@@ -41,8 +41,10 @@ namespace StackOverflow
                             httpResponse.ParseRateLimit(response.Headers);
                             using (var responseStream = response.GetResponseStream())
                             {
-                                var reader = new StreamReader(responseStream);
-                                httpResponse.Body = reader.ReadToEnd();
+                                using (var reader = new StreamReader(responseStream))
+                                {
+                                    httpResponse.Body = reader.ReadToEnd();
+                                }
                             }
                         }
                     }

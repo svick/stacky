@@ -19,7 +19,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void Badge_GetUsersByBadge()
         {
-            var users = Client.GetUsersByBadge(1464);
+            var users = Client.GetUsersByBadge(204);
             Assert.IsNotNull(users);
         }
 

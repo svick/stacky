@@ -9,6 +9,8 @@ namespace StackOverflow.Net.Mvc
     {
         public List<KeyValuePair<string, string>> PageSelectors { get; private set; }
         public Dictionary<string, string> PageSizes { get; private set; }
+        public string CurrentPage { get; private set; }
+        public string CurrentPageSize { get; private set; }
 
         public PagerModel(SiteState state)
         {
@@ -31,10 +33,13 @@ namespace StackOverflow.Net.Mvc
                 pageSize = "&" + pageSize;
             }
 
-            PageSizes.Add("15", url + queryString + pageSize + "15&Page=" + state.Page);
-            PageSizes.Add("30", url + queryString + pageSize + "30&Page=" + state.Page);
-            PageSizes.Add("50", url + queryString + pageSize + "50&Page=" + state.Page);
-            
+            if (state.SiteController == "Questions" && state.SiteAction != "Question")
+            {
+                PageSizes.Add("15", url + queryString + pageSize + "15&Page=" + state.Page);
+                PageSizes.Add("30", url + queryString + pageSize + "30&Page=" + state.Page);
+                PageSizes.Add("50", url + queryString + pageSize + "50&Page=" + state.Page);
+            }
+
             if (state.PageSize != 30)
             {
                 queryString = queryString + pageSize + state.PageSize;
@@ -104,6 +109,9 @@ namespace StackOverflow.Net.Mvc
             {
                 PageSelectors.Add(new KeyValuePair<string, string>("next", url + "Page=" + (state.Page + 1)));
             }
+
+            CurrentPage = state.Page.ToString();
+            CurrentPageSize = state.PageSize.ToString();
         }
     }
 }

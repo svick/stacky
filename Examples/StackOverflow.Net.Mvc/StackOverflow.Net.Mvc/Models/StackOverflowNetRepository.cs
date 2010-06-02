@@ -33,5 +33,15 @@ namespace StackOverflow.Net.Mvc.Models
         {
             return _client.GetQuestions(sortBy: sortBy, sortDirection: sortDirection, page: page, pageSize: pageSize, includeBody: includeBody, includeComments: includeComments, fromDate: fromDate, toDate: toDate, tags: tags);
         }
+
+        public Question GetQuestion(int questionId, bool includeBody, bool includeComments)
+        {
+            return _client.GetQuestion(questionId, includeBody, includeComments);
+        }
+
+        public IPagedList<Answer> GetQuestionAnswers(int questionId, QuestionsByUserSort sortBy = QuestionsByUserSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, int? min = null, int? max = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return _client.GetQuestionAnswers(questionId, sortBy,  sortDirection, page, pageSize, includeBody, includeComments, min, max, fromDate, toDate);
+        }
     }
 }

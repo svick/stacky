@@ -17,7 +17,7 @@ namespace StackOverflow.Net.Mvc
             Questions = questions;
             state.Page = Convert.ToInt32(questions.CurrentPage);
             state.ItemCount = questions.TotalItems;
-            state.MaxPages = Convert.ToInt32(Math.Truncate(Convert.ToDouble(questions.TotalItems / questions.PageSize)));
+            state.MaxPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(questions.TotalItems) / Convert.ToDouble(questions.PageSize)));
         }
     }
 }

@@ -110,7 +110,16 @@ namespace StackOverflow.Net.Mvc.Controllers
         {
             try
             {
-                return View();
+                SiteState state = new SiteState(Url);
+                StackOverflowNetRepository repository = new StackOverflowNetRepository(state);
+                Question question = repository.GetQuestion(id, true, true);
+                IPagedList<Answer> answers = null;
+                if (state.Page != 1)
+                {
+                    answers = repository.GetQuestionAnswers(id, page: state.Page, includeBody: true, includeComments: true);
+                }
+
+                return View("Question", new QuestionModel(question, answers, state));
             }
             catch (ApiException ex)
             {

@@ -19,7 +19,7 @@
                 <div class="question">
                     <div class="question-title">
                         <%: Html.ActionLink(question.Title, "Question", new { action = "Questions", api = Url.RequestContext.RouteData.Values["api"], id = question.Id }, new { @class = "question-title-link" })%>
-                        <span class="question-external-link"><a class="external-link" href="<%: Url.GetHostSiteBaseUrl() + "/questions/" + question.Id %>"><span class="external-link-image"></span></a></span>
+                        <a class="external-link" href="<%: Url.GetHostSiteBaseUrl() + "/questions/" + question.Id %>"><span class="external-link-image"></span></a>
                     </div>
                     <div class="question-body">
                         <% string cleanBody = question.Body.HtmlSanitize(); %>
@@ -29,8 +29,9 @@
                 <div class="tags-container">
                     <% foreach (string tag in question.Tags)
                         {%>
-                        <div class="tag"><%: Html.ActionLink(tag, "Tagged", new { action = "Questions", api = Url.RequestContext.RouteData.Values["api"], id = tag }, new { @class = "question-tag" })%>
-                        <span class="tag-external-link"><a class="external-link" href="<%: Url.GetHostSiteBaseUrl() + "/questions/tagged/" + tag %>"><span class="external-link-image"></span></a></span></div>
+                        <div class="tag"><%: Html.ActionLink(tag, "Tagged", new { action = "Questions", api = Url.RequestContext.RouteData.Values["api"], id = tag }, new { @class = "tag-link" })%>
+                            <a class="external-link" href="<%: Url.GetHostSiteBaseUrl() + "/questions/tagged/" + tag %>"><span class="external-link-image"></span></a>
+                        </div>
                     <% } %>
                 </div>
                 <div class="user-container">

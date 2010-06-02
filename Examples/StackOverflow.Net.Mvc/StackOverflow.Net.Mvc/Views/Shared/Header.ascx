@@ -11,7 +11,7 @@
     <ul class="site-menu">
         <% foreach (string key in Model.SupportedSites.Keys)
            { %>
-           <li class="site-menu-item<%: key == Model.CurrentSite ? " site-menu-item-selected" : string.Empty %>"><a class="site-menu-item-link" href="<%: Model.SupportedSites[key] %>"><span class="site-menu-item-link-text"><%: key %></span></a></li>
+           <li class="site-menu-item<%: key == Model.CurrentSite ? " site-menu-item-selected" : string.Empty %>"><a class="site-menu-item-link" href="<%: Model.SupportedSites[key] %>"><%: key %></a></li>
         <% } %>
     </ul>
 </div>
@@ -23,7 +23,7 @@
     <ul class="navigation-menu">
         <% foreach (string key in Model.NavigationTabs.Keys)
            { %>
-           <li class="navigation-menu-item<%: key == Model.CurrentNavigationTab ? " navigation-menu-item-selected" : string.Empty %>"><a class="navigation-menu-item-link" href="<%: Model.NavigationTabs[key] %>"><span class="navigation-menu-item-link-text"><%: key %></span></a></li>
+           <li class="navigation-menu-item<%: key == Model.CurrentNavigationTab ? " navigation-menu-item-selected" : string.Empty %>"><a class="navigation-menu-item-link" href="<%: Model.NavigationTabs[key] %>"><%: key %></a></li>
         <% } %>
     </ul>
 </div>
@@ -35,7 +35,7 @@
     <ul class="sub-navigation-menu">
         <% foreach (string key in Model.SubNavigationTabs.Keys)
            { %>
-           <li class="sub-navigation-menu-item<%: key == Model.CurrentSubNavigationTab ? " sub-navigation-menu-item-selected" : string.Empty %>"><a class="sub-navigation-menu-item-link" href="<%: Model.SubNavigationTabs[key] %>"><span class="sub-navigation-menu-item-link-text"><%: key%></span></a></li>
+           <li class="sub-navigation-menu-item<%: key == Model.CurrentSubNavigationTab ? " sub-navigation-menu-item-selected" : string.Empty %>"><a class="sub-navigation-menu-item-link" href="<%: Model.SubNavigationTabs[key] %>"><%: key%></a></li>
         <% } %>
     </ul>
 </div>

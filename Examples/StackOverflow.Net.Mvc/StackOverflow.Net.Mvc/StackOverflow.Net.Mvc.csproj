@@ -90,6 +90,7 @@
     <Compile Include="ViewModels\HeaderModel.cs" />
     <Compile Include="Helpers\SiteState.cs" />
     <Compile Include="ViewModels\PagerModel.cs" />
+    <Compile Include="ViewModels\QuestionModel.cs" />
     <Compile Include="ViewModels\QuestionsModel.cs" />
   </ItemGroup>
   <ItemGroup>

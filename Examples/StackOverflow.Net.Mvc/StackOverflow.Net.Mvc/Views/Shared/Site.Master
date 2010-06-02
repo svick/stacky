@@ -29,7 +29,5 @@
 
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
     </asp:ContentPlaceHolder>
-
 </body>
-
 </html>

@@ -2,8 +2,8 @@
 {
     public enum QuestionSort
     {
-        [SortArgs("active")]
-        Active,
+        [SortArgs("activity")]
+        Activity,
         [SortArgs("newest")]
         Newest,
         [SortArgs("featured")]

@@ -29,7 +29,7 @@ namespace StackOverflow
 
         public void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError = null)
         {
-            MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize(), "badges" }, new
+            MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize() }, new
             {
                 key = apiKey
             }, (items) => onSuccess(new PagedList<User>(items.Users, items)), onError);

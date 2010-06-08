@@ -76,7 +76,7 @@ namespace StackOverflow
             GetQuestionTimeline(questionId.ToArray(), onSuccess, onError, fromDate, toDate);
         }
 
-        public void Search(Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError = null, string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
+        public void Search(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError = null, string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)
         {
             string taggedString = null;
             if (tagged != null)

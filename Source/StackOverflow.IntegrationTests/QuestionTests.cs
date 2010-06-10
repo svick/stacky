@@ -25,7 +25,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void GetQuestions_SortByActive_Desc()
         {
-            var questions = Client.GetQuestions(sortBy: QuestionSort.Active, sortDirection: SortDirection.Descending);
+            var questions = Client.GetQuestions(sortBy: QuestionSort.Activity, sortDirection: SortDirection.Descending);
 
             Assert.IsNotNull(questions);
             Assert.AreEqual(30, questions.Count());
@@ -34,7 +34,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void GetQuestions_SortByActive_Asc()
         {
-            var questions = Client.GetQuestions(sortBy: QuestionSort.Active, sortDirection: SortDirection.Ascending);
+            var questions = Client.GetQuestions(sortBy: QuestionSort.Activity, sortDirection: SortDirection.Ascending);
 
             Assert.IsNotNull(questions);
             Assert.AreEqual(30, questions.Count());
@@ -43,7 +43,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void GetQuestions_SortByActive_WithPaging()
         {
-            var questions = Client.GetQuestions(sortBy: QuestionSort.Active, page: 4, pageSize: 5);
+            var questions = Client.GetQuestions(sortBy: QuestionSort.Activity, page: 4, pageSize: 5);
 
             Assert.IsNotNull(questions);
             Assert.AreEqual(5, questions.Count());
@@ -52,7 +52,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void GetQuestions_SortByActive_WithTags()
         {
-            var questions = Client.GetQuestions(sortBy: QuestionSort.Active, tags: new string[] { "lisp" });
+            var questions = Client.GetQuestions(sortBy: QuestionSort.Activity, tags: new string[] { "lisp" });
             foreach (var question in questions)
             {
                 Assert.IsTrue(question.Tags.Contains("lisp"));
@@ -65,7 +65,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void GetQuestions_SortByActive_WithDateRange()
         {
-            var questions = Client.GetQuestions(sortBy: QuestionSort.Active, fromDate: new DateTime(2010, 1, 1), toDate: new DateTime(2010, 1, 25));
+            var questions = Client.GetQuestions(sortBy: QuestionSort.Activity, fromDate: new DateTime(2010, 1, 1), toDate: new DateTime(2010, 1, 25));
 
             Assert.IsNotNull(questions);
             Assert.AreEqual(30, questions.Count());
@@ -74,7 +74,7 @@ namespace StackOverflow.IntegrationTests
         [TestMethod]
         public void GetQuestions_SortByActive_WithBody()
         {
-            var questions = Client.GetQuestions(sortBy: QuestionSort.Active, includeBody: true);
+            var questions = Client.GetQuestions(sortBy: QuestionSort.Activity, includeBody: true);
 
             foreach (var question in questions)
             {

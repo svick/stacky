@@ -119,7 +119,7 @@ namespace StackOverflow.Net.Mvc.Controllers
                     answers = repository.GetQuestionAnswers(id, page: state.Page, includeBody: true, includeComments: true);
                 }
 
-                return View("Question", new QuestionModel(question, answers, state));
+                return View(new QuestionModel(question, answers, state));
             }
             catch (ApiException ex)
             {

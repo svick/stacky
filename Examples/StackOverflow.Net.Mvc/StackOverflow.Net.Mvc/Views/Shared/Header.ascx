@@ -1,10 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StackOverflow.Net.Mvc.HeaderModel>" %>
-<div class="search-container">
-    <% Html.BeginForm(); %>
-    <div class="search-bar"><%: Html.TextBox("SearchText", string.Empty, new { @class = "search-text-box" }) %></div>
-    <% Html.EndForm(); %>
-</div>
-
 <% if (Model.SupportedSites.Count > 0)
    { %>
 <div class="site-menu-container">
@@ -14,6 +8,11 @@
            <li class="site-menu-item<%: key == Model.CurrentSite ? " site-menu-item-selected" : string.Empty %>"><a class="site-menu-item-link" href="<%: Model.SupportedSites[key] %>"><%: key %></a></li>
         <% } %>
     </ul>
+    <div class="search-container">
+        <% Html.BeginForm(); %>
+            <div class="search-bar"><%: Html.TextBox("SearchText", string.Empty, new { @class = "search-text-box" }) %></div>
+        <% Html.EndForm(); %>
+    </div>
 </div>
 <% } %>
 

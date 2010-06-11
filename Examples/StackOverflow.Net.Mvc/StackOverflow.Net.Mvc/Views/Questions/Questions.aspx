@@ -18,6 +18,10 @@
                 </div>
                 <div class="question">
                     <div class="question-title">
+                        <% if (question.BountyAmount > 0)
+                           {%>
+                            <span class="quesion-bounty"><%: question.BountyAmount.ToString() + "+"%></span>
+                        <%} %>
                         <%: Html.ActionLink(question.Title, "Question", new { action = "Questions", api = Url.RequestContext.RouteData.Values["api"], id = question.Id }, new { @class = "question-title-link" })%>
                         <a class="external-link" href="<%: Url.GetHostSiteBaseUrl() + "/questions/" + question.Id %>"><span class="external-link-image"></span></a>
                     </div>
@@ -34,8 +38,24 @@
                         </div>
                     <% } %>
                 </div>
-                <div class="user-container">
-                    
+                <div class="quesion-activity">
+                    <% if (question.CommunityOwned)
+                       {%>
+                        <span class="quesion-activity">Community Wiki</span>
+                        <span class="quesion-user"><%: Html.ActionLink(question.Owner.DisplayName, "User", new { action = "Users", api = Url.RequestContext.RouteData.Values["api"], id = question.Owner.UserId }, new { @class = "question-user-link" })%></span>
+                    <% }
+                       else
+                       {%>
+                        <span class="quesion-activity">modified <%: question.LastActivityDate %></span>
+                        <% if (question.Owner != null)
+                           { %>
+                            <span class="quesion-user"><%: Html.ActionLink(question.Owner.DisplayName, "User", new { action = "Users", api = Url.RequestContext.RouteData.Values["api"], id = question.Owner.UserId }, new { @class = "question-user-link" })%></span>
+                            <% }
+                           else
+                           { %>
+                           <span class="quesion-user">???</span>
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
         <% } %>

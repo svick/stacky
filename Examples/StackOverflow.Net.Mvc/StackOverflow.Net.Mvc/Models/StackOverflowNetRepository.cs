@@ -4,9 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 
-using StackOverflow.Net;
-
-namespace StackOverflow.Net.Mvc.Models
+namespace Stacky.Mvc.Models
 {
     public class StackOverflowNetRepository
     {

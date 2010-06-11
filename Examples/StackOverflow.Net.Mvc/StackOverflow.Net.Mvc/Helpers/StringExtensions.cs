@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 
-namespace StackOverflow.Net.Mvc
+namespace Stacky.Mvc
 {
     public static class StringExtensions
     {

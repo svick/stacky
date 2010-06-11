@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.Net.Mvc", "StackOverflow.Net.Mvc\StackOverflow.Net.Mvc.csproj", "{66473FE8-4FED-4600-8073-D8A04696635D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stacky.Net.Mvc", "StackOverflow.Net.Mvc\Stacky.Net.Mvc.csproj", "{66473FE8-4FED-4600-8073-D8A04696635D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.Net.Mvc.Tests", "StackOverflow.Net.Mvc.Tests\StackOverflow.Net.Mvc.Tests.csproj", "{16197640-8F85-4378-A9CD-E7821C30CF5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stacky.Net.Mvc.Tests", "StackOverflow.Net.Mvc.Tests\Stacky.Net.Mvc.Tests.csproj", "{16197640-8F85-4378-A9CD-E7821C30CF5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflow.Net", "..\..\Source\StackOverflow.Net\StackOverflow.Net.csproj", "{75211821-4261-4FA1-8768-D266248512CA}"
 EndProject
@@ -13,15 +13,15 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs07.codeplex.com/
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = StackOverflow.Net.Mvc.Tests\\StackOverflow.Net.Mvc.Tests.csproj
-		SccProjectName1 = StackOverflow.Net.Mvc.Tests
-		SccLocalPath1 = StackOverflow.Net.Mvc.Tests
-		SccProjectUniqueName2 = StackOverflow.Net.Mvc\\StackOverflow.Net.Mvc.csproj
+		SccProjectUniqueName1 = ..\\..\\Source\\StackOverflow.Net\\StackOverflow.Net.csproj
+		SccProjectName1 = ../../Source/StackOverflow.Net
+		SccLocalPath1 = ..\\..\\Source\\StackOverflow.Net
+		SccProjectUniqueName2 = StackOverflow.Net.Mvc\\Stacky.Net.Mvc.csproj
 		SccProjectName2 = StackOverflow.Net.Mvc
 		SccLocalPath2 = StackOverflow.Net.Mvc
-		SccProjectUniqueName3 = ..\\..\\Source\\StackOverflow.Net\\StackOverflow.Net.csproj
-		SccProjectName3 = ../../Source/StackOverflow.Net
-		SccLocalPath3 = ..\\..\\Source\\StackOverflow.Net
+		SccProjectUniqueName3 = StackOverflow.Net.Mvc.Tests\\Stacky.Net.Mvc.Tests.csproj
+		SccProjectName3 = StackOverflow.Net.Mvc.Tests
+		SccLocalPath3 = StackOverflow.Net.Mvc.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

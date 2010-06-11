@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StackOverflow.Net.Mvc.HeaderModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Stacky.Mvc.HeaderModel>" %>
 <% if (Model.SupportedSites.Count > 0)
    { %>
 <div class="site-menu-container">

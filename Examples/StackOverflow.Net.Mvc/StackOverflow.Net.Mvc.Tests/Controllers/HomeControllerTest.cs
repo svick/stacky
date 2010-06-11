@@ -4,10 +4,10 @@
 //using System.Text;
 //using System.Web.Mvc;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using StackOverflow.Net.Mvc;
-//using StackOverflow.Net.Mvc.Controllers;
+//using Stacky.Mvc;
+//using Stacky.Mvc.Controllers;
 
-//namespace StackOverflow.Net.Mvc.Tests.Controllers
+//namespace Stacky.Mvc.Tests.Controllers
 //{
 //    [TestClass]
 //    public class HomeControllerTest

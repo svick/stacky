@@ -66,9 +66,9 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StackOverflow.Net.Mvc\StackOverflow.Net.Mvc.csproj">
+    <ProjectReference Include="..\StackOverflow.Net.Mvc\Stacky.Net.Mvc.csproj">
       <Project>{66473FE8-4FED-4600-8073-D8A04696635D}</Project>
-      <Name>StackOverflow.Net.Mvc</Name>
+      <Name>Stacky.Net.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

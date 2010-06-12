@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCA808D5-ED96-4EA0-809B-0E4194EDA33F}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stacky.Silverlight</RootNamespace>
+    <AssemblyName>Stacky.Silverlight</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Binaries\Stacky.Silverlight\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json.Silverlight">
+      <HintPath>..\..\dependencies\Newtonsoft.Json.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Stacky\ApiException.cs">
+      <Link>ApiException.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Answer.cs">
+      <Link>Entities\Answer.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Badge.cs">
+      <Link>Entities\Badge.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\BadgeCounts.cs">
+      <Link>Entities\BadgeCounts.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Comment.cs">
+      <Link>Entities\Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\PostEvent.cs">
+      <Link>Entities\PostEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Question.cs">
+      <Link>Entities\Question.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Reputation.cs">
+      <Link>Entities\Reputation.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\ResponseError.cs">
+      <Link>Entities\ResponseError.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Revision.cs">
+      <Link>Entities\Revision.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\SiteStats.cs">
+      <Link>Entities\SiteStats.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Tag.cs">
+      <Link>Entities\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\User.cs">
+      <Link>Entities\User.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\UserEvent.cs">
+      <Link>Entities\UserEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\UserInfo.cs">
+      <Link>Entities\UserInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\BadgeClass.cs">
+      <Link>Enums\BadgeClass.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\CommentSort.cs">
+      <Link>Enums\CommentSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\ErrorCode.cs">
+      <Link>Enums\ErrorCode.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\FavoriteQuestionsSort.cs">
+      <Link>Enums\FavoriteQuestionsSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\HostSite.cs">
+      <Link>Enums\HostSite.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\PostEventType.cs">
+      <Link>Enums\PostEventType.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\PostType.cs">
+      <Link>Enums\PostType.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\QuestionsByUserSort.cs">
+      <Link>Enums\QuestionsByUserSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\QuestionSort.cs">
+      <Link>Enums\QuestionSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\SearchSort.cs">
+      <Link>Enums\SearchSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\SortArgsAttribute.cs">
+      <Link>Enums\SortArgsAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\SortDirection.cs">
+      <Link>Enums\SortDirection.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\TagSort.cs">
+      <Link>Enums\TagSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\UserEventType.cs">
+      <Link>Enums\UserEventType.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\UserMentionSort.cs">
+      <Link>Enums\UserMentionSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Enums\UserSort.cs">
+      <Link>Enums\UserSort.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\DateHelper.cs">
+      <Link>Helpers\DateHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\EnumHelper.cs">
+      <Link>Helpers\EnumHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\Require.cs">
+      <Link>Helpers\Require.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\SerializationHelper.cs">
+      <Link>Helpers\SerializationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\UnixDateTimeConverter.cs">
+      <Link>Helpers\UnixDateTimeConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\UrlHelper.cs">
+      <Link>Helpers\UrlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\HttpResponse.cs">
+      <Link>HttpResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Interfaces\IPagedList.cs">
+      <Link>Interfaces\IPagedList.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Interfaces\IProtocol.cs">
+      <Link>Interfaces\IProtocol.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Interfaces\IResponse.cs">
+      <Link>Interfaces\IResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Interfaces\IUrlClientAsync.cs">
+      <Link>Interfaces\IUrlClientAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\PagedList.cs">
+      <Link>PagedList.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Protocols\JsonProtocol.cs">
+      <Link>Protocols\JsonProtocol.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Protocols\JsonResponse.cs">
+      <Link>Protocols\JsonResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\AnswerResponse.cs">
+      <Link>Responses\AnswerResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\BadgeResponse.cs">
+      <Link>Responses\BadgeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\CommentResponse.cs">
+      <Link>Responses\CommentResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\ErrorResponse.cs">
+      <Link>Responses\ErrorResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\QuestionResponse.cs">
+      <Link>Responses\QuestionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\QuestionTimelineResponse.cs">
+      <Link>Responses\QuestionTimelineResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\ReputationResponse.cs">
+      <Link>Responses\ReputationResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\Response.cs">
+      <Link>Responses\Response.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\RevisionResponse.cs">
+      <Link>Responses\RevisionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\StatsResponse.cs">
+      <Link>Responses\StatsResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\TagResponse.cs">
+      <Link>Responses\TagResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\UserEventResponse.cs">
+      <Link>Responses\UserEventResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\UserResponse.cs">
+      <Link>Responses\UserResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\AnswerMethods.cs">
+      <Link>StackyClient\AnswerMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\BadgeMethods.cs">
+      <Link>StackyClient\BadgeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\CommentMethods.cs">
+      <Link>StackyClient\CommentMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\QuestionMethods.cs">
+      <Link>StackyClient\QuestionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\RevisionMethods.cs">
+      <Link>StackyClient\RevisionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\StackyClientAsync.cs">
+      <Link>StackyClient\StackyClientAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\StatsMethods.cs">
+      <Link>StackyClient\StatsMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\TagMethods.cs">
+      <Link>StackyClient\TagMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackyClientAsync\UserMethods.cs">
+      <Link>StackyClient\UserMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\UrlClientAsync.cs">
+      <Link>UrlClientAsync.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

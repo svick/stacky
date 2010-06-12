@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stacky</RootNamespace>
+    <AssemblyName>Stacky</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Binaries\Stacky\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\dependencies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiException.cs" />
+    <Compile Include="Entities\Answer.cs" />
+    <Compile Include="Entities\Badge.cs" />
+    <Compile Include="Entities\BadgeCounts.cs" />
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\PostEvent.cs" />
+    <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\Reputation.cs" />
+    <Compile Include="Entities\ResponseError.cs" />
+    <Compile Include="Entities\Revision.cs" />
+    <Compile Include="Entities\SiteStats.cs" />
+    <Compile Include="Entities\SortArgsAttribute.cs" />
+    <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserEvent.cs" />
+    <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Enums\BadgeClass.cs" />
+    <Compile Include="Enums\CommentSort.cs" />
+    <Compile Include="Enums\ErrorCode.cs" />
+    <Compile Include="Enums\FavoriteQuestionsSort.cs" />
+    <Compile Include="Enums\HostSite.cs" />
+    <Compile Include="Enums\PostEventType.cs" />
+    <Compile Include="Enums\PostType.cs" />
+    <Compile Include="Enums\QuestionsByUserSort.cs" />
+    <Compile Include="Enums\QuestionSort.cs" />
+    <Compile Include="Enums\SearchSort.cs" />
+    <Compile Include="Enums\SortDirection.cs" />
+    <Compile Include="Enums\TagSort.cs" />
+    <Compile Include="Enums\UserEventType.cs" />
+    <Compile Include="Enums\UserMentionSort.cs" />
+    <Compile Include="Enums\UserSort.cs" />
+    <Compile Include="Helpers\DateHelper.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\Require.cs" />
+    <Compile Include="Helpers\SerializationHelper.cs" />
+    <Compile Include="Helpers\UnixDateTimeConverter.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="HttpResponse.cs" />
+    <Compile Include="Interfaces\IPagedList.cs" />
+    <Compile Include="Interfaces\IProtocol.cs" />
+    <Compile Include="Interfaces\IResponse.cs" />
+    <Compile Include="Interfaces\IUrlClient.cs" />
+    <Compile Include="Interfaces\IUrlClientAsync.cs" />
+    <Compile Include="PagedList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocols\JsonProtocol.cs" />
+    <Compile Include="Protocols\JsonResponse.cs" />
+    <Compile Include="Responses\AnswerResponse.cs" />
+    <Compile Include="Responses\BadgeResponse.cs" />
+    <Compile Include="Responses\CommentResponse.cs" />
+    <Compile Include="Responses\ErrorResponse.cs" />
+    <Compile Include="Responses\QuestionResponse.cs" />
+    <Compile Include="Responses\QuestionTimelineResponse.cs" />
+    <Compile Include="Responses\ReputationResponse.cs" />
+    <Compile Include="Responses\Response.cs" />
+    <Compile Include="Responses\RevisionResponse.cs" />
+    <Compile Include="Responses\StatsResponse.cs" />
+    <Compile Include="Responses\TagResponse.cs" />
+    <Compile Include="Responses\UserEventResponse.cs" />
+    <Compile Include="Responses\UserResponse.cs" />
+    <Compile Include="StackyClientAsync\AnswerMethods.cs" />
+    <Compile Include="StackyClientAsync\BadgeMethods.cs" />
+    <Compile Include="StackyClientAsync\CommentMethods.cs" />
+    <Compile Include="StackyClientAsync\QuestionMethods.cs" />
+    <Compile Include="StackyClientAsync\RevisionMethods.cs" />
+    <Compile Include="StackyClientAsync\StackyClientAsync.cs" />
+    <Compile Include="StackyClientAsync\StatsMethods.cs" />
+    <Compile Include="StackyClientAsync\TagMethods.cs" />
+    <Compile Include="StackyClientAsync\UserMethods.cs" />
+    <Compile Include="StackyClient\AnswerMethods.cs" />
+    <Compile Include="StackyClient\BadgeMethods.cs" />
+    <Compile Include="StackyClient\CommentMethods.cs" />
+    <Compile Include="StackyClient\QuestionMethods.cs" />
+    <Compile Include="StackyClient\RevisionMethods.cs" />
+    <Compile Include="StackyClient\StackyClient.cs" />
+    <Compile Include="StackyClient\StatsMethods.cs" />
+    <Compile Include="StackyClient\TagMethods.cs" />
+    <Compile Include="StackyClient\UserMethods.cs" />
+    <Compile Include="UrlClient.cs" />
+    <Compile Include="UrlClientAsync.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -16,8 +16,8 @@ namespace Stacky.Mvc.Models
 
         private StackyRepository()
         {
-            _apiVersion = ConfigurationManager.AppSettings["StackOverflow.Net.ApiVersion"];
-            _apiKey = ConfigurationManager.AppSettings["StackOverflow.Net.ApiKey"];
+            _apiVersion = ConfigurationManager.AppSettings["Stacky.ApiVersion"];
+            _apiKey = ConfigurationManager.AppSettings["Stacky.ApiKey"];
             _urlClient = new UrlClient();
             _protocol = new JsonProtocol();
         }

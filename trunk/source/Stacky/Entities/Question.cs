@@ -61,7 +61,7 @@ namespace Stacky
         public int Score { get; set; }
 
         [JsonProperty("community_owned")]
-        public string CommunityOwned { get; set; }
+        public bool CommunityOwned { get; set; }
 
         [JsonProperty("accepted_answer_id")]
         public int AcceptedAnswerId { get; set; }

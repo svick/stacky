@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace StackOverflow.Net.Mvc.Controllers
+namespace Stacky.Mvc.Controllers
 {
     public class BadgesController : Controller
     {

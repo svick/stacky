@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StackOverflow.Net.Mvc.PagerModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Stacky.Mvc.PagerModel>" %>
 <% if (Model.PageSelectors.Count > 0)
    { %>
 <div class="pager-container">

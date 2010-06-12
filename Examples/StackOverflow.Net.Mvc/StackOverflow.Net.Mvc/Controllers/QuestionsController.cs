@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using StackOverflow.Net.Mvc.Models;
+using Stacky.Mvc.Models;
 
 
-namespace StackOverflow.Net.Mvc.Controllers
+namespace Stacky.Mvc.Controllers
 {
     public class QuestionsController : Controller
     {
@@ -119,7 +119,7 @@ namespace StackOverflow.Net.Mvc.Controllers
                     answers = repository.GetQuestionAnswers(id, page: state.Page, includeBody: true, includeComments: true);
                 }
 
-                return View("Question", new QuestionModel(question, answers, state));
+                return View(new QuestionModel(question, answers, state));
             }
             catch (ApiException ex)
             {

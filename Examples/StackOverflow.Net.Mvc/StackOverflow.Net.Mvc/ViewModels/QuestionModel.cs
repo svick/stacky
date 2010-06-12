@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using StackOverflow;
 
-namespace StackOverflow.Net.Mvc
+namespace Stacky.Mvc
 {
     public class QuestionModel
     {

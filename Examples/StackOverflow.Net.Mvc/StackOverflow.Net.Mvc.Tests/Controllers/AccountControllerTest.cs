@@ -5,11 +5,11 @@
 //using System.Web.Routing;
 //using System.Web.Security;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using StackOverflow.Net.Mvc;
-//using StackOverflow.Net.Mvc.Controllers;
-//using StackOverflow.Net.Mvc.Models;
+//using Stacky.Mvc;
+//using Stacky.Mvc.Controllers;
+//using Stacky.Mvc.Models;
 
-//namespace StackOverflow.Net.Mvc.Tests.Controllers
+//namespace Stacky.Mvc.Tests.Controllers
 //{
 
 //    [TestClass]

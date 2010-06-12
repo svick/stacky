@@ -1,4 +1,6 @@
-﻿/*Html*/
+﻿/*http://colorschemedesigner.com/#3v41R2zGr52Wr light*/
+/*http://colorschemedesigner.com/#3v41RqVvfhoYf dark*/
+/*Html*/
 *
 {
     -moz-background-clip:border;
@@ -15,6 +17,10 @@
 body
 {
     line-height: 1;
+    text-align: center;
+    font-family: 'Helvetica Neue', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;
+    font-size: 13px;
+    background: 
 }
 
 ul
@@ -27,6 +33,10 @@ ul
 /* Master Page*/
 #page-container
 {
+	text-align: left;
+	width: 900px;
+	margin: 0 auto;
+	display: block;
 }
 
 #header-container
@@ -65,6 +75,19 @@ ul
 /* Header Control */
 .search-container
 {
+	position:relative;
+	background-color: #7DB0FF;
+	border-bottom-left-radius: 8px 8px;
+	border-bottom-right-radius: 8px 8px;
+	float: right;
+	height: 28px;
+	line-height: 22px;
+	overflow: hidden;
+	width: auto;
+	right: 0px;
+	z-index: 2;
+	top:-5px;
+	padding: 5px 8px 5px 8px;
 }
 
 .search-bar
@@ -73,14 +96,52 @@ ul
 
 .search-text-box
 {
+	margin: 0px;
+	max-width: 200px;
+	width: 200px;
+	padding: 3px;
+	background: #ffffff;
 }
 
 .site-menu-container
 {
+
+	background-color: #E9E9E9;
+	border-bottom-left-radius: 8px 8px;
+	border-bottom-right-radius: 8px 8px;
+	float: left;
+	margin: 0px;
+	height: 28px;
+	line-height: 22px;
+	overflow: hidden;
+	width: 100%;
+	z-index: 1;
+	padding: 5px 0px 5px 8px;
+	border-left: 1px silver solid;
+		border-bottom: 1px silver solid;
+			border-right: 1px silver solid;
 }
 
 .site-menu
 {
+	margin: 0px;
+	-webkit-padding-start: 40px;
+	display: block;
+	background: transparent;
+	border: 0px;
+	font-size: 100%;
+	padding: 0px;
+	vertical-align: baseline;
+}
+
+.site-menu ul
+{
+	list-style: disc;
+}
+
+.site-menu li
+{
+	float: left;
 }
 
 .site-menu-item

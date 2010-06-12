@@ -95,11 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\external-link-ltr-icon.png" />
+    <Content Include="Content\prettify.css" />
     <Content Include="Content\sad01.png" />
     <Content Include="Content\sad02.png" />
     <Content Include="Content\sad03.png" />
     <Content Include="Content\sad04.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Junk.js" />
+    <Content Include="Scripts\prettify.js" />
     <Content Include="Views\Badges\Badges.aspx" />
     <Content Include="Views\Questions\Question.aspx" />
     <Content Include="Views\Questions\Questions.aspx" />

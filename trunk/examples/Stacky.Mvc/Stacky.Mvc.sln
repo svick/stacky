@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stacky.Mvc", "Stacky.Mvc\Stacky.Mvc.csproj", "{66473FE8-4FED-4600-8073-D8A04696635D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stacky.Mvc.Tests", "Stacky.Mvc.Tests\Stacky.Mvc.Tests.csproj", "{16197640-8F85-4378-A9CD-E7821C30CF5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stacky", "..\..\source\Stacky\Stacky.csproj", "{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66473FE8-4FED-4600-8073-D8A04696635D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66473FE8-4FED-4600-8073-D8A04696635D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66473FE8-4FED-4600-8073-D8A04696635D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66473FE8-4FED-4600-8073-D8A04696635D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16197640-8F85-4378-A9CD-E7821C30CF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16197640-8F85-4378-A9CD-E7821C30CF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16197640-8F85-4378-A9CD-E7821C30CF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16197640-8F85-4378-A9CD-E7821C30CF5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

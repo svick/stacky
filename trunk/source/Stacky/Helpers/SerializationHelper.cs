@@ -10,8 +10,17 @@ using Newtonsoft.Json;
 
 namespace Stacky
 {
+    /// <summary>
+    /// Serialization helper methods.
+    /// </summary>
     public static class SerializationHelper
     {
+        /// <summary>
+        /// Deserializes xml into an instance of T.
+        /// </summary>
+        /// <typeparam name="T">The type to be returned.</typeparam>
+        /// <param name="xml">The xml.</param>
+        /// <returns>An instance of T</returns>
         public static T DeserializeXml<T>(string xml)
                where T : new()
         {
@@ -22,6 +31,12 @@ namespace Stacky
             }
         }
 
+        /// <summary>
+        /// Serializes T to xml.
+        /// </summary>
+        /// <typeparam name="T">The type to be serialized.</typeparam>
+        /// <param name="item">The object to be serialized.</param>
+        /// <returns>Xml represntation of item.</returns>
         public static string SerializeXml<T>(T item)
             where T : new()
         {
@@ -34,6 +49,12 @@ namespace Stacky
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Deserializes json into an instance of T.
+        /// </summary>
+        /// <typeparam name="T">The type to be returned.</typeparam>
+        /// <param name="json">The json.</param>
+        /// <returns>An instance of T</returns>
         public static T DeserializeJson<T>(string json)
               where T : new()
         {
@@ -51,6 +72,12 @@ namespace Stacky
             }
         }
 
+        /// <summary>
+        /// Serializes T to json.
+        /// </summary>
+        /// <typeparam name="T">The type to be serialized.</typeparam>
+        /// <param name="item">The object to be serialized.</param>
+        /// <returns>Json represntation of item.</returns>
         public static string SerializeJson<T>(T item)
             where T : new()
         {

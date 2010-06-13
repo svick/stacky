@@ -7,6 +7,9 @@ using System.Globalization;
 
 namespace Stacky
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class StackyClient
     {
         private string version;

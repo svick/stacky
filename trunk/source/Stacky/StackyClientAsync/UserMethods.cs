@@ -89,5 +89,20 @@ namespace Stacky
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
             }, (items) => onSuccess(new PagedList<Reputation>(items.Reputation, items)), onError);
         }
+
+        public void GetModerators(Action<IPagedList<User>> onSuccess, Action<ApiException> onError, int? page = null, int? pageSize = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, string filter = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            MakeRequest<UserResponse>("users", new string[] { "moderators" }, new
+            {
+                key = apiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                filter = filter,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection),
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            }, (response) => onSuccess(new PagedList<User>(response.Users, response)), onError);
+        }
     }
 }

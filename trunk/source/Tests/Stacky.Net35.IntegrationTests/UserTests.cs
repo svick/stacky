@@ -118,5 +118,12 @@ namespace Stacky.IntegrationTests.Net35
             Assert.IsFalse(String.IsNullOrEmpty(user.CommentsUrl));
             Assert.IsFalse(String.IsNullOrEmpty(user.ReputationUrl));
         }
+
+        [TestMethod]
+        public void GetModerators()
+        {
+            var users = Client.GetModerators();
+            Assert.IsNotNull(users);
+        }
     }
 }

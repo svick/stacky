@@ -9,7 +9,7 @@ namespace Stacky.Silverlight.IntegrationTests
     [TestClass]
     public class UserTests : IntegrationTest
     {
-        [TestMethod]
+        [TestMethod, Asynchronous]
         public void User_GetUsers()
         {
             using (var context = new AsynchronusTestContext(this))
@@ -21,6 +21,34 @@ namespace Stacky.Silverlight.IntegrationTests
                 EnqueueCallback(() =>
                 {
                     Client.GetUsers(results =>
+                    {
+                        received = results;
+                        completed = true;
+                    },
+                    error =>
+                    {
+                        exception = error;
+                        completed = true;
+                    });
+                });
+                EnqueueConditional(() => completed);
+                EnqueueCallback(() => Assert.IsNull(exception));
+                EnqueueCallback(() => Assert.IsNotNull(received));
+            }
+        }
+
+        [TestMethod, Asynchronous]
+        public void User_GetModerators()
+        {
+            using (var context = new AsynchronusTestContext(this))
+            {
+                IPagedList<User> received = null;
+                ApiException exception = null;
+
+                bool completed = false;
+                EnqueueCallback(() =>
+                {
+                    Client.GetModerators(results =>
                     {
                         received = results;
                         completed = true;

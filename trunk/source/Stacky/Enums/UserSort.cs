@@ -14,10 +14,6 @@
         /// </summary>
         Creation,
         /// <summary>
-        /// Oldest.
-        /// </summary>
-        Oldest,
-        /// <summary>
         /// Name.
         /// </summary>
         Name

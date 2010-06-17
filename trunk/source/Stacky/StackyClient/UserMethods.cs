@@ -117,5 +117,21 @@ namespace Stacky
                 key = apiKey
             }).Badges;
         }
+
+        public virtual IPagedList<User> GetModerators(int? page = null, int? pageSize = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, string filter = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            var response = MakeRequest<UserResponse>("users", new string[] { "moderators" }, new
+            {
+                key = apiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                filter = filter,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection),
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+            return new PagedList<User>(response.Users, response);
+        }
     }
 }

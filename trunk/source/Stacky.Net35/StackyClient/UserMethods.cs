@@ -137,5 +137,15 @@ namespace Stacky
             });
             return new PagedList<Reputation>(response.Reputation, response);
         }
+
+        public virtual IPagedList<User> GetModerators()
+        {
+            return GetModerators(new UserOptions());
+        }
+
+        public virtual IPagedList<User> GetModerators(UserOptions options)
+        {
+            return GetUsers(options, new string[] { "moderators" });
+        }
     }
 }

@@ -51,11 +51,13 @@
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\BadgeCounts.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\MigrationInfo.cs" />
     <Compile Include="Entities\PostEvent.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Reputation.cs" />
     <Compile Include="Entities\ResponseError.cs" />
     <Compile Include="Entities\Revision.cs" />
+    <Compile Include="Entities\Site.cs" />
     <Compile Include="Entities\SiteStats.cs" />
     <Compile Include="Entities\SortArgsAttribute.cs" />
     <Compile Include="Entities\Tag.cs" />
@@ -66,7 +68,6 @@
     <Compile Include="Enums\CommentSort.cs" />
     <Compile Include="Enums\ErrorCode.cs" />
     <Compile Include="Enums\FavoriteQuestionsSort.cs" />
-    <Compile Include="Enums\HostSite.cs" />
     <Compile Include="Enums\PostEventType.cs" />
     <Compile Include="Enums\PostType.cs" />
     <Compile Include="Enums\QuestionsByUserSort.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Responses\TagResponse.cs" />
     <Compile Include="Responses\UserEventResponse.cs" />
     <Compile Include="Responses\UserResponse.cs" />
+    <Compile Include="Sites.cs" />
     <Compile Include="StackyClientAsync\AnswerMethods.cs" />
     <Compile Include="StackyClientAsync\BadgeMethods.cs" />
     <Compile Include="StackyClientAsync\CommentMethods.cs" />

@@ -149,5 +149,35 @@ namespace Stacky.Silverlight.IntegrationTests
                 EnqueueCallback(() => Assert.IsNotNull(received));
             }
         }
+
+        [TestMethod, Asynchronous]
+        public void MigratedQuestion_CanDeserialize()
+        {
+            using (var context = new AsynchronusTestContext(this))
+            {
+                Question received = null;
+                ApiException exception = null;
+
+                bool completed = false;
+                EnqueueCallback(() =>
+                {
+                    Client.GetQuestion(970696, results =>
+                    {
+                        received = results;
+                        completed = true;
+                    },
+                    error =>
+                    {
+                        exception = error;
+                        completed = true;
+                    });
+                });
+                EnqueueConditional(() => completed);
+                EnqueueCallback(() => Assert.IsNull(exception));
+                EnqueueCallback(() => Assert.IsNotNull(received));
+                EnqueueCallback(() => Assert.IsNotNull(received.Migrated));
+                EnqueueCallback(() => Assert.IsNotNull(received.Migrated.ToSite));
+            }
+        }
     }
 }

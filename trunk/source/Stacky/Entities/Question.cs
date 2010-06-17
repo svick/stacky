@@ -162,6 +162,12 @@ namespace Stacky
         public string CommentsUrl { get; set; }
 
         /// <summary>
+        /// Gets or sets the <see cref="MigrationInfo"/> for this <see cref="Question"/>.
+        /// </summary>
+        [JsonProperty("migrated")]
+        public MigrationInfo Migrated { get; set; }
+
+        /// <summary>
         /// Gets or sets the <see cref="UserInfo">owner</see>.
         /// </summary>
         /// <value>The <see cref="UserInfo">owner</see>.</value>

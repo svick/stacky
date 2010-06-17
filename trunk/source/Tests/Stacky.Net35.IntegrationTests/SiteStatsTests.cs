@@ -10,11 +10,11 @@ namespace Stacky.IntegrationTests.Net35
     public class SiteStatsTests : IntegrationTest
     {
         [TestMethod]
-        public void ContainsDisplayName()
+        public void ContainsSite()
         {
             var stats = Client.GetSiteStats();
             Assert.IsNotNull(stats);
-            Assert.IsFalse(String.IsNullOrEmpty(stats.DisplayName));
+            Assert.IsNotNull(stats.Site);
         }
     }
 }

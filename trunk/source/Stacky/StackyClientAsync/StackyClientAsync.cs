@@ -15,11 +15,11 @@ namespace Stacky
         private string apiKey;
 
 #if SILVERLIGHT
-        public StackyClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
+        public StackyClient(string version, string apiKey, Site site, IUrlClient client, IProtocol protocol)
 #else
-        public StackyClientAsync(string version, string apiKey, HostSite site, IUrlClientAsync client, IProtocol protocol)
+        public StackyClientAsync(string version, string apiKey, Site site, IUrlClientAsync client, IProtocol protocol)
 #endif
-            : this(version, apiKey, site.GetAddress(), client, protocol)
+            : this(version, apiKey, site.ApiEndpoint, client, protocol)
         {
         }
 

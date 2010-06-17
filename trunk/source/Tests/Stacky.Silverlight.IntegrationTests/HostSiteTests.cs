@@ -9,7 +9,7 @@ namespace Stacky.Silverlight.IntegrationTests
     [TestClass]
     public class HostSiteTests : SilverlightTest
     {
-        private StackyClient GetClient(HostSite site)
+        private StackyClient GetClient(Site site)
         {
             return new StackyClient(IntegrationTest.Version, IntegrationTest.ApiKey, site, new UrlClient(), new JsonProtocol());
         }
@@ -44,35 +44,35 @@ namespace Stacky.Silverlight.IntegrationTests
         [TestMethod, Asynchronous]
         public void Stacky()
         {
-            var client = GetClient(HostSite.StackOverflow);
+            var client = GetClient(Sites.StackOverflow);
             TestQuestionMethod(client);
         }
 
         [TestMethod, Asynchronous]
         public void ServerFault()
         {
-            var client = GetClient(HostSite.ServerFault);
+            var client = GetClient(Sites.ServerFault);
             TestQuestionMethod(client);
         }
 
         [TestMethod, Asynchronous]
         public void SuperUser()
         {
-            var client = GetClient(HostSite.SuperUser);
+            var client = GetClient(Sites.SuperUser);
             TestQuestionMethod(client);
         }
 
         [TestMethod, Asynchronous]
         public void Meta()
         {
-            var client = GetClient(HostSite.Meta);
+            var client = GetClient(Sites.StackOverflowMeta);
             TestQuestionMethod(client);
         }
 
         [TestMethod, Asynchronous]
         public void StackApps()
         {
-            var client = GetClient(HostSite.StackApps);
+            var client = GetClient(Sites.StackApps);
             TestQuestionMethod(client);
         }
     }

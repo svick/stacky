@@ -1,0 +1,39 @@
+<UserControl
+    x:Class="Stackanimate.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+    d:DesignWidth="640" d:DesignHeight="480">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.RowSpan="3" Background="{StaticResource NavPageLinedBrush}" />
+
+        <Border x:Name="BrandingBorder" Style="{StaticResource NavBrandingBorderStyle}">
+            <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource NavBrandingStackPanelStyle}" >
+                <ContentControl Style="{StaticResource NavLogoIcon}" />
+                <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" Text=" Application Name" />
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="LinksBorder" Style="{StaticResource NavLinksBorderStyle}" Grid.Row="1">
+            <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+                <HyperlinkButton Style="{StaticResource LinkStyle}" NavigateUri="/Home" TargetName="ContentFrame" Content="home" />
+                <HyperlinkButton Style="{StaticResource LinkStyle}" NavigateUri="/About" TargetName="ContentFrame" Content="about" />
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="ContentBorder" Style="{StaticResource NavContentBorderStyle}" Grid.Row="2">
+            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource NavContentFrameStyle}" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" />
+        </Border>
+
+    </Grid>
+
+</UserControl>

@@ -142,5 +142,14 @@ namespace Stacky.IntegrationTests
             Assert.IsNotNull(question.Owner);
             Assert.IsNotNull(question.Owner.UserId);
         }
+
+        [TestMethod]
+        public void MigratedQuestion_CanDeserialize()
+        {
+            var question = Client.GetQuestion(970696);
+            Assert.IsNotNull(question);
+            Assert.IsNotNull(question.Migrated);
+            Assert.IsNotNull(question.Migrated.ToSite);
+        }
     }
 }

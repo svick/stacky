@@ -10,7 +10,7 @@ namespace Stacky.Silverlight.IntegrationTests
     public class SiteStatsTests : IntegrationTest
     {
         [TestMethod, Asynchronous]
-        public void ContainsDisplayName()
+        public void ContainsSite()
         {
             using (var context = new AsynchronusTestContext(this))
             {
@@ -34,7 +34,7 @@ namespace Stacky.Silverlight.IntegrationTests
                 EnqueueConditional(() => completed);
                 EnqueueCallback(() => Assert.IsNull(exception));
                 EnqueueCallback(() => Assert.IsNotNull(received));
-                EnqueueCallback(() => Assert.IsFalse(String.IsNullOrEmpty(received.DisplayName)));
+                EnqueueCallback(() => Assert.IsNotNull(received.Site));
             }
         }
     }

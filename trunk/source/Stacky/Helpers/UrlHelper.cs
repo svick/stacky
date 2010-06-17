@@ -51,7 +51,7 @@ namespace Stacky
             Require.NotNullOrEmpty(serviceUrl, "serviceUrl");
             Require.NotNullOrEmpty(version, "version");
 
-            string urlBase = String.Format(CultureInfo.CurrentCulture, "{0}://{1}/{2}/{3}/", Uri.UriSchemeHttp, serviceUrl, version, method);
+            string urlBase = String.Format(CultureInfo.CurrentCulture, "{0}{1}/{2}/", serviceUrl, version, method);
             if (urlParameters != null)
             {
                 foreach (string param in urlParameters)

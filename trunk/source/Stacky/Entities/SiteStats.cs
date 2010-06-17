@@ -91,8 +91,8 @@ namespace Stacky
         /// Gets or sets the display name.
         /// </summary>
         /// <value>The display name.</value>
-        [JsonProperty("display_name")]
-        public string DisplayName { get; set; }
+        [JsonProperty("site")]
+        public Site Site { get; set; }
     }
 
     /// <summary>

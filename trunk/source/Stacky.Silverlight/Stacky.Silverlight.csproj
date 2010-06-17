@@ -74,6 +74,9 @@
     <Compile Include="..\Stacky\Entities\Comment.cs">
       <Link>Entities\Comment.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Entities\MigrationInfo.cs">
+      <Link>Entities\MigrationInfo.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Entities\PostEvent.cs">
       <Link>Entities\PostEvent.cs</Link>
     </Compile>
@@ -88,6 +91,9 @@
     </Compile>
     <Compile Include="..\Stacky\Entities\Revision.cs">
       <Link>Entities\Revision.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Site.cs">
+      <Link>Entities\Site.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\Entities\SiteStats.cs">
       <Link>Entities\SiteStats.cs</Link>
@@ -115,9 +121,6 @@
     </Compile>
     <Compile Include="..\Stacky\Enums\FavoriteQuestionsSort.cs">
       <Link>Enums\FavoriteQuestionsSort.cs</Link>
-    </Compile>
-    <Compile Include="..\Stacky\Enums\HostSite.cs">
-      <Link>Enums\HostSite.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\Enums\PostEventType.cs">
       <Link>Enums\PostEventType.cs</Link>
@@ -232,6 +235,9 @@
     </Compile>
     <Compile Include="..\Stacky\Responses\UserResponse.cs">
       <Link>Responses\UserResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Sites.cs">
+      <Link>Sites.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\StackyClientAsync\AnswerMethods.cs">
       <Link>StackyClient\AnswerMethods.cs</Link>

@@ -15,8 +15,8 @@ namespace Stacky
         private string version;
         private string apiKey;
 
-        public StackyClient(string version, string apiKey, HostSite site, IUrlClient client, IProtocol protocol)
-            : this(version, apiKey, site.GetAddress(), client, protocol)
+        public StackyClient(string version, string apiKey, Site site, IUrlClient client, IProtocol protocol)
+            : this(version, apiKey, site.ApiEndpoint, client, protocol)
         {
         }
 

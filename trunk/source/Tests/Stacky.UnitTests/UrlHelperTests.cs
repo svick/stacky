@@ -10,29 +10,28 @@ namespace Stacky.UnitTests
     public class UrlHelperTests
     {
         public TestContext TestContext { get; set; }
-        private string ServiceUrl = "api.stackoverflow.com";
-        private static string version = "0.6";
+        private static string version = "0.8";
 
         #region BuildUrl
 
         [TestMethod]
         public void BuildUrl_UrlParameters_IncludedInResult()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", version, ServiceUrl, new string[] { "item1", "item2" }, null);
+            var url = UrlHelper.BuildUrl("TestMethod", version, Sites.StackOverflow.ApiEndpoint, new string[] { "item1", "item2" }, null);
             Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/item1/item2/", url.ToString());
         }
 
         [TestMethod]
         public void BuildUrl_NullUrlParameters_ResultsInNoUrlParameters()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", version, ServiceUrl, null, null);
+            var url = UrlHelper.BuildUrl("TestMethod", version, Sites.StackOverflow.ApiEndpoint, null, null);
             Assert.AreEqual("http://api.stackoverflow.com/" + version + "/TestMethod/", url.ToString());
         }
 
         [TestMethod]
         public void BuildUrl_UrlParamatersAndQueryStringParameters_BuiltCorrectly()
         {
-            var url = UrlHelper.BuildUrl("TestMethod", version, ServiceUrl, new string[] { "item1", "item2" }, new
+            var url = UrlHelper.BuildUrl("TestMethod", version, Sites.StackOverflow.ApiEndpoint, new string[] { "item1", "item2" }, new
             {
                 key = "key",
                 config = "1"
@@ -190,7 +189,7 @@ namespace Stacky.UnitTests
         [TestMethod]
         public void Bug6099_PoundSignEncodedCorrectly()
         {
-            var url = UrlHelper.BuildUrl("questions", version, ServiceUrl, null, new
+            var url = UrlHelper.BuildUrl("questions", version, Sites.StackOverflow.ApiEndpoint, null, new
             {
                 item1 = "test#one",
                 item2 = "anotherOne"

@@ -46,5 +46,35 @@ namespace Stacky
         {
             return GetComments(fromUserId.ToArray(), options);
         }
+
+        public virtual IPagedList<Comment> GetCommentsByPost(int postId)
+        {
+            return GetCommentsByPost(postId, new CommentsByPostOptions());
+        }
+
+        public virtual IPagedList<Comment> GetCommentsByPost(int postId, CommentsByPostOptions options)
+        {
+            return GetCommentsByPost(postId.ToArray(), options);
+        }
+
+        public virtual IPagedList<Comment> GetCommentsByPost(IEnumerable<int> postIds)
+        {
+            return GetCommentsByPost(postIds, new CommentsByPostOptions());
+        }
+
+        public virtual IPagedList<Comment> GetCommentsByPost(IEnumerable<int> postIds, CommentsByPostOptions options)
+        {
+            var response = MakeRequest<CommentResponse>("posts", new string[] { postIds.Vectorize(), "comments" }, new
+            {
+                key = apiKey,
+                page = options.Page ?? null,
+                pagesize = options.PageSize ?? null,
+                fromdate = options.FromDate.HasValue ? (long?)options.FromDate.Value.ToUnixTime() : null,
+                todate = options.ToDate.HasValue ? (long?)options.ToDate.Value.ToUnixTime() : null,
+                sort = options.SortBy.ToString().ToLower(),
+                order = GetSortDirection(options.SortDirection),
+            });
+            return new PagedList<Comment>(response.Comments, response);
+        } 
     }
 }

@@ -67,5 +67,63 @@ namespace Stacky.Silverlight.IntegrationTests
                 EnqueueCallback(() => Assert.IsTrue(received.TotalItems > 0));
             }
         }
+
+        [TestMethod, Asynchronous]
+        public void GetCommentsByPost_ByQuestionId()
+        {
+            using (var context = new AsynchronusTestContext(this))
+            {
+                IPagedList<Comment> received = null;
+                ApiException exception = null;
+
+                bool completed = false;
+                EnqueueCallback(() =>
+                {
+                    Client.GetCommentsByPost(9033, results =>
+                    {
+                        received = results;
+                        completed = true;
+                    },
+                    error =>
+                    {
+                        exception = error;
+                        completed = true;
+                    });
+                });
+                EnqueueConditional(() => completed);
+                EnqueueCallback(() => Assert.IsNull(exception));
+                EnqueueCallback(() => Assert.IsNotNull(received));
+                EnqueueCallback(() => Assert.AreEqual(PostType.Question, received.FirstOrDefault().PostType));
+            }
+        }
+
+        [TestMethod, Asynchronous]
+        public void GetCommentsByPost_ByAnswerId()
+        {
+            using (var context = new AsynchronusTestContext(this))
+            {
+                IPagedList<Comment> received = null;
+                ApiException exception = null;
+
+                bool completed = false;
+                EnqueueCallback(() =>
+                {
+                    Client.GetCommentsByPost(11738, results =>
+                    {
+                        received = results;
+                        completed = true;
+                    },
+                    error =>
+                    {
+                        exception = error;
+                        completed = true;
+                    });
+                });
+                EnqueueConditional(() => completed);
+                EnqueueCallback(() => Assert.IsNull(exception));
+                EnqueueCallback(() => Assert.IsNotNull(received));
+                EnqueueCallback(() => Assert.AreEqual(PostType.Answer, received.FirstOrDefault().PostType));
+            }
+        }
     }
 }

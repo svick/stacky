@@ -25,5 +25,21 @@ namespace Stacky.IntegrationTests.Net35
             Assert.IsTrue(comments.CurrentPage > 0);
             Assert.IsTrue(comments.TotalItems > 0);
         }
+
+        [TestMethod]
+        public void GetCommentsByPost_ByQuestionId()
+        {
+            var comments = Client.GetCommentsByPost(9033);
+            Assert.IsNotNull(comments);
+            Assert.AreEqual(PostType.Question, comments.FirstOrDefault().PostType);
+        }
+
+        [TestMethod]
+        public void GetCommentsByPost_ByAnswerId()
+        {
+            var comments = Client.GetCommentsByPost(11738);
+            Assert.IsNotNull(comments);
+            Assert.AreEqual(PostType.Answer, comments.FirstOrDefault().PostType);
+        }
     }
 }

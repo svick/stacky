@@ -240,6 +240,7 @@
     <Compile Include="Options\AnswerOptions.cs" />
     <Compile Include="Options\BadgeByUserOptions.cs" />
     <Compile Include="Options\CommentOptions.cs" />
+    <Compile Include="Options\CommentsByPostOptions.cs" />
     <Compile Include="Options\FavoriteQuestionOptions.cs" />
     <Compile Include="Options\QuestionByUserOptions.cs" />
     <Compile Include="Options\QuestionSearchOptions.cs" />

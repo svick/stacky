@@ -37,5 +37,24 @@ namespace Stacky
         {
             GetComments(fromUserId.ToArray(), onSuccess, onError, sortBy, sortDirection, toUserId, page, pageSize, fromDate, toDate);
         }
+
+        public virtual void GetCommentsByPost(int postId, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            GetCommentsByPost(postId.ToArray(), onSuccess, onError, sortBy, sortDirection, page, pageSize, fromDate, toDate);
+        }
+
+        public virtual void GetCommentsByPost(IEnumerable<int> postIds, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            MakeRequest<CommentResponse>("posts", new string[] { postIds.Vectorize(), "comments" }, new
+            {
+                key = apiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection),
+            }, (items) => onSuccess(new PagedList<Comment>(items.Comments, items)), onError);
+        }
     }
 }

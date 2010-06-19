@@ -36,12 +36,6 @@ namespace Stacky.IntegrationTests
         }
 
         [TestMethod]
-        public void Answer_GetQuestionAnswers_Async()
-        {
-            ClientAsync.GetQuestionAnswers(31415, answers => Assert.IsNotNull(answers));
-        }
-
-        [TestMethod]
         public void Answer_GetQuestionAnswers_Async_ContainsPagingInformation()
         {
             ClientAsync.GetQuestionAnswers(31415, answers =>
@@ -61,6 +55,16 @@ namespace Stacky.IntegrationTests
             Assert.IsTrue(answers.PageSize > 0);
             Assert.IsTrue(answers.CurrentPage > 0);
             Assert.IsTrue(answers.TotalItems > 0);
+        }
+
+        [TestMethod]
+        public void ContainsOwnerAsObject()
+        {
+            var answer = Client.GetUsersAnswers(1464).FirstOrDefault();
+
+            Assert.IsNotNull(answer);
+            Assert.IsNotNull(answer.Owner);
+            Assert.IsNotNull(answer.Owner.DisplayName);
         }
     }
 }

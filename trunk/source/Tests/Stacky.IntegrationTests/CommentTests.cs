@@ -27,9 +27,13 @@ namespace Stacky.IntegrationTests
         }
 
         [TestMethod]
-        public void Comments_GetComments_Async()
+        public void Comment_ContainsOwnerAsObject()
         {
-            ClientAsync.GetComments(22656, comments => Assert.IsNotNull(comments));
+            var comment = Client.GetComments(22656).FirstOrDefault();
+
+            Assert.IsNotNull(comment);
+            Assert.IsNotNull(comment.Owner);
+            Assert.IsNotNull(comment.Owner.DisplayName);
         }
     }
 }

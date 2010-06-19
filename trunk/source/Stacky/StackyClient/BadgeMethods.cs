@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Stacky
 {
@@ -17,16 +18,20 @@ namespace Stacky
             }).Badges;
         }
 
-        public virtual IEnumerable<User> GetUsersByBadge(int userId)
+        public virtual IEnumerable<User> GetUsersByBadge(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return GetUsersByBadge(userId.ToArray());
+            return GetUsersByBadge(userId.ToArray(), page, pageSize, fromDate, toDate);
         }
 
-        public virtual IPagedList<User> GetUsersByBadge(IEnumerable<int> userIds)
+        public virtual IPagedList<User> GetUsersByBadge(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             var response = MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize() }, new
             {
-                key = apiKey
+                key = apiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
             });
             return new PagedList<User>(response.Users, response);
         }

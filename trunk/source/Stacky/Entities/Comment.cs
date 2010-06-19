@@ -32,25 +32,17 @@ namespace Stacky
         public DateTime CreationDate { get; set; }
 
         /// <summary>
-        /// Gets or sets the owner <see cref="User"/> id.
-        /// </summary>
-        /// <value>The owner user id.</value>
-        [JsonProperty("owner_user_id")]
-        public int OwnerUserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the display name of the owner.
-        /// </summary>
-        /// <value>The display name of the owner.</value>
-        [JsonProperty("owner_display_name")]
-        public string OwnerDisplayName { get; set; }
-
-        /// <summary>
         /// Gets or sets the <see cref="PostType">post type</see>.
         /// </summary>
         /// <value>The type of the post.</value>
         [JsonProperty("post_type"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public PostType PostType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Id of the post this comment is on
+        /// </summary>
+        [JsonProperty("post_id")]
+        public int PostId { get; set; }
 
         /// <summary>
         /// Gets or sets the score.
@@ -60,17 +52,22 @@ namespace Stacky
         public int Score { get; set; }
 
         /// <summary>
-        /// Gets or sets the reply to <see cref="User"/> id.
-        /// </summary>
-        /// <value>The reply to <see cref="User"/> id.</value>
-        [JsonProperty("reply_to_user_id")]
-        public int ReplyToUserId { get; set; }
-
-        /// <summary>
         /// Gets or sets the edit count.
         /// </summary>
         /// <value>The edit count.</value>
         [JsonProperty("edit_count")]
         public int EditCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="User"/> associated with this <see cref="Comment"/>.
+        /// </summary>
+        [JsonProperty("owner")]
+        public User Owner { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="User"/> which this <see cref="Comment"/> was in reply to.
+        /// </summary>
+        [JsonProperty("reply_to_user")]
+        public User ReplyTo { get; set; }
     }
 }

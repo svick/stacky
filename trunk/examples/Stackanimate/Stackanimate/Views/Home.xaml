@@ -9,18 +9,6 @@
 	mc:Ignorable="d" 
     Title="Home"
     Style="{StaticResource PageStyle}">
-
-    <navigation:Page.Resources>
-        <Style TargetType="RichTextBox">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Width" Value="500"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Padding" Value="3,6,0,3"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
-        </Style>
-    </navigation:Page.Resources>
     <StackPanel x:Name="LayoutRoot">
         <TextBox Width="900" Text="{Binding Path=InputString, Mode=TwoWay}" />
         <Button Content="Get Question" Command="{Binding ParseQuestionIdCommand}" />

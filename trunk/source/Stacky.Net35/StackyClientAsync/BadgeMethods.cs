@@ -24,14 +24,28 @@ namespace Stacky
 
         public void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError)
         {
-            GetUsersByBadge(userId.ToArray(), onSuccess, onError);
+            GetUsersByBadge(userId, onSuccess, onError, new BadgeByUserOptions());
+        }
+
+        public void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError, BadgeByUserOptions options)
+        {
+            GetUsersByBadge(userId.ToArray(), onSuccess, onError, options);
         }
 
         public void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError)
         {
+            GetUsersByBadge(userIds, onSuccess, onError, new BadgeByUserOptions());
+        }
+
+        public void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError, BadgeByUserOptions options)
+        {
             MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize(), "badges" }, new
             {
-                key = apiKey
+                key = apiKey,
+                page = options.Page ?? null,
+                pagesize = options.PageSize ?? null,
+                fromdate = options.FromDate.HasValue ? (long?)options.FromDate.Value.ToUnixTime() : null,
+                todate = options.ToDate.HasValue ? (long?)options.ToDate.Value.ToUnixTime() : null
             }, (items) => onSuccess(new PagedList<User>(items.Users, items)), onError);
         }
 

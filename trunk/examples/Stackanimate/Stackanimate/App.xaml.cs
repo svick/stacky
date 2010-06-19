@@ -26,7 +26,7 @@ namespace Stackanimate
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             this.RootVisual = new MainPage();
-            Client = new StackyClient("0.8", "", HostSite.StackOverflow, new UrlClient(), new JsonProtocol());
+            Client = new StackyClient("0.8", "", Sites.StackOverflow, new UrlClient(), new JsonProtocol());
         }
 
         public static StackyClient Client { get; set; }

@@ -54,20 +54,6 @@ namespace Stacky
         public int QuestionId { get; set; }
 
         /// <summary>
-        /// Gets or sets the owner <see cref="User"/> id.
-        /// </summary>
-        /// <value>The owner <see cref="User"/> id.</value>
-        [JsonProperty("owner_user_id")]
-        public int OwnerUserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the display name of the owner.
-        /// </summary>
-        /// <value>The display name of the owner.</value>
-        [JsonProperty("owner_display_name")]
-        public string OwnerDisplayName { get; set; }
-
-        /// <summary>
         /// Gets or sets the creation date.
         /// </summary>
         /// <value>The creation date.</value>
@@ -80,6 +66,12 @@ namespace Stacky
         /// <value>The last activity date.</value>
         [JsonProperty("last_activity_date"), JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime LastActivityDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date this answer was locked.
+        /// </summary>
+        [JsonProperty("locked_date"), JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime LockedDate { get; set; }
 
         /// <summary>
         /// Gets or sets the last edit date.
@@ -142,5 +134,11 @@ namespace Stacky
         /// <value>The <see cref="Comment">Comments</see> URL for this <see cref="Answer"/>.</value>
         [JsonProperty("answer_comments_url")]
         public string CommentsUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="User"/> associated with this <see cref="Answer"/>.
+        /// </summary>
+        [JsonProperty("owner")]
+        public User Owner { get; set; }
     }
 }

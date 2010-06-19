@@ -21,8 +21,8 @@ namespace Stacky
         /// Gets or sets the <see cref="BadgeClass"/>.
         /// </summary>
         /// <value>The BadgeClass.</value>
-        [JsonProperty("class"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public BadgeClass Class { get; set; }
+        [JsonProperty("rank"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public BadgeClass Rank { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Badge"/> name.
@@ -44,5 +44,18 @@ namespace Stacky
         /// <value>The award count of this <see cref="Badge"/>.</value>
         [JsonProperty("award_count")]
         public int AwardCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether or not this <see cref="Badge"/> is tag based or not.
+        /// </summary>
+        [JsonProperty("tag_based")]
+        public bool IsTagBased { get; set; }
+
+        /// <summary>
+        /// Gets or sets the url link to the badge recipients.
+        /// </summary>
+        [JsonProperty("badges_recipients_url")]
+        public string BadgeRecipientsUrl { get; set; }
+
     }
 }

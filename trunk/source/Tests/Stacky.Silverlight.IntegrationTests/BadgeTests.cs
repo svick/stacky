@@ -64,5 +64,33 @@ namespace Stacky.Silverlight.IntegrationTests
                 EnqueueCallback(() => Assert.IsNotNull(received));
             }
         }
+
+        [TestMethod, Asynchronous]
+        public void Badge_GetTagBasedBadges()
+        {
+            using (var context = new AsynchronusTestContext(this))
+            {
+                IEnumerable<Badge> received = null;
+                ApiException exception = null;
+
+                bool completed = false;
+                EnqueueCallback(() =>
+                {
+                    Client.GetTagBasedBadges(results =>
+                    {
+                        received = results;
+                        completed = true;
+                    },
+                    error =>
+                    {
+                        exception = error;
+                        completed = true;
+                    });
+                });
+                EnqueueConditional(() => completed);
+                EnqueueCallback(() => Assert.IsNull(exception));
+                EnqueueCallback(() => Assert.IsNotNull(received));
+            }
+        }
     }
 }

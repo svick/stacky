@@ -24,15 +24,10 @@ namespace Stacky.IntegrationTests
         }
 
         [TestMethod]
-        public void Badge_GetBadges_Async()
+        public void Badge_GetTagBasedBadges()
         {
-            ClientAsync.GetBadges(badges => Assert.IsNotNull(badges));
-        }
-
-        [TestMethod]
-        public void Badge_GetBadgesByUser_Async()
-        {
-            ClientAsync.GetUsersByBadge(1464, users => Assert.IsNotNull(users));
+            var badges = Client.GetTagBasedBadges();
+            Assert.IsNotNull(badges);
         }
     }
 }

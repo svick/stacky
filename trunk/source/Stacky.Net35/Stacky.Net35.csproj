@@ -238,6 +238,7 @@
       <Link>UrlClientAsync.cs</Link>
     </Compile>
     <Compile Include="Options\AnswerOptions.cs" />
+    <Compile Include="Options\BadgeByUserOptions.cs" />
     <Compile Include="Options\CommentOptions.cs" />
     <Compile Include="Options\FavoriteQuestionOptions.cs" />
     <Compile Include="Options\QuestionByUserOptions.cs" />

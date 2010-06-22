@@ -105,19 +105,6 @@ namespace Stacky
             return new PagedList<Reputation>(response.Reputation, response);
         }
 
-        public virtual IEnumerable<Badge> GetUserBadges(int userId)
-        {
-            return GetUserBadges(userId.ToArray());
-        }
-
-        public virtual IEnumerable<Badge> GetUserBadges(IEnumerable<int> userIds)
-        {
-            return MakeRequest<BadgeResponse>("users", new string[] { userIds.Vectorize() }, new
-            {
-                key = apiKey
-            }).Badges;
-        }
-
         public virtual IPagedList<User> GetModerators(int? page = null, int? pageSize = null, UserSort sortBy = UserSort.Reputation, SortDirection sortDirection = SortDirection.Descending, string filter = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             var response = MakeRequest<UserResponse>("users", new string[] { "moderators" }, new

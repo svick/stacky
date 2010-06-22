@@ -40,5 +40,18 @@ namespace Stacky
         {
             return GetBadges("badges", new string[] { "tags" });
         }
+
+        public virtual IEnumerable<Badge> GetUserBadges(int userId)
+        {
+            return GetUserBadges(userId.ToArray());
+        }
+
+        public virtual IEnumerable<Badge> GetUserBadges(IEnumerable<int> userIds)
+        {
+            return MakeRequest<BadgeResponse>("users", new string[] { userIds.Vectorize(), "badges" }, new
+            {
+                key = apiKey
+            }).Badges;
+        }
     }
 }

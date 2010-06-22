@@ -29,5 +29,12 @@ namespace Stacky.IntegrationTests
             var badges = Client.GetTagBasedBadges();
             Assert.IsNotNull(badges);
         }
+
+        [TestMethod]
+        public void Bug_2_GetUserBadges()
+        {
+            var badges = Client.GetUserBadges(1);
+            Assert.IsNotNull(badges);
+        }
     }
 }

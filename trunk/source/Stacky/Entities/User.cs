@@ -151,6 +151,13 @@ namespace Stacky
         public BadgeCounts BadgeCounts { get; set; }
 
         /// <summary>
+        /// Gets or sets a global <see cref="System.Guid"/> which identifies
+        /// this user across stack app sites.
+        /// </summary>
+        [JsonProperty("association_id")]
+        public Guid AssociationId { get; set; }
+
+        /// <summary>
         /// Gets or sets the questions URL.
         /// </summary>
         /// <value>The questions URL.</value>

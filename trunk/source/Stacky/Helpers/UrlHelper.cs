@@ -49,7 +49,6 @@ namespace Stacky
         {
             Require.NotNullOrEmpty(method, "method");
             Require.NotNullOrEmpty(serviceUrl, "serviceUrl");
-            Require.NotNullOrEmpty(version, "version");
 
             string urlBase = String.Format(CultureInfo.CurrentCulture, "{0}{1}/{2}/", serviceUrl, version, method);
             if (urlParameters != null)

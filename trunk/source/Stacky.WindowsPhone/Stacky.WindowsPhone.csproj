@@ -59,6 +59,9 @@
     <Compile Include="..\Stacky\Entities\Answer.cs">
       <Link>Entities\Answer.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Entities\AssociatedUser.cs">
+      <Link>Entities\AssociatedUser.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Entities\Badge.cs">
       <Link>Entities\Badge.cs</Link>
     </Compile>
@@ -131,6 +134,9 @@
     <Compile Include="..\Stacky\Enums\SearchSort.cs">
       <Link>Enums\SearchSort.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Enums\SiteState.cs">
+      <Link>Enums\SiteState.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Enums\SortArgsAttribute.cs">
       <Link>Enums\SortArgsAttribute.cs</Link>
     </Compile>
@@ -194,6 +200,9 @@
     <Compile Include="..\Stacky\Responses\AnswerResponse.cs">
       <Link>Responses\AnswerResponse.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Responses\AssociatedUsersResponse.cs">
+      <Link>Responses\AssociatedUsersResponse.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Responses\BadgeResponse.cs">
       <Link>Responses\BadgeResponse.cs</Link>
     </Compile>
@@ -217,6 +226,9 @@
     </Compile>
     <Compile Include="..\Stacky\Responses\RevisionResponse.cs">
       <Link>Responses\RevisionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Responses\SitesResponse.cs">
+      <Link>Responses\SitesResponse.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\Responses\StatsResponse.cs">
       <Link>Responses\StatsResponse.cs</Link>
@@ -264,6 +276,7 @@
       <Link>UrlClientAsync.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StackAuthClientAsync.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

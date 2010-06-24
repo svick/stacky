@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Stacky.IntegrationTests
 {
     [TestClass]
-    public class HostSiteTests
+    public class HostSiteTests : IntegrationTest
     {
         private StackyClient GetClient(Site site)
         {
@@ -52,6 +52,20 @@ namespace Stacky.IntegrationTests
             var client = GetClient(Sites.StackApps);
             var questions = client.GetQuestions();
             Assert.IsNotNull(questions);
+        }
+
+        [TestMethod]
+        public void GetSites()
+        {
+            var sites = AuthClient.GetSites();
+            Assert.IsNotNull(sites);
+        }
+
+        [TestMethod]
+        public void GetAssociatedUsers()
+        {
+            var users = AuthClient.GetAssociatedUsers(new Guid("05121a2b-3289-4965-a5f4-f26affeadc63"));
+            Assert.IsNotNull(users);
         }
     }
 }

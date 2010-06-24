@@ -24,6 +24,18 @@
         /// <summary>
         /// Votes.
         /// </summary>
-        Votes
+        Votes,
+        /// <summary>
+        /// State
+        /// </summary>
+        State,
+        /// <summary>
+        /// Accepted
+        /// </summary>
+        Accepted,
+        /// <summary>
+        /// Unaccepted
+        /// </summary>
+        Unaccepted
     }
 }

@@ -23,5 +23,11 @@ namespace Stacky
 
         [JsonProperty("icon_url")]
         public string IconUrl { get; set; }
+
+        [JsonProperty("state"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public SiteState State { get; set; }
+
+        [JsonProperty("aliases")]
+        public string[] Aliases { get; set; }
     }
 }

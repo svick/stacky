@@ -125,5 +125,15 @@ namespace Stacky.IntegrationTests
             var users = Client.GetModerators();
             Assert.IsNotNull(users);
         }
+
+        [TestMethod]
+        public void UserHasAssociationId()
+        {
+            var user = Client.GetUser(646);
+            Assert.IsNotNull(user);
+
+            Assert.IsNotNull(user.AssociationId);
+            Assert.IsFalse(user.AssociationId == Guid.Empty);
+        }
     }
 }

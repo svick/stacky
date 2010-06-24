@@ -12,10 +12,12 @@ namespace Stacky.Silverlight.IntegrationTests
         protected static IProtocol protocol = new JsonProtocol();
 
         protected StackyClient Client { get; private set; }
+        protected StackAuthClient AuthClient { get; private set; }
 
         public IntegrationTest()
         {
             Client = new StackyClient(Version, ApiKey, hostSite, urlClient, protocol);
+            AuthClient = new StackAuthClient(urlClient, protocol);
         }
     }
 }

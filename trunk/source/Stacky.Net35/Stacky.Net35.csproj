@@ -48,6 +48,9 @@
     <Compile Include="..\Stacky\Entities\Answer.cs">
       <Link>Entities\Answer.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Entities\AssociatedUser.cs">
+      <Link>Entities\AssociatedUser.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Entities\Badge.cs">
       <Link>Entities\Badge.cs</Link>
     </Compile>
@@ -120,6 +123,9 @@
     <Compile Include="..\Stacky\Enums\SearchSort.cs">
       <Link>Enums\SearchSort.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Enums\SiteState.cs">
+      <Link>Enums\SiteState.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Enums\SortArgsAttribute.cs">
       <Link>Enums\SortArgsAttribute.cs</Link>
     </Compile>
@@ -186,6 +192,9 @@
     <Compile Include="..\Stacky\Responses\AnswerResponse.cs">
       <Link>Responses\AnswerResponse.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Responses\AssociatedUsersResponse.cs">
+      <Link>Responses\AssociatedUsersResponse.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Responses\BadgeResponse.cs">
       <Link>Responses\BadgeResponse.cs</Link>
     </Compile>
@@ -210,6 +219,9 @@
     <Compile Include="..\Stacky\Responses\RevisionResponse.cs">
       <Link>Responses\RevisionResponse.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Responses\SitesResponse.cs">
+      <Link>Responses\SitesResponse.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Responses\StatsResponse.cs">
       <Link>Responses\StatsResponse.cs</Link>
     </Compile>
@@ -224,6 +236,12 @@
     </Compile>
     <Compile Include="..\Stacky\Sites.cs">
       <Link>Sites.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackAuthClient.cs">
+      <Link>StackAuthClient.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\StackAuthClientAsync.cs">
+      <Link>StackAuthClientAsync.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\StackyClientAsync\StackyClientAsync.cs">
       <Link>StackyClientAsync\StackyClientAsync.cs</Link>

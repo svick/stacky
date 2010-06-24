@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ApiException.cs" />
     <Compile Include="Entities\Answer.cs" />
+    <Compile Include="Entities\AssociatedUser.cs" />
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\BadgeCounts.cs" />
     <Compile Include="Entities\Comment.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Enums\QuestionsByUserSort.cs" />
     <Compile Include="Enums\QuestionSort.cs" />
     <Compile Include="Enums\SearchSort.cs" />
+    <Compile Include="Enums\SiteState.cs" />
     <Compile Include="Enums\SortDirection.cs" />
     <Compile Include="Enums\TagSort.cs" />
     <Compile Include="Enums\UserEventType.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Protocols\JsonProtocol.cs" />
     <Compile Include="Protocols\JsonResponse.cs" />
     <Compile Include="Responses\AnswerResponse.cs" />
+    <Compile Include="Responses\AssociatedUsersResponse.cs" />
     <Compile Include="Responses\BadgeResponse.cs" />
     <Compile Include="Responses\CommentResponse.cs" />
     <Compile Include="Responses\ErrorResponse.cs" />
@@ -103,11 +106,14 @@
     <Compile Include="Responses\ReputationResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\RevisionResponse.cs" />
+    <Compile Include="Responses\SitesResponse.cs" />
     <Compile Include="Responses\StatsResponse.cs" />
     <Compile Include="Responses\TagResponse.cs" />
     <Compile Include="Responses\UserEventResponse.cs" />
     <Compile Include="Responses\UserResponse.cs" />
     <Compile Include="Sites.cs" />
+    <Compile Include="StackAuthClient.cs" />
+    <Compile Include="StackAuthClientAsync.cs" />
     <Compile Include="StackyClientAsync\AnswerMethods.cs" />
     <Compile Include="StackyClientAsync\BadgeMethods.cs" />
     <Compile Include="StackyClientAsync\CommentMethods.cs" />

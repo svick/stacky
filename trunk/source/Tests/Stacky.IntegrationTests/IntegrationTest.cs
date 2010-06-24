@@ -9,9 +9,11 @@ namespace Stacky.IntegrationTests
         {
             Client = new StackyClient(Version, ApiKey, Sites.StackOverflow, new UrlClient(), new JsonProtocol());
             ClientAsync = new StackyClientAsync(Version, ApiKey, Sites.StackOverflow.ApiEndpoint, new UrlClientAsync(), new JsonProtocol());
+            AuthClient = new StackAuthClient(new UrlClient(), new JsonProtocol());
         }
 
         public StackyClient Client { get; set; }
         public StackyClientAsync ClientAsync { get; set; }
+        public StackAuthClient AuthClient { get; set; }
     }
 }

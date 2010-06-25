@@ -13,7 +13,7 @@ namespace Stacky.IntegrationTests
         [TestMethod]
         public void InvalidSort_Returns_Underlying_ErrorCode()
         {
-            HttpResponse httpResponse = Client.WebClient.MakeRequest(new Uri("http://api.stackoverflow.com/0.8/users/22656/mentioned/?key=&sort=reputation&order=desc"));
+            HttpResponse httpResponse = Client.WebClient.MakeRequest(new Uri("http://api.stackoverflow.com/0.9/users/22656/mentioned/?key=&sort=reputation&order=desc"));
             Assert.IsNotNull(httpResponse.Error);
             try
             {
@@ -31,7 +31,7 @@ namespace Stacky.IntegrationTests
         {
             ApiException exception = null;
             var waitHandle = new AutoResetEvent(false);
-            ClientAsync.WebClient.MakeRequest(new Uri("http://api.stackoverflow.com/0.8/users/22656/mentioned/?key=&sort=reputation&order=desc"), response =>
+            ClientAsync.WebClient.MakeRequest(new Uri("http://api.stackoverflow.com/0.9/users/22656/mentioned/?key=&sort=reputation&order=desc"), response =>
             {
                 waitHandle.Set();
             },

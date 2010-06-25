@@ -4,7 +4,7 @@ namespace Stacky.Silverlight.IntegrationTests
 {
     public abstract class IntegrationTest : SilverlightTest
     {
-        public static string Version = "0.8";
+        public static string Version = "0.9";
         public static string ApiKey = "LU9IfwI8IEScM3yYAjHimA";
         public static string BaseUrl = Sites.StackOverflow.ApiEndpoint;
         protected static Site hostSite = Sites.StackOverflow;

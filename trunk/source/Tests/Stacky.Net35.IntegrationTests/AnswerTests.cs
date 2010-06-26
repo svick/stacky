@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Stacky.IntegrationTests
+namespace Stacky.IntegrationTests.Net35
 {
     [TestClass]
     public class AnswerTests : IntegrationTest

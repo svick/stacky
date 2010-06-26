@@ -13,5 +13,7 @@ namespace Stacky
         public int? PageSize = null;
         public DateTime? FromDate = null;
         public DateTime? ToDate = null;
+        public int? Min = null;
+        public int? Max = null;
     }
 }

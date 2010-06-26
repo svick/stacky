@@ -125,5 +125,34 @@ namespace Stacky.Silverlight.IntegrationTests
                 EnqueueCallback(() => Assert.AreEqual(PostType.Answer, received.FirstOrDefault().PostType));
             }
         }
+
+        [TestMethod, Asynchronous]
+        public void GetAnswerComments()
+        {
+            using (var context = new AsynchronusTestContext(this))
+            {
+                IPagedList<Comment> received = null;
+                ApiException exception = null;
+
+                bool completed = false;
+                EnqueueCallback(() =>
+                {
+                    Client.GetAnswerComments(1330865, results =>
+                    {
+                        received = results;
+                        completed = true;
+                    },
+                    error =>
+                    {
+                        exception = error;
+                        completed = true;
+                    });
+                });
+                EnqueueConditional(() => completed);
+                EnqueueCallback(() => Assert.IsNull(exception));
+                EnqueueCallback(() => Assert.IsNotNull(received));
+                EnqueueCallback(() => Assert.AreEqual(PostType.Answer, received.FirstOrDefault().PostType));
+            }
+        }
     }
 }

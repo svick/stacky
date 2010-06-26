@@ -51,5 +51,12 @@ namespace Stacky.IntegrationTests
             Assert.IsNotNull(comments);
             Assert.AreEqual(PostType.Answer, comments.FirstOrDefault().PostType);
         }
+
+        [TestMethod]
+        public void GetAnswerComments()
+        {
+            var answers = Client.GetAnswerComments(1330865);
+            Assert.IsNotNull(answers);
+        }
     }
 }

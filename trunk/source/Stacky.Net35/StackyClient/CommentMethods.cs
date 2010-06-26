@@ -75,6 +75,38 @@ namespace Stacky
                 order = GetSortDirection(options.SortDirection),
             });
             return new PagedList<Comment>(response.Comments, response);
-        } 
+        }
+
+        public virtual IPagedList<Comment> GetAnswerComments(int answerId)
+        {
+            return GetAnswerComments(answerId, new CommentsByPostOptions());
+        }
+
+        public virtual IPagedList<Comment> GetAnswerComments(int answerId, CommentsByPostOptions options)
+        {
+            return GetAnswerComments(answerId.ToArray(), options);
+        }
+
+        public virtual IPagedList<Comment> GetAnswerComments(IEnumerable<int> answerIds)
+        {
+            return GetAnswerComments(answerIds, new CommentsByPostOptions());
+        }
+
+        public virtual IPagedList<Comment> GetAnswerComments(IEnumerable<int> answerIds, CommentsByPostOptions options)
+        {
+            var response = MakeRequest<CommentResponse>("answers", new string[] { answerIds.Vectorize(), "comments" }, new
+            {
+                key = apiKey,
+                page = options.Page ?? null,
+                pagesize = options.PageSize ?? null,
+                fromdate = options.FromDate.HasValue ? (long?)options.FromDate.Value.ToUnixTime() : null,
+                todate = options.ToDate.HasValue ? (long?)options.ToDate.Value.ToUnixTime() : null,
+                sort = options.SortBy.ToString().ToLower(),
+                order = GetSortDirection(options.SortDirection),
+                min = options.Min ?? null,
+                max = options.Max ?? null
+            });
+            return new PagedList<Comment>(response.Comments, response);
+        }
     }
 }

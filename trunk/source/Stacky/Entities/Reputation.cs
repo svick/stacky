@@ -15,7 +15,7 @@ namespace Stacky
         /// </summary>
         /// <value>The post id.</value>
         [JsonProperty("post_id")]
-        public long PostId { get; set; }
+        public int PostId { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="PostType">.

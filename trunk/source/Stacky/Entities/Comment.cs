@@ -15,7 +15,7 @@ namespace Stacky
         /// </summary>
         /// <value>The <see cref="Comment"/> id.</value>
         [JsonProperty("comment_id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Comment"/> body.

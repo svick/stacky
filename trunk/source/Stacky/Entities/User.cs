@@ -23,7 +23,7 @@ namespace Stacky
         /// </summary>
         /// <value>The user id.</value>
         [JsonProperty("user_id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="UserType"/>.

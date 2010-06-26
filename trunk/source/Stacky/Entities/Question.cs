@@ -26,7 +26,7 @@ namespace Stacky
         /// </summary>
         /// <value>The <see cref="Question"/> id.</value>
         [JsonProperty("question_id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Question"/> title.

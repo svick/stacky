@@ -15,14 +15,14 @@ namespace Stacky
         /// </summary>
         /// <value>The total questions.</value>
         [JsonProperty("total_questions")]
-        public long TotalQuestions { get; set; }
+        public int TotalQuestions { get; set; }
 
         /// <summary>
         /// Gets or sets the total unanswered questions.
         /// </summary>
         /// <value>The total unanswered questions.</value>
         [JsonProperty("total_unanswered")]
-        public long TotalUnanswered { get; set; }
+        public int TotalUnanswered { get; set; }
 
         /// <summary>
         /// Gets or sets the total answers.
@@ -36,28 +36,28 @@ namespace Stacky
         /// </summary>
         /// <value>The total comments.</value>
         [JsonProperty("total_comments")]
-        public long TotalComments { get; set; }
+        public int TotalComments { get; set; }
 
         /// <summary>
         /// Gets or sets the total votes.
         /// </summary>
         /// <value>The total votes.</value>
         [JsonProperty("total_votes")]
-        public long TotalVotes { get; set; }
+        public int TotalVotes { get; set; }
 
         /// <summary>
         /// Gets or sets the total badges.
         /// </summary>
         /// <value>The total badges.</value>
         [JsonProperty("total_badges")]
-        public long TotalBadges { get; set; }
+        public int TotalBadges { get; set; }
 
         /// <summary>
         /// Gets or sets the total users.
         /// </summary>
         /// <value>The total users.</value>
         [JsonProperty("total_users")]
-        public long TotalUsers { get; set; }
+        public int TotalUsers { get; set; }
 
         /// <summary>
         /// Gets or sets the questions per minute.

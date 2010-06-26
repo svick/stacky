@@ -72,5 +72,38 @@ namespace Stacky
         {
             return GetQuestionAnswers(questionId.ToArray(), options);
         }
+
+        public virtual Answer GetAnswer(int answerId)
+        {
+            return GetAnswer(answerId, new AnswerOptions());
+        }
+
+        public virtual Answer GetAnswer(int answerId, AnswerOptions options)
+        {
+            return GetAnswers(answerId.ToArray(), options).FirstOrDefault();
+        }
+
+        public virtual IPagedList<Answer> GetAnswers(IEnumerable<int> answerIds)
+        {
+            return GetAnswers(answerIds, new AnswerOptions());
+        }
+
+        public virtual IPagedList<Answer> GetAnswers(IEnumerable<int> answerIds, AnswerOptions options)
+        {
+            var response = MakeRequest<AnswerResponse>("answers", new string[] { answerIds.Vectorize() }, new
+            {
+                key = apiKey,
+                page = options.Page ?? null,
+                pagesize = options.PageSize ?? null,
+                body = options.IncludeBody ? (bool?)true : null,
+                sort = options.SortBy.ToString().ToLower(),
+                order = GetSortDirection(options.SortDirection),
+                min = options.Min ?? null,
+                max = options.Max ?? null,
+                fromdate = options.FromDate.HasValue ? (long?)options.FromDate.Value.ToUnixTime() : null,
+                todate = options.ToDate.HasValue ? (long?)options.ToDate.Value.ToUnixTime() : null
+            });
+            return new PagedList<Answer>(response.Answers, response);
+        }
     }
 }

@@ -48,6 +48,7 @@
     <Compile Include="..\Stacky.IntegrationTests\IntegrationTest.cs">
       <Link>IntegrationTest.cs</Link>
     </Compile>
+    <Compile Include="AnswerTests.cs" />
     <Compile Include="BadgeTests.cs" />
     <Compile Include="ClientTests.cs" />
     <Compile Include="CommentTests.cs" />

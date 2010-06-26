@@ -107,6 +107,9 @@
     <Compile Include="..\Stacky\Entities\UserInfo.cs">
       <Link>Entities\UserInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Enums\AnswerSort.cs">
+      <Link>Enums\AnswerSort.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Enums\BadgeClass.cs">
       <Link>Enums\BadgeClass.cs</Link>
     </Compile>

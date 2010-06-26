@@ -65,6 +65,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserEvent.cs" />
     <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Enums\AnswerSort.cs" />
     <Compile Include="Enums\BadgeClass.cs" />
     <Compile Include="Enums\CommentSort.cs" />
     <Compile Include="Enums\ErrorCode.cs" />

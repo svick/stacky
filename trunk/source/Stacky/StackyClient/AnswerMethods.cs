@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Stacky
 {
@@ -114,6 +115,29 @@ namespace Stacky
         public virtual IPagedList<Answer> GetQuestionAnswers(int questionId, QuestionsByUserSort sortBy = QuestionsByUserSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, int? min = null, int? max = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             return GetQuestionAnswers(questionId.ToArray(), sortBy, sortDirection, page, pageSize, includeBody, includeComments, min, max, fromDate, toDate);
+        }
+
+        public virtual Answer GetAnswer(int answerId, bool includeBody = true, bool includeComments = true)
+        {
+            return GetAnswers(answerId.ToArray(), includeBody: includeBody, includeComments : includeComments).FirstOrDefault();
+        }
+
+        public virtual IPagedList<Answer> GetAnswers(IEnumerable<int> answerIds, AnswerSort sortBy = AnswerSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null, bool includeBody = false, bool includeComments = false, int? min = null, int? max = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            var response = MakeRequest<AnswerResponse>("answers", new string[] { answerIds.Vectorize() }, new
+            {
+                key = apiKey,
+                page = page ?? null,
+                pagesize = pageSize ?? null,
+                body = includeBody ? (bool?)true : null,
+                sort = sortBy.ToString().ToLower(),
+                order = GetSortDirection(sortDirection),
+                min = min ?? null,
+                max = max ?? null,
+                fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
+            });
+            return new PagedList<Answer>(response.Answers, response);
         }
     }
 }

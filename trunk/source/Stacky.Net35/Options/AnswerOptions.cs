@@ -4,7 +4,7 @@ namespace Stacky
 {
     public class AnswerOptions
     {
-        public QuestionsByUserSort SortBy = QuestionsByUserSort.Creation;
+        public AnswerSort SortBy = AnswerSort.Creation;
         public SortDirection SortDirection = SortDirection.Descending;
         public int? Page = null;
         public int? PageSize = null;

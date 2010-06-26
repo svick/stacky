@@ -80,21 +80,22 @@ namespace Stacky
             return GetQuestions("questions", new string[] { questionId.ToString() }, null, null, null, null, includeBody ?? false, includeComments ?? false, null, null, null, null, null).FirstOrDefault();
         }
 
-        public virtual IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds)
+        public virtual IPagedList<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds)
         {
             return GetQuestionTimeline(questionIds, new QuestionTimelineOptions());
         }
 
-        public virtual IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, QuestionTimelineOptions options)
+        public virtual IPagedList<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, QuestionTimelineOptions options)
         {
-            return MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
+            var response = MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 page = options.Page ?? null,
                 pagesize = options.PageSize ?? null,
                 fromdate = options.FromDate.HasValue ? (long?)options.FromDate.Value.ToUnixTime() : null,
                 todate = options.ToDate.HasValue ? (long?)options.ToDate.Value.ToUnixTime() : null
-            }).Events;
+            });
+            return new PagedList<PostEvent>(response.Events, response);
         }
 
         public virtual IEnumerable<PostEvent> GetQuestionTimeline(int questionId)

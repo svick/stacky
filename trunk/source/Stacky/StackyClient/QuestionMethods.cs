@@ -65,19 +65,22 @@ namespace Stacky
             return GetQuestions(questionId.ToArray(), includeBody: includeBody, includeComments: includeComments).FirstOrDefault();
         }
 
-        public virtual IEnumerable<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
+            var response = MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }).Events;
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                page = page ?? null,
+                pagesize = pageSize ?? null
+            });
+            return new PagedList<PostEvent>(response.Events, response);
         }
 
-        public virtual IEnumerable<PostEvent> GetQuestionTimeline(int questionId, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<PostEvent> GetQuestionTimeline(int questionId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return GetQuestionTimeline(questionId.ToArray(), fromDate, toDate);
+            return GetQuestionTimeline(questionId.ToArray(), page, pageSize, fromDate, toDate);
         }
 
         public virtual IPagedList<Question> Search(string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)

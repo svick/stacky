@@ -61,19 +61,21 @@ namespace Stacky
             GetQuestions(questionId.ToArray(), returnedQuestions => onSuccess(returnedQuestions.FirstOrDefault()), onError, page, pageSize, includeBody, includeComments);
         }
 
-        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IEnumerable<PostEvent>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
                 key = apiKey,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
-                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null
-            }, (items) => onSuccess(items.Events), onError);
+                todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
+                page = page ?? null,
+                pagesize = pageSize ?? null
+            }, (items) => onSuccess(new PagedList<PostEvent>(items.Events, items)), onError);
         }
 
-        public void GetQuestionTimeline(int questionId, Action<IEnumerable<PostEvent>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            GetQuestionTimeline(questionId.ToArray(), onSuccess, onError, fromDate, toDate);
+            GetQuestionTimeline(questionId.ToArray(), onSuccess, onError, page, pageSize, fromDate, toDate);
         }
 
         public void Search(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError = null, string inTitle = null, IEnumerable<string> tagged = null, IEnumerable<string> notTagged = null, SearchSort sortBy = SearchSort.Activity, SortDirection sortDirection = SortDirection.Descending, int? page = null, int? pageSize = null)

@@ -82,12 +82,12 @@ namespace Stacky
             });
         }
 
-        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IEnumerable<PostEvent>> onSuccess, Action<ApiException> onError)
+        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionTimeline(questionIds, onSuccess, onError, new QuestionTimelineOptions());
         }
 
-        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IEnumerable<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
+        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
         {
             MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
@@ -96,15 +96,15 @@ namespace Stacky
                 pagesize = options.PageSize ?? null,
                 fromdate = options.FromDate.HasValue ? (long?)options.FromDate.Value.ToUnixTime() : null,
                 todate = options.ToDate.HasValue ? (long?)options.ToDate.Value.ToUnixTime() : null
-            }, (items) => onSuccess(items.Events), onError);
+            }, (items) => onSuccess(new PagedList<PostEvent>(items.Events, items)), onError);
         }
 
-        public void GetQuestionTimeline(int questionId, Action<IEnumerable<PostEvent>> onSuccess, Action<ApiException> onError)
+        public void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionTimeline(questionId, onSuccess, onError, new QuestionTimelineOptions());
         }
 
-        public void GetQuestionTimeline(int questionId, Action<IEnumerable<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
+        public void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
         {
             GetQuestionTimeline(questionId.ToArray(), onSuccess, onError, options);
         }

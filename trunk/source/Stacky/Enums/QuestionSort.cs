@@ -3,6 +3,7 @@
     /// <summary>
     /// Specifies the sort order for questions.
     /// </summary>
+    /// activity (default), votes, creation, featured, hot, week, or month
     public enum QuestionSort
     {
         /// <summary>
@@ -13,8 +14,8 @@
         /// <summary>
         /// Newest.
         /// </summary>
-        [SortArgs("newest")]
-        Newest,
+        [SortArgs("creation")]
+        Creation,
         /// <summary>
         /// Featured.
         /// </summary>
@@ -48,8 +49,8 @@
         /// <summary>
         /// Newest unanswered.
         /// </summary>
-        [SortArgs("newest", "unanswered")]
-        UnansweredNewest,
+        [SortArgs("creation", "unanswered")]
+        UnansweredCreation,
         /// <summary>
         /// Unanswered vote count.
         /// </summary>

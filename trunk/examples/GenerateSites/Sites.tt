@@ -1,0 +1,56 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Web" #>
+<#@ assembly name="C:\Code\Stacky\trunk\Binaries\Stacky\Newtonsoft.Json.dll" #>
+<#@ assembly name="C:\Code\Stacky\trunk\Binaries\Stacky\Stacky.dll" #>
+<#@ import namespace="Stacky" #>
+<#@ import namespace="System.Collections.Generic" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Stacky
+{
+    public static class Sites
+    {
+<#
+	UrlClient urlClient = new UrlClient();
+	JsonProtocol protocol = new JsonProtocol();
+	try
+	{
+		StackAuthClient client = new StackAuthClient(urlClient, protocol);
+		IEnumerable<Site> sites = client.GetSites();
+		foreach(var site in sites)
+		{
+#>
+		public static Site <#= site.Name.Replace(" ", "") #>
+        {
+            get
+            {
+                return new Site
+                {
+                    Name = "<#= site.Name #>",
+                    LogoUrl = "<#= site.LogoUrl #>",
+                    ApiEndpoint = "<#= site.ApiEndpoint #>",
+                    SiteUrl = "<#= site.SiteUrl #>",
+                    Description = "<#= site.Description #>",
+                    IconUrl = "<#= site.IconUrl #>"
+                };
+            }
+        }
+
+<#
+		}
+	}
+	catch(Exception e)
+	{
+#>
+<#= e.ToString() #>
+<#
+	}
+#>
+    }
+}

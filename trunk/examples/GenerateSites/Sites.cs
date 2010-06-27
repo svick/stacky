@@ -7,7 +7,7 @@ namespace Stacky
 {
     public static class Sites
     {
-        public static Site StackOverflow
+		public static Site StackOverflow
         {
             get
             {
@@ -23,7 +23,7 @@ namespace Stacky
             }
         }
 
-        public static Site ServerFault
+		public static Site ServerFault
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Stacky
             }
         }
 
-        public static Site SuperUser
+		public static Site SuperUser
         {
             get
             {
@@ -55,7 +55,7 @@ namespace Stacky
             }
         }
 
-        public static Site StackOverflowMeta
+		public static Site StackOverflowMeta
         {
             get
             {
@@ -71,7 +71,7 @@ namespace Stacky
             }
         }
 
-        public static Site StackApps
+		public static Site StackApps
         {
             get
             {

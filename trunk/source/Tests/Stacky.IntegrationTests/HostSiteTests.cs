@@ -62,6 +62,17 @@ namespace Stacky.IntegrationTests
         }
 
         [TestMethod]
+        public void GetSites_ContainsStyling()
+        {
+            var sites = AuthClient.GetSites();
+            Assert.IsNotNull(sites);
+            foreach (var site in sites)
+            {
+                Assert.IsNotNull(site.Styling);
+            }
+        }
+
+        [TestMethod]
         public void GetAssociatedUsers()
         {
             var users = AuthClient.GetAssociatedUsers(new Guid("05121a2b-3289-4965-a5f4-f26affeadc63"));

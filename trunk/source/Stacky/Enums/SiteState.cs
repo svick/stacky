@@ -8,8 +8,8 @@ namespace Stacky
     public enum SiteState
     {
         Normal,
-        ClosedBeta,
-        OpenBeta,
-        LinkedMeta
+        Closed_Beta,
+        Open_Beta,
+        Linked_Meta
     }
 }

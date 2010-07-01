@@ -18,7 +18,8 @@ namespace Stacky
                     ApiEndpoint = "http://api.stackoverflow.com",
                     SiteUrl = "http://stackoverflow.com",
                     Description = "Q&A for programmers",
-                    IconUrl = "http://sstatic.net/so/apple-touch-icon.png"
+                    IconUrl = "http://sstatic.net/so/apple-touch-icon.png",
+                    State = SiteState.Normal
                 };
             }
         }
@@ -34,7 +35,8 @@ namespace Stacky
                     ApiEndpoint = "http://api.serverfault.com",
                     SiteUrl = "http://serverfault.com",
                     Description = "Q&A for system administrators and IT professionals",
-                    IconUrl = "http://sstatic.net/sf/apple-touch-icon.png"
+                    IconUrl = "http://sstatic.net/sf/apple-touch-icon.png",
+                    State = SiteState.Normal
                 };
             }
         }
@@ -50,7 +52,8 @@ namespace Stacky
                     ApiEndpoint = "http://api.superuser.com",
                     SiteUrl = "http://superuser.com",
                     Description = "Q&A for computer enthusiasts and power users",
-                    IconUrl = "http://sstatic.net/su/apple-touch-icon.png"
+                    IconUrl = "http://sstatic.net/su/apple-touch-icon.png",
+                    State = SiteState.Normal
                 };
             }
         }
@@ -66,7 +69,42 @@ namespace Stacky
                     ApiEndpoint = "http://api.meta.stackoverflow.com",
                     SiteUrl = "http://meta.stackoverflow.com",
                     Description = "Q&A about Stack Overflow, Server Fault, and Super User",
-                    IconUrl = "http://sstatic.net/mso/apple-touch-icon.png"
+                    IconUrl = "http://sstatic.net/mso/apple-touch-icon.png",
+                    State = SiteState.Normal
+                };
+            }
+        }
+
+        public static Site WebApps
+        {
+            get
+            {
+                return new Site
+                {
+                    Name = "Web Apps",
+                    LogoUrl = "http://sstatic.net/webapps/img/logo.png",
+                    ApiEndpoint = "http://api.webapps.stackexchange.com",
+                    SiteUrl = "http://webapps.stackexchange.com",
+                    Description = "Q&A for web applications",
+                    IconUrl = "http://sstatic.net/webapps/apple-touch-icon.png",
+                    State = SiteState.Closed_Beta
+                };
+            }
+        }
+
+        public static Site WebAppsMeta
+        {
+            get
+            {
+                return new Site
+                {
+                    Name = "Web Apps Meta",
+                    LogoUrl = "http://sstatic.net/webappsmeta/img/logo.png",
+                    ApiEndpoint = "http://api.meta.webapps.stackexchange.com",
+                    SiteUrl = "http://meta.webapps.stackexchange.com",
+                    Description = "Q&A for web applications",
+                    IconUrl = "http://sstatic.net/webappsmeta/apple-touch-icon.png",
+                    State = SiteState.Linked_Meta
                 };
             }
         }
@@ -82,7 +120,8 @@ namespace Stacky
                     ApiEndpoint = "http://api.stackapps.com",
                     SiteUrl = "http://stackapps.com",
                     Description = "Q&A about development with the StackExchange API",
-                    IconUrl = "http://sstatic.net/sa/apple-touch-icon.png"
+                    IconUrl = "http://sstatic.net/sa/apple-touch-icon.png",
+                    State = SiteState.Normal
                 };
             }
         }

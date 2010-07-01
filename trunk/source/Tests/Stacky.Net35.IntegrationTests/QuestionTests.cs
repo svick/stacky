@@ -83,5 +83,15 @@ namespace Stacky.IntegrationTests.Net35
             Assert.IsNotNull(question.Migrated);
             Assert.IsNotNull(question.Migrated.ToSite);
         }
+
+        [TestMethod]
+        public void Bug4_GetQuestionTimeline()
+        {
+            IPagedList<Question> questions = Client.GetQuestionsByUser(16587);
+            var editedQuestionIds = from q in questions
+                                    select Convert.ToInt32(q.Id);
+            var events = Client.GetQuestionTimeline(editedQuestionIds); //line that causes problems
+            Assert.IsNotNull(events);
+        }
     }
 }

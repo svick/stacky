@@ -29,5 +29,20 @@ namespace Stacky
 
         [JsonProperty("aliases")]
         public string[] Aliases { get; set; }
+
+        [JsonProperty("styling")]
+        public SiteStyle Styling { get; set; }
+    }
+
+    public class SiteStyle
+    {
+        [JsonProperty("link_color")]
+        public string LinkColor { get; set; }
+
+        [JsonProperty("tag_foreground_color")]
+        public string TagForegroundColor { get; set; }
+
+        [JsonProperty("tag_background_color")]
+        public string TagBackgroundColor { get; set; }
     }
 }

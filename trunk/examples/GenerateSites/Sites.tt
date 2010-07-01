@@ -37,7 +37,8 @@ namespace Stacky
                     ApiEndpoint = "<#= site.ApiEndpoint #>",
                     SiteUrl = "<#= site.SiteUrl #>",
                     Description = "<#= site.Description #>",
-                    IconUrl = "<#= site.IconUrl #>"
+                    IconUrl = "<#= site.IconUrl #>",
+					State = SiteState.<#= site.State #>
                 };
             }
         }

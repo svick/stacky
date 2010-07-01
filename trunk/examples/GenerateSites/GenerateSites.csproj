@@ -58,12 +58,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\Stacky\Stacky.csproj">
-      <Project>{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}</Project>
-      <Name>Stacky</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Sites.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -72,6 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Stacky\Stacky.csproj">
+      <Project>{76872B7B-53CE-41E1-B41C-8F0BEC5455D4}</Project>
+      <Name>Stacky</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -48,12 +48,12 @@ namespace Stacky
 
         #endregion
 
-        public IEnumerable<Site> GetSites()
+        public virtual IEnumerable<Site> GetSites()
         {
             return MakeRequest<SitesResponse>("sites", null).Sites;
         }
 
-        public IEnumerable<AssociatedUser> GetAssociatedUsers(Guid associationId)
+        public virtual IEnumerable<AssociatedUser> GetAssociatedUsers(Guid associationId)
         {
             return MakeRequest<AssociatedUsersResponse>("users", new string[] { associationId.ToString(), "associated" }).Users;
         }

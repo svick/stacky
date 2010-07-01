@@ -83,6 +83,10 @@
     <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\Paging\PageEnumerator.cs" />
+    <Compile Include="Helpers\Paging\PagerInfo.cs" />
+    <Compile Include="Helpers\Paging\StackyEnumerable.cs" />
+    <Compile Include="Helpers\Paging\StackyEnumerator.cs" />
     <Compile Include="Helpers\Require.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Interfaces\IUrlClient.cs" />
     <Compile Include="Interfaces\IUrlClientAsync.cs" />
     <Compile Include="PagedList.cs" />
+    <Compile Include="Helpers\Paging\Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocols\JsonProtocol.cs" />
     <Compile Include="Protocols\JsonResponse.cs" />

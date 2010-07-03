@@ -80,8 +80,12 @@ namespace Stacky.UnitTests
                 return CreateList<Question>(info.CurrentPage, info.PageSize, 100);
             }, 5);
 
+            int count = 0;
             foreach (var item in enumerator)
             {
+                ++count;
+                if (count > 150)
+                    Assert.Fail();
             }
 
             Assert.AreEqual(20, numPageFetches);

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using HttpClient = System.Net.WebClient;
 using System.Net;
+#if WINDOWSPHONE
+using ICSharpCode.SharpZipLib.GZip;
+using System.IO;
+#endif
 #if !SILVERLIGHT
 using System.IO.Compression;
 using System.IO;
@@ -27,17 +31,20 @@ namespace Stacky
         public void MakeRequest(Uri url, Action<HttpResponse> onSuccess, Action<ApiException> onError)
         {
             var client = new HttpClient();
-
-            //TODO: Set the User Agent string to something useful
-            //client.Headers[HttpRequestHeader.UserAgent] = "";
+            //client.Headers[HttpRequestHeader.UserAgent] = "Stacky";
 #if !SILVERLIGHT
             client.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
             client.Encoding = Encoding.UTF8;
             client.DownloadDataCompleted += new DownloadDataCompletedEventHandler(client_DownloadDataCompleted);
             client.DownloadDataAsync(url, new RequestContext{Url = url, OnSuccess = onSuccess, OnError = onError});
 #else
+#if WINDOWSPHONE
+            client.OpenReadAsync(url, new RequestContext { Url = url, OnSuccess = onSuccess, OnError = onError });
+            client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
+#else
             client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(client_DownloadStringCompleted);
             client.DownloadStringAsync(url, new RequestContext{Url = url, OnSuccess = onSuccess, OnError = onError});
+#endif
 #endif
         }
 
@@ -100,6 +107,40 @@ namespace Stacky
                 while ((i = gzipStream.ReadByte()) != -1)
                     decompressed.Add((byte)i);
                 return Encoding.UTF8.GetString(decompressed.ToArray());
+            }
+        }
+#endif
+#if WINDOWSPHONE
+        void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+        {
+            string data;
+            using (var gzip = new GZipInputStream(e.Result))
+            using (var reader = new StreamReader(gzip))
+            {
+                data = reader.ReadToEnd();
+            }
+
+            RequestContext context = e.UserState as RequestContext;
+            WebClient client = sender as WebClient;
+
+            if (context != null)
+            {
+                var httpResponse = new HttpResponse
+                {
+                    Url = context.Url
+                };
+
+                if (e.Error != null)
+                {
+                    httpResponse.Error = e.Error;
+                    var webError = e.Error as WebException;
+                    if (context.OnError != null)
+                        context.OnError(new ApiException(e.Error, httpResponse.Url));
+                    return;
+                }
+
+                httpResponse.Body = data;
+                context.OnSuccess(httpResponse);
             }
         }
 #endif

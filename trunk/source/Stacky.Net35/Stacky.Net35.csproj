@@ -48,6 +48,9 @@
     <Compile Include="..\Stacky\Entities\Answer.cs">
       <Link>Entities\Answer.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Entities\ApiVersion.cs">
+      <Link>Entities\ApiVersion.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Entities\AssociatedUser.cs">
       <Link>Entities\AssociatedUser.cs</Link>
     </Compile>
@@ -59,6 +62,9 @@
     </Compile>
     <Compile Include="..\Stacky\Entities\Comment.cs">
       <Link>Entities\Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\Entity.cs">
+      <Link>Entities\Entity.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\Entities\MigrationInfo.cs">
       <Link>Entities\MigrationInfo.cs</Link>
@@ -83,6 +89,9 @@
     </Compile>
     <Compile Include="..\Stacky\Entities\SiteStats.cs">
       <Link>Entities\SiteStats.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Entities\SiteStyle.cs">
+      <Link>Entities\SiteStyle.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\Entities\Tag.cs">
       <Link>Entities\Tag.cs</Link>

@@ -48,10 +48,12 @@
   <ItemGroup>
     <Compile Include="ApiException.cs" />
     <Compile Include="Entities\Answer.cs" />
+    <Compile Include="Entities\ApiVersion.cs" />
     <Compile Include="Entities\AssociatedUser.cs" />
     <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\BadgeCounts.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\MigrationInfo.cs" />
     <Compile Include="Entities\PostEvent.cs" />
     <Compile Include="Entities\Question.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Entities\Revision.cs" />
     <Compile Include="Entities\Site.cs" />
     <Compile Include="Entities\SiteStats.cs" />
+    <Compile Include="Entities\SiteStyle.cs" />
     <Compile Include="Entities\SortArgsAttribute.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />

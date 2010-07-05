@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Stacky
 {
@@ -30,50 +29,50 @@ namespace Stacky
             }, (items) => onSuccess(new PagedList<Question>(items.Questions, items)), onError);
         }
 
-        public void GetQuestions(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestions(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
         {
             GetQuestions(onSuccess, onError, new QuestionOptions());
         }
 
-        public void GetQuestions(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, QuestionOptions options)
+        public virtual void GetQuestions(Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, QuestionOptions options)
         {
             var sortArgs = options.SortBy.GetAttribute<SortArgsAttribute>();
             GetQuestions(onSuccess, onError, "questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
-        public void GetQuestionsByUser(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestionsByUser(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionsByUser(userId, onSuccess, onError, new QuestionByUserOptions());
         }
 
-        public void GetQuestionsByUser(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, QuestionByUserOptions options)
+        public virtual void GetQuestionsByUser(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, QuestionByUserOptions options)
         {
             GetQuestions(onSuccess, onError, "users", new string[] { userId.ToString(), "questions" }, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
-        public void GetFavoriteQuestions(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
+        public virtual void GetFavoriteQuestions(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
         {
             GetFavoriteQuestions(userId, onSuccess, onError, new FavoriteQuestionOptions());
         }
 
-        public void GetFavoriteQuestions(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, FavoriteQuestionOptions options)
+        public virtual void GetFavoriteQuestions(int userId, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, FavoriteQuestionOptions options)
         {
             GetQuestions(onSuccess, onError, "users", new string[] { userId.ToString(), "favorites" }, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
-        public void GetQuestions(IEnumerable<int> questionIds, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestions(IEnumerable<int> questionIds, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError)
         {
             GetQuestions(questionIds, onSuccess, onError, new QuestionOptions());
         }
 
-        public void GetQuestions(IEnumerable<int> questionIds, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, QuestionOptions options)
+        public virtual void GetQuestions(IEnumerable<int> questionIds, Action<IPagedList<Question>> onSuccess, Action<ApiException> onError, QuestionOptions options)
         {
             var sortArgs = options.SortBy.GetAttribute<SortArgsAttribute>();
             string[] urlArgs = sortArgs.UrlArgs.Concat(new string[] { questionIds.Vectorize() }).ToArray();
             GetQuestions(onSuccess, onError, "questions", urlArgs, sortArgs.Sort, GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
-        public void GetQuestion(int questionId, Action<Question> onSuccess, Action<ApiException> onError, bool? includeBody, bool? includeComments)
+        public virtual void GetQuestion(int questionId, Action<Question> onSuccess, Action<ApiException> onError, bool? includeBody, bool? includeComments)
         {
             GetQuestions(questionId.ToArray(), returnedQuestions => onSuccess(returnedQuestions.FirstOrDefault()), onError, new QuestionOptions
             {
@@ -82,12 +81,12 @@ namespace Stacky
             });
         }
 
-        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionTimeline(questionIds, onSuccess, onError, new QuestionTimelineOptions());
         }
 
-        public void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
+        public virtual void GetQuestionTimeline(IEnumerable<int> questionIds, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
         {
             MakeRequest<QuestionTimelineResponse>("questions", new string[] { questionIds.Vectorize(), "timeline" }, new
             {
@@ -99,17 +98,17 @@ namespace Stacky
             }, (items) => onSuccess(new PagedList<PostEvent>(items.Events, items)), onError);
         }
 
-        public void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionTimeline(questionId, onSuccess, onError, new QuestionTimelineOptions());
         }
 
-        public void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
+        public virtual void GetQuestionTimeline(int questionId, Action<IPagedList<PostEvent>> onSuccess, Action<ApiException> onError, QuestionTimelineOptions options)
         {
             GetQuestionTimeline(questionId.ToArray(), onSuccess, onError, options);
         }
 
-        public void Search(Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError, QuestionSearchOptions options)
+        public virtual void Search(Action<IEnumerable<Question>> onSuccess, Action<ApiException> onError, QuestionSearchOptions options)
         {
             string taggedString = null;
             if (options.Tagged != null)

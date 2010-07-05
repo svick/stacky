@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Stacky
 {
@@ -11,12 +10,12 @@ namespace Stacky
     public partial class StackyClientAsync
 #endif
     {
-        public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError)
+        public virtual void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError)
         {
             GetRevisions(ids, onSuccess, onError, null, null);
         }
 
-        public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError, DateTime? fromDate, DateTime? toDate)
+        public virtual void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError, DateTime? fromDate, DateTime? toDate)
         {
             MakeRequest<RevisionResponse>("revisions", new string[] { ids.Vectorize() }, new
             {
@@ -26,17 +25,17 @@ namespace Stacky
             }, (items) => onSuccess(items.Revisions), onError);
         }
 
-        public void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError)
+        public virtual void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError)
         {
             GetRevisions(id, onSuccess, onError, null, null);
         }
 
-        public void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError, DateTime? fromDate, DateTime? toDate)
+        public virtual void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError, DateTime? fromDate, DateTime? toDate)
         {
             GetRevisions(id.ToArray(), onSuccess, onError, fromDate, toDate);
         }
 
-        public void GetRevision(int id, Guid revision, Action<Revision> onSuccess, Action<ApiException> onError)
+        public virtual void GetRevision(int id, Guid revision, Action<Revision> onSuccess, Action<ApiException> onError)
         {
             MakeRequest<RevisionResponse>("revisions", new string[] { id.ToString(), revision.ToString() }, new
             {

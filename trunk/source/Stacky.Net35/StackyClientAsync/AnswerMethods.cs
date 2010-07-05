@@ -9,42 +9,42 @@ namespace Stacky
     public partial class StackyClientAsync
 #endif
     {
-        public void GetUsersAnswers(int userId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
+        public virtual void GetUsersAnswers(int userId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
         {
             GetUsersAnswers(userId, onSuccess, onError, new AnswerOptions());
         }
 
-        public void GetUsersAnswers(int userId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
+        public virtual void GetUsersAnswers(int userId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
         {
             GetUsersAnswers(userId.ToArray(), onSuccess, onError, options);
         }
 
-        public void GetUsersAnswers(IEnumerable<int> userIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
+        public virtual void GetUsersAnswers(IEnumerable<int> userIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
         {
             GetUsersAnswers(userIds, onSuccess, onError, new AnswerOptions());
         }
 
-        public void GetUsersAnswers(IEnumerable<int> userIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
+        public virtual void GetUsersAnswers(IEnumerable<int> userIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
         {
             GetAnswers("users", new string[] { userIds.Vectorize(), "answers" }, onSuccess, onError, options);
         }
 
-        public void GetQuestionAnswers(int questionId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestionAnswers(int questionId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionAnswers(questionId, onSuccess, onError, new AnswerOptions());
         }
 
-        public void GetQuestionAnswers(int questionId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
+        public virtual void GetQuestionAnswers(int questionId, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
         {
             GetUsersAnswers(questionId.ToArray(), onSuccess, onError, options);
         }
 
-        public void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
+        public virtual void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError)
         {
             GetQuestionAnswers(questionIds, onSuccess, onError, new AnswerOptions());
         }
 
-        public void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
+        public virtual void GetQuestionAnswers(IEnumerable<int> questionIds, Action<IPagedList<Answer>> onSuccess, Action<ApiException> onError, AnswerOptions options)
         {
             GetAnswers("questions", new string[] { questionIds.Vectorize(), "answers" }, onSuccess, onError, options);
         }

@@ -9,7 +9,7 @@ namespace Stacky
     public partial class StackyClientAsync
 #endif
     {
-        public void GetComments(IEnumerable<int> fromUserIds, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual void GetComments(IEnumerable<int> fromUserIds, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             string[] urlParameters = null;
             if (toUserId.HasValue)
@@ -33,7 +33,7 @@ namespace Stacky
             }, (items) => onSuccess(new PagedList<Comment>(items.Comments, items)), onError);
         }
 
-        public void GetComments(int fromUserId, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual void GetComments(int fromUserId, Action<IPagedList<Comment>> onSuccess, Action<ApiException> onError = null, CommentSort sortBy = CommentSort.Creation, SortDirection sortDirection = SortDirection.Descending, int? toUserId = null, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             GetComments(fromUserId.ToArray(), onSuccess, onError, sortBy, sortDirection, toUserId, page, pageSize, fromDate, toDate);
         }

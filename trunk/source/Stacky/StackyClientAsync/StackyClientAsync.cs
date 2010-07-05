@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace Stacky
 {
@@ -60,13 +58,13 @@ namespace Stacky
 
         #region Methods
 
-        public void MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments, Action<T> onSuccess, Action<ApiException> onError)
+        public virtual void MakeRequest<T>(string method, string[] urlArguments, object queryStringArguments, Action<T> onSuccess, Action<ApiException> onError)
             where T : new()
         {
             MakeRequest<T>(method, urlArguments, UrlHelper.ObjectToDictionary(queryStringArguments), onSuccess, onError);
         }
 
-        public void MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> onSuccess, Action<ApiException> onError)
+        public virtual void MakeRequest<T>(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<T> onSuccess, Action<ApiException> onError)
              where T : new()
         {
             try
@@ -84,7 +82,7 @@ namespace Stacky
             }
         }
 
-        public void ParseResponse<T>(HttpResponse httpResponse, Action<T> onSuccess, Action<ApiException> onError)
+        public virtual void ParseResponse<T>(HttpResponse httpResponse, Action<T> onSuccess, Action<ApiException> onError)
             where T : new()
         {
             if (httpResponse.Error != null && String.IsNullOrEmpty(httpResponse.Body))
@@ -100,7 +98,7 @@ namespace Stacky
             onSuccess(response.Data);
         }
 
-        public void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> onSuccess, Action<ApiException> onError)
+        public virtual void GetResponse(string method, string[] urlArguments, Dictionary<string, string> queryStringArguments, Action<HttpResponse> onSuccess, Action<ApiException> onError)
         {
             Uri url = UrlHelper.BuildUrl(method, version, BaseUrl, urlArguments, queryStringArguments);
             WebClient.MakeRequest(url, onSuccess, onError);
@@ -112,6 +110,5 @@ namespace Stacky
         }
 
         #endregion
-
     }
 }

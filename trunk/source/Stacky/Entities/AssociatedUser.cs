@@ -1,47 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace Stacky
 {
-    public class AssociatedUser
+    public class AssociatedUser : Entity
     {
+        private int id;
+        private UserType type;
+        private string displayName;
+        private int reputation;
+        private string emailHash;
+        private Site site;
+
         /// <summary>
         /// Gets or sets the user id.
         /// </summary>
         /// <value>The user id.</value>
         [JsonProperty("user_id")]
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; OnPropertyChanged("Id"); }
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="UserType"/>.
         /// </summary>
         /// <value>The <see cref="UserType"/>.</value>
         [JsonProperty("user_type"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public UserType Type { get; set; }
+        public UserType Type
+        {
+            get { return type; }
+            set { type = value; OnPropertyChanged("Type"); }
+        }
 
         /// <summary>
         /// Gets or sets the display name.
         /// </summary>
         /// <value>The display name.</value>
         [JsonProperty("display_name")]
-        public string DisplayName { get; set; }
+        public string DisplayName
+        {
+            get { return displayName; }
+            set { displayName = value; OnPropertyChanged("DisplayName"); }
+        }
 
         /// <summary>
         /// Gets or sets the reputation.
         /// </summary>
         /// <value>The reputation.</value>
         [JsonProperty("reputation")]
-        public int Reputation { get; set; }
+        public int Reputation
+        {
+            get { return reputation; }
+            set { reputation = value; OnPropertyChanged("Reputation"); }
+        }
 
         /// <summary>
         /// Gets or sets the email hash.
         /// </summary>
         /// <value>The email hash.</value>
         [JsonProperty("email_hash")]
-        public string EmailHash { get; set; }
+        public string EmailHash
+        {
+            get { return emailHash; }
+            set { emailHash = value; OnPropertyChanged("EmailHash"); OnPropertyChanged("GravatarUrl"); }
+        }
 
         /// <summary>
         /// Gets the gravatar URL.
@@ -50,6 +74,10 @@ namespace Stacky
         public string GravatarUrl { get { return String.Format("http://www.gravatar.com/avatar/{0}?d=identicon&r=PG", EmailHash); } }
 
         [JsonProperty("on_site")]
-        public Site Site { get; set; }
+        public Site Site
+        {
+            get { return site; }
+            set { site = value; OnPropertyChanged("Site"); }
+        }
     }
 }

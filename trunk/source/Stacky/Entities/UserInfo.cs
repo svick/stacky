@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace Stacky
@@ -9,42 +6,68 @@ namespace Stacky
     /// <summary>
     /// Represents user information.
     /// </summary>
-    public class UserInfo
+    public class UserInfo : Entity
     {
+        private int? userId;
+        private UserType type;
+        private string displayName;
+        private int? reputation;
+        private string emailHash;
+
         /// <summary>
         /// Gets or sets the user id.
         /// </summary>
         /// <value>The user id.</value>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public int? UserId
+        {
+            get { return userId; }
+            set { userId = value; OnPropertyChanged("UserId"); }
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="UserType"/>.
         /// </summary>
         /// <value>The <see cref="UserType"/>.</value>
         [JsonProperty("user_type"), JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public UserType Type { get; set; }
+        public UserType Type
+        {
+            get { return type; }
+            set { type = value; OnPropertyChanged("Type"); }
+        }
 
         /// <summary>
         /// Gets or sets the display name.
         /// </summary>
         /// <value>The display name.</value>
         [JsonProperty("display_name")]
-        public string DisplayName { get; set; }
+        public string DisplayName
+        {
+            get { return displayName; }
+            set { displayName = value; OnPropertyChanged("DisplayName"); }
+        }
 
         /// <summary>
         /// Gets or sets the reputation.
         /// </summary>
         /// <value>The reputation.</value>
         [JsonProperty("reputation")]
-        public int? Reputation { get; set; }
+        public int? Reputation
+        {
+            get { return reputation; }
+            set { reputation = value; OnPropertyChanged("Reputation"); }
+        }
 
         /// <summary>
         /// Gets or sets the email hash.
         /// </summary>
         /// <value>The email hash.</value>
         [JsonProperty("email_hash")]
-        public string EmailHash { get; set; }
+        public string EmailHash
+        {
+            get { return emailHash; }
+            set { emailHash = value; OnPropertyChanged("EmailHash"); OnPropertyChanged("GravatarUrl"); }
+        }
 
         /// <summary>
         /// Gets the gravatar URL.

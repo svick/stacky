@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Stacky
@@ -10,7 +9,7 @@ namespace Stacky
     public partial class StackyClientAsync
 #endif
     {
-        public void GetSiteStats(Action<SiteStats> onSuccess, Action<ApiException> onError)
+        public virtual void GetSiteStats(Action<SiteStats> onSuccess, Action<ApiException> onError)
         {
             MakeRequest<StatsResponse>("stats", null, new
             {

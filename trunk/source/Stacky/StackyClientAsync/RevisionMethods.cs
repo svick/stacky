@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Stacky
 {
@@ -11,7 +10,7 @@ namespace Stacky
     public partial class StackyClientAsync
 #endif
     {
-        public void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual void GetRevisions(IEnumerable<int> ids, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             MakeRequest<RevisionResponse>("revisions", new string[] { ids.Vectorize() }, new
             {
@@ -21,12 +20,12 @@ namespace Stacky
             }, (items) => onSuccess(items.Revisions), onError);
         }
 
-        public void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual void GetRevisions(int id, Action<IEnumerable<Revision>> onSuccess, Action<ApiException> onError = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             GetRevisions(id.ToArray(), onSuccess, onError, fromDate, toDate);
         }
 
-        public void GetRevision(int id, Guid revision, Action<Revision> onSuccess, Action<ApiException> onError = null)
+        public virtual void GetRevision(int id, Guid revision, Action<Revision> onSuccess, Action<ApiException> onError = null)
         {
             MakeRequest<RevisionResponse>("revisions", new string[] { id.ToString(), revision.ToString() }, new
             {

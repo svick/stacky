@@ -25,32 +25,32 @@ namespace Stacky
             }, (items) => onSuccess(new PagedList<Tag>(items.Tags, items)), onError);
         }
 
-        public void GetTags(Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError)
+        public virtual void GetTags(Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError)
         {
             GetTags(onSuccess, onError, new TagOptions());
         }
 
-        public void GetTags(Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError, TagOptions options)
+        public virtual void GetTags(Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError, TagOptions options)
         {
             GetTags(onSuccess, onError, "tags", null, options.Filter, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.FromDate, options.ToDate, options.Min, options.Max);
         }
 
-        public void GetTagsByUser(int userId, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError)
+        public virtual void GetTagsByUser(int userId, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError)
         {
             GetTagsByUser(userId, onSuccess, onError, new TagOptions());
         }
 
-        public void GetTagsByUser(int userId, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError, TagOptions options)
+        public virtual void GetTagsByUser(int userId, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError, TagOptions options)
         {
             GetTagsByUser(userId.ToArray(), onSuccess, onError, options);
         }
 
-        public void GetTagsByUser(IEnumerable<int> userIds, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError)
+        public virtual void GetTagsByUser(IEnumerable<int> userIds, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError)
         {
             GetTagsByUser(userIds, onSuccess, onError, new TagOptions());
         }
 
-        public void GetTagsByUser(IEnumerable<int> userIds, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError, TagOptions options)
+        public virtual void GetTagsByUser(IEnumerable<int> userIds, Action<IPagedList<Tag>> onSuccess, Action<ApiException> onError, TagOptions options)
         {
             GetTags(onSuccess, onError, "users", new string[] { userIds.Vectorize(), "tags" }, options.Filter, options.SortBy.ToString(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.FromDate, options.ToDate, options.Min, options.Max);
         }

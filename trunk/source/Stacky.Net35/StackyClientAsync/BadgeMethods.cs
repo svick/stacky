@@ -9,7 +9,7 @@ namespace Stacky
     public partial class StackyClientAsync
 #endif
     {
-        public void GetBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError)
+        public virtual void GetBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError)
         {
             GetBadges(onSuccess, onError, "badges", null);
         }
@@ -22,22 +22,22 @@ namespace Stacky
             }, (items) => onSuccess(items.Badges), onError);
         }
 
-        public void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError)
+        public virtual void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError)
         {
             GetUsersByBadge(userId, onSuccess, onError, new BadgeByUserOptions());
         }
 
-        public void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError, BadgeByUserOptions options)
+        public virtual void GetUsersByBadge(int userId, Action<IPagedList<User>> onSuccess, Action<ApiException> onError, BadgeByUserOptions options)
         {
             GetUsersByBadge(userId.ToArray(), onSuccess, onError, options);
         }
 
-        public void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError)
+        public virtual void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError)
         {
             GetUsersByBadge(userIds, onSuccess, onError, new BadgeByUserOptions());
         }
 
-        public void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError, BadgeByUserOptions options)
+        public virtual void GetUsersByBadge(IEnumerable<int> userIds, Action<IPagedList<User>> onSuccess, Action<ApiException> onError, BadgeByUserOptions options)
         {
             MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize(), "badges" }, new
             {
@@ -49,7 +49,7 @@ namespace Stacky
             }, (items) => onSuccess(new PagedList<User>(items.Users, items)), onError);
         }
 
-        public void GetTagBasedBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError)
+        public virtual void GetTagBasedBadges(Action<IEnumerable<Badge>> onSuccess, Action<ApiException> onError)
         {
             GetBadges(onSuccess, onError, "badges", new string[] { "tags" });
         }

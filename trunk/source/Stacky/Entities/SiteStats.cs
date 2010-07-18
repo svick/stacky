@@ -9,6 +9,7 @@ namespace Stacky
     {
         private int totalQuestions;
         private int totalUnanswered;
+        private int totalAccepted;
         private int totalAnswers;
         private int totalComments;
         private int totalVotes;
@@ -17,6 +18,7 @@ namespace Stacky
         private double questionsPerMinute;
         private double answersPerMinute;
         private double badgesPerMinute;
+        private double viewsPerDay;
         private ApiVersion apiVersion;
         private Site site;
 
@@ -40,6 +42,16 @@ namespace Stacky
         {
             get { return totalUnanswered; }
             set { totalUnanswered = value; OnPropertyChanged("TotalUnanswered"); }
+        }
+
+        /// <summary>
+        /// Gets or sets the count of questions with accept answers, or equivalently count of answers accepted.
+        /// </summary>
+        [JsonProperty("total_accepted")]
+        public int TotalAccepted
+        {
+            get { return totalAccepted; }
+            set { totalAccepted = value; OnPropertyChanged("TotalAccepted"); }
         }
 
         /// <summary>
@@ -128,6 +140,16 @@ namespace Stacky
         {
             get { return badgesPerMinute; }
             set { badgesPerMinute = value; OnPropertyChanged("BadgesPerMinute"); }
+        }
+
+        /// <summary>
+        /// Gets or sets the average views per day on all questions.
+        /// </summary>
+        [JsonProperty("views_per_day")]
+        public double ViewsPerDay
+        {
+            get { return viewsPerDay; }
+            set { viewsPerDay = value; OnPropertyChanged("ViewsPerDay"); }
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace Stacky.UnitTests
     public class UrlHelperTests
     {
         public TestContext TestContext { get; set; }
-        private static string version = "0.9";
+        private static string version = "1.0";
 
         #region BuildUrl
 

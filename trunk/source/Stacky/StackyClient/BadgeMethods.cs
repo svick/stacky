@@ -18,14 +18,14 @@ namespace Stacky
             }).Badges;
         }
 
-        public virtual IEnumerable<User> GetUsersByBadge(int userId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IEnumerable<User> GetUsersByBadge(int badgeId, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            return GetUsersByBadge(userId.ToArray(), page, pageSize, fromDate, toDate);
+            return GetUsersByBadge(badgeId.ToArray(), page, pageSize, fromDate, toDate);
         }
 
-        public virtual IPagedList<User> GetUsersByBadge(IEnumerable<int> userIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
+        public virtual IPagedList<User> GetUsersByBadge(IEnumerable<int> badgeIds, int? page = null, int? pageSize = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
-            var response = MakeRequest<UserResponse>("badges", new string[] { userIds.Vectorize() }, new
+            var response = MakeRequest<UserResponse>("badges", new string[] { badgeIds.Vectorize() }, new
             {
                 key = apiKey,
                 page = page ?? null,

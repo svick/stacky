@@ -16,5 +16,13 @@ namespace Stacky.IntegrationTests
             Assert.IsNotNull(stats);
             Assert.IsNotNull(stats.Site);
         }
+
+        [TestMethod]
+        public void ContainsViewsPerDay()
+        {
+            var stats = Client.GetSiteStats();
+            Assert.IsNotNull(stats);
+            Assert.IsTrue(stats.ViewsPerDay > 0);
+        }
     }
 }

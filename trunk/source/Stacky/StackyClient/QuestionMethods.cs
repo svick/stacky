@@ -34,7 +34,7 @@ namespace Stacky
                 comments = includeComments ? (bool?)true : null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
-                tagged = tags == null ? (string)null : String.Join(" ", tags),
+                tagged = tags == null ? (string)null : String.Join(";", tags),
                 sort = sort,
                 order = sortDirection,
                 min = min ?? null,
@@ -87,11 +87,11 @@ namespace Stacky
         {
             string taggedString = null;
             if (tagged != null)
-                taggedString = String.Join(" ", tagged);
+                taggedString = String.Join(";", tagged);
 
             string notTaggedString = null;
             if (notTagged != null)
-                notTaggedString = String.Join(" ", notTagged);
+                notTaggedString = String.Join(";", notTagged);
 
             var response = MakeRequest<QuestionResponse>("search", null, new
             {

@@ -14,7 +14,9 @@ namespace GenerateSites
             var sites = client.GetSites();
             foreach (var site in sites)
             {
+                Console.WriteLine(site.Name);
             }
+            Console.ReadLine();
         }
     }
 }

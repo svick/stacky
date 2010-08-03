@@ -41,7 +41,7 @@ namespace Stacky.IntegrationTests
         [TestMethod]
         public void Meta()
         {
-            var client = GetClient(Sites.StackOverflowMeta);
+            var client = GetClient(Sites.MetaStackOverflow);
             var questions = client.GetQuestions();
             Assert.IsNotNull(questions);
         }

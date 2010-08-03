@@ -47,11 +47,11 @@ namespace Stacky.IntegrationTests.Net35
         [TestMethod]
         public void Meta()
         {
-            var client = GetClient(Sites.StackOverflowMeta);
+            var client = GetClient(Sites.MetaStackOverflow);
             var stats = client.GetSiteStats();
             Assert.IsNotNull(stats);
             Assert.IsNotNull(stats.Site);
-            Assert.AreEqual("Stack Overflow Meta", stats.Site.Name);
+            Assert.AreEqual("Meta Stack Overflow", stats.Site.Name);
         }
 
         [TestMethod]

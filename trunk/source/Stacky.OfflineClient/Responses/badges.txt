@@ -1,0 +1,2039 @@
+http://api.stackoverflow.com/1.0/badges/?<key>=*
+{
+  "badges": [
+    {
+      "badge_id": 204,
+      "rank": "silver",
+      "name": ".htaccess",
+      "description": "Earned 400 upvotes for answers in the .htaccess tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/204"
+    },
+    {
+      "badge_id": 41,
+      "rank": "silver",
+      "name": ".net",
+      "description": "Earned 400 upvotes for answers in the .net tag",
+      "award_count": 55,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/41"
+    },
+    {
+      "badge_id": 43,
+      "rank": "gold",
+      "name": ".net",
+      "description": "Earned 1000 upvotes for answers in the .net tag",
+      "award_count": 14,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/43"
+    },
+    {
+      "badge_id": 185,
+      "rank": "silver",
+      "name": ".net-3.5",
+      "description": "Earned 400 upvotes for answers in the .net-3.5 tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/185"
+    },
+    {
+      "badge_id": 234,
+      "rank": "gold",
+      "name": "algorithm",
+      "description": "Earned 1000 upvotes for answers in the algorithm tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/234"
+    },
+    {
+      "badge_id": 140,
+      "rank": "silver",
+      "name": "algorithm",
+      "description": "Earned 400 upvotes for answers in the algorithm tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/140"
+    },
+    {
+      "badge_id": 222,
+      "rank": "bronze",
+      "name": "Altruist",
+      "description": "First bounty you manually awarded on another person's question",
+      "award_count": 50,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/222"
+    },
+    {
+      "badge_id": 178,
+      "rank": "gold",
+      "name": "android",
+      "description": "Earned 1000 upvotes for answers in the android tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/178"
+    },
+    {
+      "badge_id": 151,
+      "rank": "silver",
+      "name": "android",
+      "description": "Earned 400 upvotes for answers in the android tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/151"
+    },
+    {
+      "badge_id": 117,
+      "rank": "silver",
+      "name": "arrays",
+      "description": "Earned 400 upvotes for answers in the arrays tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/117"
+    },
+    {
+      "badge_id": 64,
+      "rank": "silver",
+      "name": "asp.net",
+      "description": "Earned 400 upvotes for answers in the asp.net tag",
+      "award_count": 18,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/64"
+    },
+    {
+      "badge_id": 193,
+      "rank": "gold",
+      "name": "asp.net",
+      "description": "Earned 1000 upvotes for answers in the asp.net tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/193"
+    },
+    {
+      "badge_id": 66,
+      "rank": "silver",
+      "name": "asp.net-mvc",
+      "description": "Earned 400 upvotes for answers in the asp.net-mvc tag",
+      "award_count": 7,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/66"
+    },
+    {
+      "badge_id": 126,
+      "rank": "gold",
+      "name": "asp.net-mvc",
+      "description": "Earned 1000 upvotes for answers in the asp.net-mvc tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/126"
+    },
+    {
+      "badge_id": 9,
+      "rank": "bronze",
+      "name": "Autobiographer",
+      "description": "Completed all user profile fields",
+      "award_count": 31221,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/9"
+    },
+    {
+      "badge_id": 184,
+      "rank": "silver",
+      "name": "bash",
+      "description": "Earned 400 upvotes for answers in the bash tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/184"
+    },
+    {
+      "badge_id": 202,
+      "rank": "gold",
+      "name": "beginner",
+      "description": "Earned 1000 upvotes for answers in the beginner tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/202"
+    },
+    {
+      "badge_id": 121,
+      "rank": "silver",
+      "name": "beginner",
+      "description": "Earned 400 upvotes for answers in the beginner tag",
+      "award_count": 5,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/121"
+    },
+    {
+      "badge_id": 221,
+      "rank": "bronze",
+      "name": "Benefactor",
+      "description": "First bounty you manually awarded on your own question",
+      "award_count": 3357,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/221"
+    },
+    {
+      "badge_id": 107,
+      "rank": "gold",
+      "name": "best-practices",
+      "description": "Earned 1000 upvotes for answers in the best-practices tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/107"
+    },
+    {
+      "badge_id": 57,
+      "rank": "silver",
+      "name": "best-practices",
+      "description": "Earned 400 upvotes for answers in the best-practices tag",
+      "award_count": 10,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/57"
+    },
+    {
+      "badge_id": 30,
+      "rank": "silver",
+      "name": "Beta",
+      "description": "Actively participated in the Stack Overflow private beta",
+      "award_count": 2600,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/30"
+    },
+    {
+      "badge_id": 231,
+      "rank": "silver",
+      "name": "big-o",
+      "description": "Earned 400 upvotes for answers in the big-o tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/231"
+    },
+    {
+      "badge_id": 190,
+      "rank": "silver",
+      "name": "blackberry",
+      "description": "Earned 400 upvotes for answers in the blackberry tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/190"
+    },
+    {
+      "badge_id": 52,
+      "rank": "silver",
+      "name": "c",
+      "description": "Earned 400 upvotes for answers in the c tag",
+      "award_count": 46,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/52"
+    },
+    {
+      "badge_id": 96,
+      "rank": "gold",
+      "name": "c",
+      "description": "Earned 1000 upvotes for answers in the c tag",
+      "award_count": 13,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/96"
+    },
+    {
+      "badge_id": 39,
+      "rank": "silver",
+      "name": "c#",
+      "description": "Earned 400 upvotes for answers in the c# tag",
+      "award_count": 157,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/39"
+    },
+    {
+      "badge_id": 40,
+      "rank": "gold",
+      "name": "c#",
+      "description": "Earned 1000 upvotes for answers in the c# tag",
+      "award_count": 46,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/40"
+    },
+    {
+      "badge_id": 197,
+      "rank": "silver",
+      "name": "c#3.0",
+      "description": "Earned 400 upvotes for answers in the c#3.0 tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/197"
+    },
+    {
+      "badge_id": 48,
+      "rank": "silver",
+      "name": "c++",
+      "description": "Earned 400 upvotes for answers in the c++ tag",
+      "award_count": 114,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/48"
+    },
+    {
+      "badge_id": 49,
+      "rank": "gold",
+      "name": "c++",
+      "description": "Earned 1000 upvotes for answers in the c++ tag",
+      "award_count": 36,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/49"
+    },
+    {
+      "badge_id": 89,
+      "rank": "silver",
+      "name": "career-development",
+      "description": "Earned 400 upvotes for answers in the career-development tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/89"
+    },
+    {
+      "badge_id": 175,
+      "rank": "silver",
+      "name": "casting",
+      "description": "Earned 400 upvotes for answers in the casting tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/175"
+    },
+    {
+      "badge_id": 8,
+      "rank": "bronze",
+      "name": "Citizen Patrol",
+      "description": "First flagged post",
+      "award_count": 6364,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/8"
+    },
+    {
+      "badge_id": 32,
+      "rank": "silver",
+      "name": "Civic Duty",
+      "description": "Voted 300 or more times",
+      "award_count": 5218,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/32"
+    },
+    {
+      "badge_id": 4,
+      "rank": "bronze",
+      "name": "Cleanup",
+      "description": "First rollback",
+      "award_count": 4227,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/4"
+    },
+    {
+      "badge_id": 148,
+      "rank": "silver",
+      "name": "clojure",
+      "description": "Earned 400 upvotes for answers in the clojure tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/148"
+    },
+    {
+      "badge_id": 199,
+      "rank": "silver",
+      "name": "clr",
+      "description": "Earned 400 upvotes for answers in the clr tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/199"
+    },
+    {
+      "badge_id": 113,
+      "rank": "gold",
+      "name": "cocoa",
+      "description": "Earned 1000 upvotes for answers in the cocoa tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/113"
+    },
+    {
+      "badge_id": 69,
+      "rank": "silver",
+      "name": "cocoa",
+      "description": "Earned 400 upvotes for answers in the cocoa tag",
+      "award_count": 7,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/69"
+    },
+    {
+      "badge_id": 115,
+      "rank": "silver",
+      "name": "cocoa-touch",
+      "description": "Earned 400 upvotes for answers in the cocoa-touch tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/115"
+    },
+    {
+      "badge_id": 228,
+      "rank": "silver",
+      "name": "coding-style",
+      "description": "Earned 400 upvotes for answers in the coding-style tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/228"
+    },
+    {
+      "badge_id": 150,
+      "rank": "silver",
+      "name": "collections",
+      "description": "Earned 400 upvotes for answers in the collections tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/150"
+    },
+    {
+      "badge_id": 31,
+      "rank": "bronze",
+      "name": "Commentator",
+      "description": "Left 10 comments",
+      "award_count": 36205,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/31"
+    },
+    {
+      "badge_id": 235,
+      "rank": "silver",
+      "name": "common-lisp",
+      "description": "Earned 400 upvotes for answers in the common-lisp tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/235"
+    },
+    {
+      "badge_id": 131,
+      "rank": "silver",
+      "name": "compact-framework",
+      "description": "Earned 400 upvotes for answers in the compact-framework tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/131"
+    },
+    {
+      "badge_id": 230,
+      "rank": "silver",
+      "name": "complexity",
+      "description": "Earned 400 upvotes for answers in the complexity tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/230"
+    },
+    {
+      "badge_id": 229,
+      "rank": "silver",
+      "name": "computer-science",
+      "description": "Earned 400 upvotes for answers in the computer-science tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/229"
+    },
+    {
+      "badge_id": 223,
+      "rank": "gold",
+      "name": "Copy Editor",
+      "description": "Edited 600 entries",
+      "award_count": 65,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/223"
+    },
+    {
+      "badge_id": 7,
+      "rank": "bronze",
+      "name": "Critic",
+      "description": "First down vote",
+      "award_count": 28018,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/7"
+    },
+    {
+      "badge_id": 116,
+      "rank": "silver",
+      "name": "css",
+      "description": "Earned 400 upvotes for answers in the css tag",
+      "award_count": 7,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/116"
+    },
+    {
+      "badge_id": 124,
+      "rank": "silver",
+      "name": "database",
+      "description": "Earned 400 upvotes for answers in the database tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/124"
+    },
+    {
+      "badge_id": 192,
+      "rank": "silver",
+      "name": "datetime",
+      "description": "Earned 400 upvotes for answers in the datetime tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/192"
+    },
+    {
+      "badge_id": 120,
+      "rank": "silver",
+      "name": "delegates",
+      "description": "Earned 400 upvotes for answers in the delegates tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/120"
+    },
+    {
+      "badge_id": 122,
+      "rank": "gold",
+      "name": "delphi",
+      "description": "Earned 1000 upvotes for answers in the delphi tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/122"
+    },
+    {
+      "badge_id": 65,
+      "rank": "silver",
+      "name": "delphi",
+      "description": "Earned 400 upvotes for answers in the delphi tag",
+      "award_count": 16,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/65"
+    },
+    {
+      "badge_id": 236,
+      "rank": "silver",
+      "name": "dependency-injection",
+      "description": "Earned 400 upvotes for answers in the dependency-injection tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/236"
+    },
+    {
+      "badge_id": 196,
+      "rank": "silver",
+      "name": "dictionary",
+      "description": "Earned 400 upvotes for answers in the dictionary tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/196"
+    },
+    {
+      "badge_id": 37,
+      "rank": "bronze",
+      "name": "Disciplined",
+      "description": "Deleted own post with score of 3 or higher",
+      "award_count": 1803,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/37"
+    },
+    {
+      "badge_id": 73,
+      "rank": "silver",
+      "name": "django",
+      "description": "Earned 400 upvotes for answers in the django tag",
+      "award_count": 6,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/73"
+    },
+    {
+      "badge_id": 182,
+      "rank": "gold",
+      "name": "django",
+      "description": "Earned 1000 upvotes for answers in the django tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/182"
+    },
+    {
+      "badge_id": 156,
+      "rank": "gold",
+      "name": "eclipse",
+      "description": "Earned 1000 upvotes for answers in the eclipse tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/156"
+    },
+    {
+      "badge_id": 75,
+      "rank": "silver",
+      "name": "eclipse",
+      "description": "Earned 400 upvotes for answers in the eclipse tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/75"
+    },
+    {
+      "badge_id": 3,
+      "rank": "bronze",
+      "name": "Editor",
+      "description": "First edit",
+      "award_count": 74252,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/3"
+    },
+    {
+      "badge_id": 155,
+      "rank": "gold",
+      "name": "Electorate",
+      "description": "Voted on 600 questions and 25% or more of total votes are on questions",
+      "award_count": 386,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/155"
+    },
+    {
+      "badge_id": 99,
+      "rank": "silver",
+      "name": "emacs",
+      "description": "Earned 400 upvotes for answers in the emacs tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/99"
+    },
+    {
+      "badge_id": 181,
+      "rank": "gold",
+      "name": "emacs",
+      "description": "Earned 1000 upvotes for answers in the emacs tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/181"
+    },
+    {
+      "badge_id": 19,
+      "rank": "silver",
+      "name": "Enlightened",
+      "description": "First answer was accepted with score of 10 or more",
+      "award_count": 13225,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/19"
+    },
+    {
+      "badge_id": 71,
+      "rank": "silver",
+      "name": "Enthusiast",
+      "description": "Visited the site each day for 30 consecutive days",
+      "award_count": 7860,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/71"
+    },
+    {
+      "badge_id": 171,
+      "rank": "silver",
+      "name": "entity-framework",
+      "description": "Earned 400 upvotes for answers in the entity-framework tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/171"
+    },
+    {
+      "badge_id": 180,
+      "rank": "silver",
+      "name": "enums",
+      "description": "Earned 400 upvotes for answers in the enums tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/180"
+    },
+    {
+      "badge_id": 145,
+      "rank": "silver",
+      "name": "Epic",
+      "description": "Hit the daily reputation cap on 50 days",
+      "award_count": 95,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/145"
+    },
+    {
+      "badge_id": 195,
+      "rank": "silver",
+      "name": "events",
+      "description": "Earned 400 upvotes for answers in the events tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/195"
+    },
+    {
+      "badge_id": 137,
+      "rank": "silver",
+      "name": "exception",
+      "description": "Earned 400 upvotes for answers in the exception tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/137"
+    },
+    {
+      "badge_id": 214,
+      "rank": "silver",
+      "name": "extension-methods",
+      "description": "Earned 400 upvotes for answers in the extension-methods tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/214"
+    },
+    {
+      "badge_id": 152,
+      "rank": "gold",
+      "name": "f#",
+      "description": "Earned 1000 upvotes for answers in the f# tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/152"
+    },
+    {
+      "badge_id": 74,
+      "rank": "silver",
+      "name": "f#",
+      "description": "Earned 400 upvotes for answers in the f# tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/74"
+    },
+    {
+      "badge_id": 28,
+      "rank": "gold",
+      "name": "Famous Question",
+      "description": "Asked a question with 10,000 views",
+      "award_count": 1588,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/28"
+    },
+    {
+      "badge_id": 83,
+      "rank": "gold",
+      "name": "Fanatic",
+      "description": "Visited the site each day for 100 consecutive days",
+      "award_count": 1131,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/83"
+    },
+    {
+      "badge_id": 33,
+      "rank": "silver",
+      "name": "Favorite Question",
+      "description": "Question favorited by 25 users",
+      "award_count": 1265,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/33"
+    },
+    {
+      "badge_id": 157,
+      "rank": "silver",
+      "name": "functional-programming",
+      "description": "Earned 400 upvotes for answers in the functional-programming tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/157"
+    },
+    {
+      "badge_id": 15,
+      "rank": "silver",
+      "name": "Generalist",
+      "description": "Provided non-wiki answers of 15 total score in 20 of top 40 tags",
+      "award_count": 156,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/15"
+    },
+    {
+      "badge_id": 46,
+      "rank": "silver",
+      "name": "generics",
+      "description": "Earned 400 upvotes for answers in the generics tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/46"
+    },
+    {
+      "badge_id": 104,
+      "rank": "gold",
+      "name": "generics",
+      "description": "Earned 1000 upvotes for answers in the generics tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/104"
+    },
+    {
+      "badge_id": 80,
+      "rank": "silver",
+      "name": "git",
+      "description": "Earned 400 upvotes for answers in the git tag",
+      "award_count": 6,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/80"
+    },
+    {
+      "badge_id": 161,
+      "rank": "gold",
+      "name": "git",
+      "description": "Earned 1000 upvotes for answers in the git tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/161"
+    },
+    {
+      "badge_id": 24,
+      "rank": "silver",
+      "name": "Good Answer",
+      "description": "Answer score of 25 or more",
+      "award_count": 10185,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/24"
+    },
+    {
+      "badge_id": 21,
+      "rank": "silver",
+      "name": "Good Question",
+      "description": "Question score of 25 or more",
+      "award_count": 2709,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/21"
+    },
+    {
+      "badge_id": 125,
+      "rank": "silver",
+      "name": "google-app-engine",
+      "description": "Earned 400 upvotes for answers in the google-app-engine tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/125"
+    },
+    {
+      "badge_id": 211,
+      "rank": "gold",
+      "name": "google-app-engine",
+      "description": "Earned 1000 upvotes for answers in the google-app-engine tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/211"
+    },
+    {
+      "badge_id": 25,
+      "rank": "gold",
+      "name": "Great Answer",
+      "description": "Answer score of 100 or more",
+      "award_count": 1143,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/25"
+    },
+    {
+      "badge_id": 22,
+      "rank": "gold",
+      "name": "Great Question",
+      "description": "Question score of 100 or more",
+      "award_count": 234,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/22"
+    },
+    {
+      "badge_id": 18,
+      "rank": "silver",
+      "name": "Guru",
+      "description": "Accepted answer and score of 40 or more",
+      "award_count": 1336,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/18"
+    },
+    {
+      "badge_id": 127,
+      "rank": "silver",
+      "name": "haskell",
+      "description": "Earned 400 upvotes for answers in the haskell tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/127"
+    },
+    {
+      "badge_id": 210,
+      "rank": "gold",
+      "name": "haskell",
+      "description": "Earned 1000 upvotes for answers in the haskell tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/210"
+    },
+    {
+      "badge_id": 194,
+      "rank": "silver",
+      "name": "hibernate",
+      "description": "Earned 400 upvotes for answers in the hibernate tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/194"
+    },
+    {
+      "badge_id": 134,
+      "rank": "gold",
+      "name": "html",
+      "description": "Earned 1000 upvotes for answers in the html tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/134"
+    },
+    {
+      "badge_id": 84,
+      "rank": "silver",
+      "name": "html",
+      "description": "Earned 400 upvotes for answers in the html tag",
+      "award_count": 14,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/84"
+    },
+    {
+      "badge_id": 213,
+      "rank": "silver",
+      "name": "ienumerable",
+      "description": "Earned 400 upvotes for answers in the ienumerable tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/213"
+    },
+    {
+      "badge_id": 147,
+      "rank": "silver",
+      "name": "inheritance",
+      "description": "Earned 400 upvotes for answers in the inheritance tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/147"
+    },
+    {
+      "badge_id": 191,
+      "rank": "silver",
+      "name": "interview-questions",
+      "description": "Earned 400 upvotes for answers in the interview-questions tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/191"
+    },
+    {
+      "badge_id": 219,
+      "rank": "bronze",
+      "name": "Investor",
+      "description": "First bounty you offered on another person's question",
+      "award_count": 137,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/219"
+    },
+    {
+      "badge_id": 172,
+      "rank": "gold",
+      "name": "iphone",
+      "description": "Earned 1000 upvotes for answers in the iphone tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/172"
+    },
+    {
+      "badge_id": 67,
+      "rank": "silver",
+      "name": "iphone",
+      "description": "Earned 400 upvotes for answers in the iphone tag",
+      "award_count": 16,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/67"
+    },
+    {
+      "badge_id": 44,
+      "rank": "gold",
+      "name": "java",
+      "description": "Earned 1000 upvotes for answers in the java tag",
+      "award_count": 29,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/44"
+    },
+    {
+      "badge_id": 42,
+      "rank": "silver",
+      "name": "java",
+      "description": "Earned 400 upvotes for answers in the java tag",
+      "award_count": 89,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/42"
+    },
+    {
+      "badge_id": 59,
+      "rank": "silver",
+      "name": "javascript",
+      "description": "Earned 400 upvotes for answers in the javascript tag",
+      "award_count": 44,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/59"
+    },
+    {
+      "badge_id": 78,
+      "rank": "gold",
+      "name": "javascript",
+      "description": "Earned 1000 upvotes for answers in the javascript tag",
+      "award_count": 13,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/78"
+    },
+    {
+      "badge_id": 215,
+      "rank": "silver",
+      "name": "jpa",
+      "description": "Earned 400 upvotes for answers in the jpa tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/215"
+    },
+    {
+      "badge_id": 79,
+      "rank": "gold",
+      "name": "jquery",
+      "description": "Earned 1000 upvotes for answers in the jquery tag",
+      "award_count": 10,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/79"
+    },
+    {
+      "badge_id": 61,
+      "rank": "silver",
+      "name": "jquery",
+      "description": "Earned 400 upvotes for answers in the jquery tag",
+      "award_count": 33,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/61"
+    },
+    {
+      "badge_id": 186,
+      "rank": "silver",
+      "name": "jsf",
+      "description": "Earned 400 upvotes for answers in the jsf tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/186"
+    },
+    {
+      "badge_id": 173,
+      "rank": "silver",
+      "name": "jsp",
+      "description": "Earned 400 upvotes for answers in the jsp tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/173"
+    },
+    {
+      "badge_id": 179,
+      "rank": "silver",
+      "name": "lambda",
+      "description": "Earned 400 upvotes for answers in the lambda tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/179"
+    },
+    {
+      "badge_id": 70,
+      "rank": "silver",
+      "name": "language-agnostic",
+      "description": "Earned 400 upvotes for answers in the language-agnostic tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/70"
+    },
+    {
+      "badge_id": 146,
+      "rank": "gold",
+      "name": "Legendary",
+      "description": "Hit the daily reputation cap on 150 days",
+      "award_count": 26,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/146"
+    },
+    {
+      "badge_id": 85,
+      "rank": "gold",
+      "name": "linq",
+      "description": "Earned 1000 upvotes for answers in the linq tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/85"
+    },
+    {
+      "badge_id": 47,
+      "rank": "silver",
+      "name": "linq",
+      "description": "Earned 400 upvotes for answers in the linq tag",
+      "award_count": 6,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/47"
+    },
+    {
+      "badge_id": 102,
+      "rank": "silver",
+      "name": "linq-to-sql",
+      "description": "Earned 400 upvotes for answers in the linq-to-sql tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/102"
+    },
+    {
+      "badge_id": 165,
+      "rank": "silver",
+      "name": "linux",
+      "description": "Earned 400 upvotes for answers in the linux tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/165"
+    },
+    {
+      "badge_id": 141,
+      "rank": "silver",
+      "name": "lisp",
+      "description": "Earned 400 upvotes for answers in the lisp tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/141"
+    },
+    {
+      "badge_id": 209,
+      "rank": "silver",
+      "name": "list",
+      "description": "Earned 400 upvotes for answers in the list tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/209"
+    },
+    {
+      "badge_id": 169,
+      "rank": "gold",
+      "name": "matlab",
+      "description": "Earned 1000 upvotes for answers in the matlab tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/169"
+    },
+    {
+      "badge_id": 103,
+      "rank": "silver",
+      "name": "matlab",
+      "description": "Earned 400 upvotes for answers in the matlab tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/103"
+    },
+    {
+      "badge_id": 110,
+      "rank": "silver",
+      "name": "maven-2",
+      "description": "Earned 400 upvotes for answers in the maven-2 tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/110"
+    },
+    {
+      "badge_id": 201,
+      "rank": "gold",
+      "name": "maven-2",
+      "description": "Earned 1000 upvotes for answers in the maven-2 tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/201"
+    },
+    {
+      "badge_id": 188,
+      "rank": "silver",
+      "name": "mercurial",
+      "description": "Earned 400 upvotes for answers in the mercurial tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/188"
+    },
+    {
+      "badge_id": 162,
+      "rank": "silver",
+      "name": "mod-rewrite",
+      "description": "Earned 400 upvotes for answers in the mod-rewrite tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/162"
+    },
+    {
+      "badge_id": 108,
+      "rank": "silver",
+      "name": "mono",
+      "description": "Earned 400 upvotes for answers in the mono tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/108"
+    },
+    {
+      "badge_id": 144,
+      "rank": "bronze",
+      "name": "Mortarboard",
+      "description": "Hit the daily reputation cap for the first time",
+      "award_count": 4537,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/144"
+    },
+    {
+      "badge_id": 143,
+      "rank": "silver",
+      "name": "ms-access",
+      "description": "Earned 400 upvotes for answers in the ms-access tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/143"
+    },
+    {
+      "badge_id": 129,
+      "rank": "gold",
+      "name": "multithreading",
+      "description": "Earned 1000 upvotes for answers in the multithreading tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/129"
+    },
+    {
+      "badge_id": 92,
+      "rank": "silver",
+      "name": "multithreading",
+      "description": "Earned 400 upvotes for answers in the multithreading tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/92"
+    },
+    {
+      "badge_id": 123,
+      "rank": "gold",
+      "name": "mysql",
+      "description": "Earned 1000 upvotes for answers in the mysql tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/123"
+    },
+    {
+      "badge_id": 56,
+      "rank": "silver",
+      "name": "mysql",
+      "description": "Earned 400 upvotes for answers in the mysql tag",
+      "award_count": 9,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/56"
+    },
+    {
+      "badge_id": 17,
+      "rank": "silver",
+      "name": "Necromancer",
+      "description": "Answered a question more than 60 days later with score of 5 or more",
+      "award_count": 6122,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/17"
+    },
+    {
+      "badge_id": 23,
+      "rank": "bronze",
+      "name": "Nice Answer",
+      "description": "Answer score of 10 or more",
+      "award_count": 62280,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/23"
+    },
+    {
+      "badge_id": 20,
+      "rank": "bronze",
+      "name": "Nice Question",
+      "description": "Question score of 10 or more",
+      "award_count": 15722,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/20"
+    },
+    {
+      "badge_id": 27,
+      "rank": "silver",
+      "name": "Notable Question",
+      "description": "Asked a question with 2,500 views",
+      "award_count": 18821,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/27"
+    },
+    {
+      "badge_id": 100,
+      "rank": "silver",
+      "name": "objective-c",
+      "description": "Earned 400 upvotes for answers in the objective-c tag",
+      "award_count": 16,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/100"
+    },
+    {
+      "badge_id": 174,
+      "rank": "gold",
+      "name": "objective-c",
+      "description": "Earned 1000 upvotes for answers in the objective-c tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/174"
+    },
+    {
+      "badge_id": 114,
+      "rank": "silver",
+      "name": "oop",
+      "description": "Earned 400 upvotes for answers in the oop tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/114"
+    },
+    {
+      "badge_id": 132,
+      "rank": "silver",
+      "name": "optimization",
+      "description": "Earned 400 upvotes for answers in the optimization tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/132"
+    },
+    {
+      "badge_id": 81,
+      "rank": "silver",
+      "name": "oracle",
+      "description": "Earned 400 upvotes for answers in the oracle tag",
+      "award_count": 8,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/81"
+    },
+    {
+      "badge_id": 207,
+      "rank": "gold",
+      "name": "oracle",
+      "description": "Earned 1000 upvotes for answers in the oracle tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/207"
+    },
+    {
+      "badge_id": 5,
+      "rank": "bronze",
+      "name": "Organizer",
+      "description": "First retag",
+      "award_count": 12964,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/5"
+    },
+    {
+      "badge_id": 198,
+      "rank": "silver",
+      "name": "orm",
+      "description": "Earned 400 upvotes for answers in the orm tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/198"
+    },
+    {
+      "badge_id": 38,
+      "rank": "bronze",
+      "name": "Peer Pressure",
+      "description": "Deleted own post with score of -3 or lower",
+      "award_count": 3227,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/38"
+    },
+    {
+      "badge_id": 68,
+      "rank": "silver",
+      "name": "performance",
+      "description": "Earned 400 upvotes for answers in the performance tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/68"
+    },
+    {
+      "badge_id": 170,
+      "rank": "gold",
+      "name": "performance",
+      "description": "Earned 1000 upvotes for answers in the performance tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/170"
+    },
+    {
+      "badge_id": 60,
+      "rank": "gold",
+      "name": "perl",
+      "description": "Earned 1000 upvotes for answers in the perl tag",
+      "award_count": 8,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/60"
+    },
+    {
+      "badge_id": 53,
+      "rank": "silver",
+      "name": "perl",
+      "description": "Earned 400 upvotes for answers in the perl tag",
+      "award_count": 28,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/53"
+    },
+    {
+      "badge_id": 54,
+      "rank": "silver",
+      "name": "php",
+      "description": "Earned 400 upvotes for answers in the php tag",
+      "award_count": 48,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/54"
+    },
+    {
+      "badge_id": 93,
+      "rank": "gold",
+      "name": "php",
+      "description": "Earned 1000 upvotes for answers in the php tag",
+      "award_count": 16,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/93"
+    },
+    {
+      "badge_id": 163,
+      "rank": "silver",
+      "name": "pointers",
+      "description": "Earned 400 upvotes for answers in the pointers tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/163"
+    },
+    {
+      "badge_id": 26,
+      "rank": "bronze",
+      "name": "Popular Question",
+      "description": "Asked a question with 1,000 views",
+      "award_count": 62710,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/26"
+    },
+    {
+      "badge_id": 62,
+      "rank": "gold",
+      "name": "Populist",
+      "description": "Answer outscored an accepted answer with score of more than 10 by more than 2x",
+      "award_count": 410,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/62"
+    },
+    {
+      "badge_id": 160,
+      "rank": "silver",
+      "name": "powershell",
+      "description": "Earned 400 upvotes for answers in the powershell tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/160"
+    },
+    {
+      "badge_id": 183,
+      "rank": "silver",
+      "name": "programming-languages",
+      "description": "Earned 400 upvotes for answers in the programming-languages tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/183"
+    },
+    {
+      "badge_id": 220,
+      "rank": "bronze",
+      "name": "Promoter",
+      "description": "First bounty you offered on your own question",
+      "award_count": 5130,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/220"
+    },
+    {
+      "badge_id": 94,
+      "rank": "silver",
+      "name": "Pundit",
+      "description": "Left 10 comments with score of 10 or more",
+      "award_count": 111,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/94"
+    },
+    {
+      "badge_id": 50,
+      "rank": "silver",
+      "name": "python",
+      "description": "Earned 400 upvotes for answers in the python tag",
+      "award_count": 63,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/50"
+    },
+    {
+      "badge_id": 51,
+      "rank": "gold",
+      "name": "python",
+      "description": "Earned 1000 upvotes for answers in the python tag",
+      "award_count": 12,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/51"
+    },
+    {
+      "badge_id": 205,
+      "rank": "silver",
+      "name": "query",
+      "description": "Earned 400 upvotes for answers in the query tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/205"
+    },
+    {
+      "badge_id": 208,
+      "rank": "gold",
+      "name": "r",
+      "description": "Earned 1000 upvotes for answers in the r tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/208"
+    },
+    {
+      "badge_id": 135,
+      "rank": "silver",
+      "name": "r",
+      "description": "Earned 400 upvotes for answers in the r tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/135"
+    },
+    {
+      "badge_id": 86,
+      "rank": "silver",
+      "name": "reflection",
+      "description": "Earned 400 upvotes for answers in the reflection tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/86"
+    },
+    {
+      "badge_id": 97,
+      "rank": "silver",
+      "name": "regex",
+      "description": "Earned 400 upvotes for answers in the regex tag",
+      "award_count": 9,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/97"
+    },
+    {
+      "badge_id": 133,
+      "rank": "gold",
+      "name": "regex",
+      "description": "Earned 1000 upvotes for answers in the regex tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/133"
+    },
+    {
+      "badge_id": 218,
+      "rank": "silver",
+      "name": "rest",
+      "description": "Earned 400 upvotes for answers in the rest tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/218"
+    },
+    {
+      "badge_id": 95,
+      "rank": "gold",
+      "name": "Reversal",
+      "description": "Provided answer of +20 score to a question of -5 score",
+      "award_count": 42,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/95"
+    },
+    {
+      "badge_id": 106,
+      "rank": "silver",
+      "name": "ruby",
+      "description": "Earned 400 upvotes for answers in the ruby tag",
+      "award_count": 7,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/106"
+    },
+    {
+      "badge_id": 227,
+      "rank": "gold",
+      "name": "ruby",
+      "description": "Earned 1000 upvotes for answers in the ruby tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/227"
+    },
+    {
+      "badge_id": 90,
+      "rank": "silver",
+      "name": "ruby-on-rails",
+      "description": "Earned 400 upvotes for answers in the ruby-on-rails tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/90"
+    },
+    {
+      "badge_id": 111,
+      "rank": "silver",
+      "name": "scala",
+      "description": "Earned 400 upvotes for answers in the scala tag",
+      "award_count": 5,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/111"
+    },
+    {
+      "badge_id": 168,
+      "rank": "gold",
+      "name": "scala",
+      "description": "Earned 1000 upvotes for answers in the scala tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/168"
+    },
+    {
+      "badge_id": 10,
+      "rank": "bronze",
+      "name": "Scholar",
+      "description": "Asked a question and accepted an answer",
+      "award_count": 81140,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/10"
+    },
+    {
+      "badge_id": 217,
+      "rank": "silver",
+      "name": "security",
+      "description": "Earned 400 upvotes for answers in the security tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/217"
+    },
+    {
+      "badge_id": 14,
+      "rank": "bronze",
+      "name": "Self-Learner",
+      "description": "Answered your own question with score of 3 or more",
+      "award_count": 4398,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/14"
+    },
+    {
+      "badge_id": 176,
+      "rank": "silver",
+      "name": "serialization",
+      "description": "Earned 400 upvotes for answers in the serialization tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/176"
+    },
+    {
+      "badge_id": 189,
+      "rank": "silver",
+      "name": "servlets",
+      "description": "Earned 400 upvotes for answers in the servlets tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/189"
+    },
+    {
+      "badge_id": 119,
+      "rank": "silver",
+      "name": "sharepoint",
+      "description": "Earned 400 upvotes for answers in the sharepoint tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/119"
+    },
+    {
+      "badge_id": 177,
+      "rank": "silver",
+      "name": "silverlight",
+      "description": "Earned 400 upvotes for answers in the silverlight tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/177"
+    },
+    {
+      "badge_id": 167,
+      "rank": "silver",
+      "name": "spring",
+      "description": "Earned 400 upvotes for answers in the spring tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/167"
+    },
+    {
+      "badge_id": 82,
+      "rank": "gold",
+      "name": "sql",
+      "description": "Earned 1000 upvotes for answers in the sql tag",
+      "award_count": 8,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/82"
+    },
+    {
+      "badge_id": 55,
+      "rank": "silver",
+      "name": "sql",
+      "description": "Earned 400 upvotes for answers in the sql tag",
+      "award_count": 30,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/55"
+    },
+    {
+      "badge_id": 88,
+      "rank": "silver",
+      "name": "sql-server",
+      "description": "Earned 400 upvotes for answers in the sql-server tag",
+      "award_count": 18,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/88"
+    },
+    {
+      "badge_id": 118,
+      "rank": "gold",
+      "name": "sql-server",
+      "description": "Earned 1000 upvotes for answers in the sql-server tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/118"
+    },
+    {
+      "badge_id": 128,
+      "rank": "silver",
+      "name": "sql-server-2005",
+      "description": "Earned 400 upvotes for answers in the sql-server-2005 tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/128"
+    },
+    {
+      "badge_id": 36,
+      "rank": "gold",
+      "name": "Stellar Question",
+      "description": "Question favorited by 100 users",
+      "award_count": 171,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/36"
+    },
+    {
+      "badge_id": 158,
+      "rank": "silver",
+      "name": "stl",
+      "description": "Earned 400 upvotes for answers in the stl tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/158"
+    },
+    {
+      "badge_id": 212,
+      "rank": "gold",
+      "name": "string",
+      "description": "Earned 1000 upvotes for answers in the string tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/212"
+    },
+    {
+      "badge_id": 87,
+      "rank": "silver",
+      "name": "string",
+      "description": "Earned 400 upvotes for answers in the string tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/87"
+    },
+    {
+      "badge_id": 12,
+      "rank": "silver",
+      "name": "Strunk & White",
+      "description": "Edited 100 entries",
+      "award_count": 724,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/12"
+    },
+    {
+      "badge_id": 2,
+      "rank": "bronze",
+      "name": "Student",
+      "description": "Asked first question with at least one up vote",
+      "award_count": 102377,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/2"
+    },
+    {
+      "badge_id": 45,
+      "rank": "silver",
+      "name": "subjective",
+      "description": "Earned 400 upvotes for answers in the subjective tag",
+      "award_count": 13,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/45"
+    },
+    {
+      "badge_id": 77,
+      "rank": "gold",
+      "name": "subjective",
+      "description": "Earned 1000 upvotes for answers in the subjective tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/77"
+    },
+    {
+      "badge_id": 159,
+      "rank": "silver",
+      "name": "subsonic",
+      "description": "Earned 400 upvotes for answers in the subsonic tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/159"
+    },
+    {
+      "badge_id": 6,
+      "rank": "bronze",
+      "name": "Supporter",
+      "description": "First up vote",
+      "award_count": 69338,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/6"
+    },
+    {
+      "badge_id": 98,
+      "rank": "silver",
+      "name": "svn",
+      "description": "Earned 400 upvotes for answers in the svn tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/98"
+    },
+    {
+      "badge_id": 206,
+      "rank": "silver",
+      "name": "swing",
+      "description": "Earned 400 upvotes for answers in the swing tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/206"
+    },
+    {
+      "badge_id": 11,
+      "rank": "silver",
+      "name": "Taxonomist",
+      "description": "Created a tag used by 50 questions",
+      "award_count": 2323,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/11"
+    },
+    {
+      "badge_id": 1,
+      "rank": "bronze",
+      "name": "Teacher",
+      "description": "Answered first question with score of 1 or more",
+      "award_count": 81888,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/1"
+    },
+    {
+      "badge_id": 109,
+      "rank": "silver",
+      "name": "templates",
+      "description": "Earned 400 upvotes for answers in the templates tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/109"
+    },
+    {
+      "badge_id": 225,
+      "rank": "silver",
+      "name": "Tenacious",
+      "description": "Zero score accepted answers: more than 5 and 20% of total",
+      "award_count": 824,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/225"
+    },
+    {
+      "badge_id": 200,
+      "rank": "gold",
+      "name": "tsql",
+      "description": "Earned 1000 upvotes for answers in the tsql tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/200"
+    },
+    {
+      "badge_id": 139,
+      "rank": "silver",
+      "name": "tsql",
+      "description": "Earned 400 upvotes for answers in the tsql tag",
+      "award_count": 6,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/139"
+    },
+    {
+      "badge_id": 63,
+      "rank": "bronze",
+      "name": "Tumbleweed",
+      "description": "Asked a question with no answers, no comments, and low views for a week",
+      "award_count": 30663,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/63"
+    },
+    {
+      "badge_id": 130,
+      "rank": "silver",
+      "name": "unit-testing",
+      "description": "Earned 400 upvotes for answers in the unit-testing tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/130"
+    },
+    {
+      "badge_id": 226,
+      "rank": "gold",
+      "name": "Unsung Hero",
+      "description": "Zero score accepted answers: more than 10 and 25% of total",
+      "award_count": 175,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/226"
+    },
+    {
+      "badge_id": 154,
+      "rank": "gold",
+      "name": "vb.net",
+      "description": "Earned 1000 upvotes for answers in the vb.net tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/154"
+    },
+    {
+      "badge_id": 58,
+      "rank": "silver",
+      "name": "vb.net",
+      "description": "Earned 400 upvotes for answers in the vb.net tag",
+      "award_count": 6,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/58"
+    },
+    {
+      "badge_id": 216,
+      "rank": "silver",
+      "name": "vb6",
+      "description": "Earned 400 upvotes for answers in the vb6 tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/216"
+    },
+    {
+      "badge_id": 166,
+      "rank": "silver",
+      "name": "version-control",
+      "description": "Earned 400 upvotes for answers in the version-control tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/166"
+    },
+    {
+      "badge_id": 101,
+      "rank": "silver",
+      "name": "visual-studio",
+      "description": "Earned 400 upvotes for answers in the visual-studio tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/101"
+    },
+    {
+      "badge_id": 203,
+      "rank": "silver",
+      "name": "visual-studio-2008",
+      "description": "Earned 400 upvotes for answers in the visual-studio-2008 tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/203"
+    },
+    {
+      "badge_id": 187,
+      "rank": "gold",
+      "name": "wcf",
+      "description": "Earned 1000 upvotes for answers in the wcf tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/187"
+    },
+    {
+      "badge_id": 112,
+      "rank": "silver",
+      "name": "wcf",
+      "description": "Earned 400 upvotes for answers in the wcf tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/112"
+    },
+    {
+      "badge_id": 138,
+      "rank": "silver",
+      "name": "windows-mobile",
+      "description": "Earned 400 upvotes for answers in the windows-mobile tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/138"
+    },
+    {
+      "badge_id": 149,
+      "rank": "silver",
+      "name": "winforms",
+      "description": "Earned 400 upvotes for answers in the winforms tag",
+      "award_count": 3,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/149"
+    },
+    {
+      "badge_id": 224,
+      "rank": "gold",
+      "name": "winforms",
+      "description": "Earned 1000 upvotes for answers in the winforms tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/224"
+    },
+    {
+      "badge_id": 164,
+      "rank": "gold",
+      "name": "wpf",
+      "description": "Earned 1000 upvotes for answers in the wpf tag",
+      "award_count": 1,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/164"
+    },
+    {
+      "badge_id": 76,
+      "rank": "silver",
+      "name": "wpf",
+      "description": "Earned 400 upvotes for answers in the wpf tag",
+      "award_count": 7,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/76"
+    },
+    {
+      "badge_id": 105,
+      "rank": "silver",
+      "name": "xml",
+      "description": "Earned 400 upvotes for answers in the xml tag",
+      "award_count": 4,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/105"
+    },
+    {
+      "badge_id": 153,
+      "rank": "silver",
+      "name": "xslt",
+      "description": "Earned 400 upvotes for answers in the xslt tag",
+      "award_count": 2,
+      "tag_based": true,
+      "badges_recipients_url": "/badges/153"
+    },
+    {
+      "badge_id": 13,
+      "rank": "silver",
+      "name": "Yearling",
+      "description": "Active member for a year, earning at least 200 reputation",
+      "award_count": 22129,
+      "tag_based": false,
+      "badges_recipients_url": "/badges/13"
+    }
+  ]
+}

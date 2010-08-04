@@ -15,7 +15,7 @@ namespace Stacky
         public virtual IPagedList<Question> GetQuestions(QuestionOptions options)
         {
             var sortArgs = options.SortBy.GetAttribute<SortArgsAttribute>();
-            return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
+            return GetQuestions("questions", sortArgs.UrlArgs, sortArgs.Sort, GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.IncludeAnswers, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
         public virtual IPagedList<Question> GetQuestions(IEnumerable<int> questionIds)
@@ -27,7 +27,7 @@ namespace Stacky
         {
             var sortArgs = options.SortBy.GetAttribute<SortArgsAttribute>();
             string[] urlArgs = sortArgs.UrlArgs.Concat(new string[] { questionIds.Vectorize() }).ToArray();
-            return GetQuestions("questions", urlArgs, sortArgs.Sort, GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
+            return GetQuestions("questions", urlArgs, sortArgs.Sort, GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.IncludeAnswers, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
         public virtual IPagedList<Question> GetQuestionsByUser(int userId)
@@ -37,7 +37,7 @@ namespace Stacky
 
         public virtual IPagedList<Question> GetQuestionsByUser(int userId, QuestionByUserOptions options)
         {
-            return GetQuestions("users", new string[] { userId.ToString(), "questions" }, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
+            return GetQuestions("users", new string[] { userId.ToString(), "questions" }, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.IncludeAnswers, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
         public virtual IPagedList<Question> GetFavoriteQuestions(int userId)
@@ -47,10 +47,10 @@ namespace Stacky
 
         public virtual IPagedList<Question> GetFavoriteQuestions(int userId, FavoriteQuestionOptions options)
         {
-            return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
+            return GetQuestions("users", new string[] { userId.ToString(), "favorites" }, options.SortBy.ToString().ToLower(), GetSortDirection(options.SortDirection), options.Page, options.PageSize, options.IncludeBody, options.IncludeComments, options.IncludeAnswers, options.FromDate, options.ToDate, options.Min, options.Max, options.Tags);
         }
 
-        private IPagedList<Question> GetQuestions(string method, string[] urlArguments, string sort, string sortDirection, int? page, int? pageSize, bool includeBody, bool includeComments, DateTime? fromDate, DateTime? toDate, int? min, int? max, params string[] tags)
+        private IPagedList<Question> GetQuestions(string method, string[] urlArguments, string sort, string sortDirection, int? page, int? pageSize, bool includeBody, bool includeComments, bool includeAnswers, DateTime? fromDate, DateTime? toDate, int? min, int? max, params string[] tags)
         {
             var response = MakeRequest<QuestionResponse>(method, urlArguments, new
             {
@@ -59,6 +59,7 @@ namespace Stacky
                 pagesize = pageSize ?? null,
                 body = includeBody ? (bool?)true : null,
                 comments = includeComments ? (bool?)true : null,
+                answers = includeAnswers ? (bool?)true : null,
                 fromdate = fromDate.HasValue ? (long?)fromDate.Value.ToUnixTime() : null,
                 todate = toDate.HasValue ? (long?)toDate.Value.ToUnixTime() : null,
                 tagged = tags == null ? (string)null : String.Join(" ", tags),
@@ -72,12 +73,12 @@ namespace Stacky
 
         public virtual Question GetQuestion(int questionId)
         {
-            return GetQuestion(questionId, null, null);
+            return GetQuestion(questionId, null, null, null);
         }
 
-        public virtual Question GetQuestion(int questionId, bool? includeBody, bool? includeComments)
+        public virtual Question GetQuestion(int questionId, bool? includeBody, bool? includeComments, bool? includeAnswers)
         {
-            return GetQuestions("questions", new string[] { questionId.ToString() }, null, null, null, null, includeBody ?? false, includeComments ?? false, null, null, null, null, null).FirstOrDefault();
+            return GetQuestions("questions", new string[] { questionId.ToString() }, null, null, null, null, includeBody ?? false, includeComments ?? false, includeAnswers ?? false, null, null, null, null, null).FirstOrDefault();
         }
 
         public virtual IPagedList<PostEvent> GetQuestionTimeline(IEnumerable<int> questionIds)

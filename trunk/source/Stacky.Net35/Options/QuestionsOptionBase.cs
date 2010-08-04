@@ -15,6 +15,7 @@ namespace Stacky
         public int? PageSize = null;
         public bool IncludeBody = false;
         public bool IncludeComments = false;
+        public bool IncludeAnswers = false;
         public DateTime? FromDate = null;
         public DateTime? ToDate = null;
         public string[] Tags = null;

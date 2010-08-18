@@ -65,7 +65,7 @@ namespace Stacky.Silverlight.IntegrationTests
         [TestMethod, Asynchronous]
         public void Meta()
         {
-            var client = GetClient(Sites.StackOverflowMeta);
+            var client = GetClient(Sites.MetaStackOverflow);
             TestQuestionMethod(client);
         }
 

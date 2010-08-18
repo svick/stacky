@@ -23,7 +23,7 @@ namespace Stacky
         public int PostId
         {
             get { return postId; }
-            set { postId = value; OnPropertyChanged("PostId"); }
+            set { postId = value; NotifyOfPropertyChange(() => PostId); }
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Stacky
         public PostType PostType
         {
             get { return postType; }
-            set { postType = value; OnPropertyChanged("PostType"); }
+            set { postType = value; NotifyOfPropertyChange(() => PostType); }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Stacky
         public string Title
         {
             get { return title; }
-            set { title = value; OnPropertyChanged("Title"); }
+            set { title = value; NotifyOfPropertyChange(() => Title); }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Stacky
         public int PositiveReputation
         {
             get { return positiveReputation; }
-            set { positiveReputation = value; OnPropertyChanged("PositiveReputation"); }
+            set { positiveReputation = value; NotifyOfPropertyChange(() => PositiveReputation); }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Stacky
         public int NegativeReputation
         {
             get { return negativeReputation; }
-            set { negativeReputation = value; OnPropertyChanged("NegativeReputation"); }
+            set { negativeReputation = value; NotifyOfPropertyChange(() => NegativeReputation); }
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Stacky
         public DateTime OnDate
         {
             get { return onDate; }
-            set { onDate = value; OnPropertyChanged("OnDate"); }
+            set { onDate = value; NotifyOfPropertyChange(() => OnDate); }
         }
     }
 }

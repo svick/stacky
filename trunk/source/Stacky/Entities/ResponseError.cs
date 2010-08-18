@@ -19,7 +19,7 @@ namespace Stacky
         public ErrorCode Code
         {
             get { return code; }
-            set { code = value; OnPropertyChanged("Code"); }
+            set { code = value; NotifyOfPropertyChange(() => Code); }
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Stacky
         public string Message
         {
             get { return message; }
-            set { message = value; OnPropertyChanged("Message"); }
+            set { message = value; NotifyOfPropertyChange(() => Message); }
         }
     }
 }

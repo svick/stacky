@@ -24,7 +24,7 @@ namespace Stacky
         public PostEventType Type
         {
             get { return type; }
-            set { type = value; OnPropertyChanged("Type"); }
+            set { type = value; NotifyOfPropertyChange(() => Type); }
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Stacky
         public int PostId
         {
             get { return postId; }
-            set { postId = value; OnPropertyChanged("PostId"); }
+            set { postId = value; NotifyOfPropertyChange(() => PostId); }
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Stacky
         public int UserId
         {
             get { return userId; }
-            set { userId = value; OnPropertyChanged("UserId"); }
+            set { userId = value; NotifyOfPropertyChange(() => UserId); }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Stacky
         public int OwnerUserId
         {
             get { return ownerUserId; }
-            set { ownerUserId = value; OnPropertyChanged("OwnerUserId"); }
+            set { ownerUserId = value; NotifyOfPropertyChange(() => OwnerUserId); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Stacky
         public string Action
         {
             get { return action; }
-            set { action = value; OnPropertyChanged("Action"); }
+            set { action = value; NotifyOfPropertyChange(() => Action); }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Stacky
         public DateTime CreationDate
         {
             get { return creationDate; }
-            set { creationDate = value; OnPropertyChanged("CreationDate"); }
+            set { creationDate = value; NotifyOfPropertyChange(() => CreationDate); }
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Stacky
         public Guid RevisionGuid
         {
             get { return revisionGuid; }
-            set { revisionGuid = value; OnPropertyChanged("RevisionGuid"); }
+            set { revisionGuid = value; NotifyOfPropertyChange(() => RevisionGuid); }
         }
     }
 }

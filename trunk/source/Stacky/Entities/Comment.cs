@@ -26,7 +26,7 @@ namespace Stacky
         public int Id
         {
             get { return id; }
-            set { id = value; OnPropertyChanged("Id"); }
+            set { id = value; NotifyOfPropertyChange(() => Id); }
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Stacky
         public string Body
         {
             get { return body; }
-            set { body = value; OnPropertyChanged("Body"); }
+            set { body = value; NotifyOfPropertyChange(() => Body); }
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Stacky
         public DateTime CreationDate
         {
             get { return creationDate; }
-            set { creationDate = value; OnPropertyChanged("CreationDate"); }
+            set { creationDate = value; NotifyOfPropertyChange(() => CreationDate); }
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Stacky
         public PostType PostType
         {
             get { return postType; }
-            set { postType = value; OnPropertyChanged("PostType"); }
+            set { postType = value; NotifyOfPropertyChange(() => PostType); }
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Stacky
         public int PostId
         {
             get { return postId; }
-            set { postId = value; OnPropertyChanged("PostId"); }
+            set { postId = value; NotifyOfPropertyChange(() => PostId); }
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Stacky
         public int Score
         {
             get { return score; }
-            set { score = value; OnPropertyChanged("Score"); }
+            set { score = value; NotifyOfPropertyChange(() => Score); }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Stacky
         public int EditCount
         {
             get { return editCount; }
-            set { editCount = value; OnPropertyChanged("EditCount"); }
+            set { editCount = value; NotifyOfPropertyChange(() => EditCount); }
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Stacky
         public User Owner
         {
             get { return owner; }
-            set { owner = value; OnPropertyChanged("Owner"); }
+            set { owner = value; NotifyOfPropertyChange(() => Owner); }
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Stacky
         public User ReplyTo
         {
             get { return replyTo; }
-            set { replyTo = value; OnPropertyChanged("ReplyTo"); }
+            set { replyTo = value; NotifyOfPropertyChange(() => ReplyTo); }
         }
     }
 }

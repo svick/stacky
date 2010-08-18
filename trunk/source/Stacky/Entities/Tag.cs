@@ -21,7 +21,7 @@ namespace Stacky
         public string Name
         {
             get { return name; }
-            set { name = value; OnPropertyChanged("Name"); }
+            set { name = value; NotifyOfPropertyChange(() => Name); }
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Stacky
         public int Count
         {
             get { return count; }
-            set { count = value; OnPropertyChanged("Count"); }
+            set { count = value; NotifyOfPropertyChange(() => Count); }
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Stacky
         public string RestrictedTo
         {
             get { return restrictedTo; }
-            set { restrictedTo = value; OnPropertyChanged("RestrictedTo"); }
+            set { restrictedTo = value; NotifyOfPropertyChange(() => RestrictedTo); }
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Stacky
         public bool FulfillsRequired
         {
             get { return fulfillsRequired; }
-            set { fulfillsRequired = value; OnPropertyChanged("FulfillsRequired"); }
+            set { fulfillsRequired = value; NotifyOfPropertyChange(() => FulfillsRequired); }
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Stacky
         public int? UserId
         {
             get { return userId; }
-            set { userId = value; OnPropertyChanged("UserId"); }
+            set { userId = value; NotifyOfPropertyChange(() => UserId); }
         }
     }
 }

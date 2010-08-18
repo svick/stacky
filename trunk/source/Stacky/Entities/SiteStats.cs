@@ -30,7 +30,7 @@ namespace Stacky
         public int TotalQuestions
         {
             get { return totalQuestions; }
-            set { totalQuestions = value; OnPropertyChanged("TotalQuestions"); }
+            set { totalQuestions = value; NotifyOfPropertyChange(() => TotalQuestions); }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Stacky
         public int TotalUnanswered
         {
             get { return totalUnanswered; }
-            set { totalUnanswered = value; OnPropertyChanged("TotalUnanswered"); }
+            set { totalUnanswered = value; NotifyOfPropertyChange(() => TotalUnanswered); }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Stacky
         public int TotalAccepted
         {
             get { return totalAccepted; }
-            set { totalAccepted = value; OnPropertyChanged("TotalAccepted"); }
+            set { totalAccepted = value; NotifyOfPropertyChange(() => TotalAccepted); }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Stacky
         public int TotalAnswers
         {
             get { return totalAnswers; }
-            set { totalAnswers = value; OnPropertyChanged("TotalAnswers"); }
+            set { totalAnswers = value; NotifyOfPropertyChange(() => TotalAnswers); }
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Stacky
         public int TotalComments
         {
             get { return totalComments; }
-            set { totalComments = value; OnPropertyChanged("TotalComments"); }
+            set { totalComments = value; NotifyOfPropertyChange(() => TotalComments); }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Stacky
         public int TotalVotes
         {
             get { return totalVotes; }
-            set { totalVotes = value; OnPropertyChanged("TotalVotes"); }
+            set { totalVotes = value; NotifyOfPropertyChange(() => TotalVotes); }
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Stacky
         public int TotalBadges
         {
             get { return totalBadges; }
-            set { totalBadges = value; OnPropertyChanged("TotalBadges"); }
+            set { totalBadges = value; NotifyOfPropertyChange(() => TotalBadges); }
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Stacky
         public int TotalUsers
         {
             get { return totalUsers; }
-            set { totalUsers = value; OnPropertyChanged("TotalUsers"); }
+            set { totalUsers = value; NotifyOfPropertyChange(() => TotalUsers); }
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Stacky
         public double QuestionsPerMinute
         {
             get { return questionsPerMinute; }
-            set { questionsPerMinute = value; OnPropertyChanged("QuestionsPerMinute"); }
+            set { questionsPerMinute = value; NotifyOfPropertyChange(() => QuestionsPerMinute); }
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Stacky
         public double AnswersPerMinute
         {
             get { return answersPerMinute; }
-            set { answersPerMinute = value; OnPropertyChanged("AnswersPerMinute"); }
+            set { answersPerMinute = value; NotifyOfPropertyChange(() => AnswersPerMinute); }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Stacky
         public double BadgesPerMinute
         {
             get { return badgesPerMinute; }
-            set { badgesPerMinute = value; OnPropertyChanged("BadgesPerMinute"); }
+            set { badgesPerMinute = value; NotifyOfPropertyChange(() => BadgesPerMinute); }
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Stacky
         public double ViewsPerDay
         {
             get { return viewsPerDay; }
-            set { viewsPerDay = value; OnPropertyChanged("ViewsPerDay"); }
+            set { viewsPerDay = value; NotifyOfPropertyChange(() => ViewsPerDay); }
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Stacky
         public ApiVersion ApiVersion
         {
             get { return apiVersion; }
-            set { apiVersion = value; OnPropertyChanged("ApiVersion"); }
+            set { apiVersion = value; NotifyOfPropertyChange(() => ApiVersion); }
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Stacky
         public Site Site
         {
             get { return site; }
-            set { site = value; OnPropertyChanged("Site"); }
+            set { site = value; NotifyOfPropertyChange(() => Site); }
         }
     }
 }

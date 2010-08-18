@@ -34,7 +34,7 @@ namespace Stacky
         public string Title
         {
             get { return title; }
-            set { title = value; OnPropertyChanged("Title"); }
+            set { title = value; NotifyOfPropertyChange(() => Title); }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Stacky
         public string LastTitle
         {
             get { return lastTitle; }
-            set { lastTitle = value; OnPropertyChanged("LastTitle"); }
+            set { lastTitle = value; NotifyOfPropertyChange(() => LastTitle); }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Stacky
         public string Comment
         {
             get { return comment; }
-            set { comment = value; OnPropertyChanged("Comment"); }
+            set { comment = value; NotifyOfPropertyChange(() => Comment); }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Stacky
         public string Body
         {
             get { return body; }
-            set { body = value; OnPropertyChanged("Body"); }
+            set { body = value; NotifyOfPropertyChange(() => Body); }
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Stacky
         public string LastBody
         {
             get { return lastBody; }
-            set { lastBody = value; OnPropertyChanged("LastBody"); }
+            set { lastBody = value; NotifyOfPropertyChange(() => LastBody); }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Stacky
         public List<string> Tags
         {
             get { return tags; }
-            set { tags = value; OnPropertyChanged("Tags"); }
+            set { tags = value; NotifyOfPropertyChange(() => Tags); }
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Stacky
         public List<string> LastTags
         {
             get { return lastTags; }
-            set { lastTags = value; OnPropertyChanged("LastTags"); }
+            set { lastTags = value; NotifyOfPropertyChange(() => LastTags); }
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Stacky
         public DateTime CreationDate
         {
             get { return creationDate; }
-            set { creationDate = value; OnPropertyChanged("CreationDate"); }
+            set { creationDate = value; NotifyOfPropertyChange(() => CreationDate); }
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Stacky
         public bool IsQuestion
         {
             get { return isQuestion; }
-            set { isQuestion = value; OnPropertyChanged("IsQuestion"); }
+            set { isQuestion = value; NotifyOfPropertyChange(() => IsQuestion); }
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Stacky
         public bool IsRollback
         {
             get { return isRollback; }
-            set { isRollback = value; OnPropertyChanged("IsRollback"); }
+            set { isRollback = value; NotifyOfPropertyChange(() => IsRollback); }
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Stacky
         public Guid RevisionGuid
         {
             get { return revisionGuid; }
-            set { revisionGuid = value; OnPropertyChanged("RevisionGuid"); }
+            set { revisionGuid = value; NotifyOfPropertyChange(() => RevisionGuid); }
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Stacky
         public int RevisionNumber
         {
             get { return revisionNumber; }
-            set { revisionNumber = value; OnPropertyChanged("RevisionNumber"); }
+            set { revisionNumber = value; NotifyOfPropertyChange(() => RevisionNumber); }
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Stacky
         public string RevisionType
         {
             get { return revisionType; }
-            set { revisionType = value; OnPropertyChanged("RevisionType"); }
+            set { revisionType = value; NotifyOfPropertyChange(() => RevisionType); }
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Stacky
         public bool SetCommunityWiki
         {
             get { return setCommunityWiki; }
-            set { setCommunityWiki = value; OnPropertyChanged("SetCommunityWiki"); }
+            set { setCommunityWiki = value; NotifyOfPropertyChange(() => SetCommunityWiki); }
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace Stacky
         public int UserId
         {
             get { return userId; }
-            set { userId = value; OnPropertyChanged("UserId"); }
+            set { userId = value; NotifyOfPropertyChange(() => UserId); }
         }
     }
 }

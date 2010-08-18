@@ -40,6 +40,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Stacky\ApiException.cs">
@@ -161,6 +162,9 @@
     </Compile>
     <Compile Include="..\Stacky\Helpers\EnumHelper.cs">
       <Link>Helpers\EnumHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Stacky\Helpers\Execute.cs">
+      <Link>Helpers\Execute.cs</Link>
     </Compile>
     <Compile Include="..\Stacky\Helpers\Require.cs">
       <Link>Helpers\Require.cs</Link>

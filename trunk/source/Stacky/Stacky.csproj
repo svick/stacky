@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiException.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\Execute.cs" />
     <Compile Include="Helpers\Paging\PageEnumerator.cs" />
     <Compile Include="Helpers\Paging\PagerInfo.cs" />
     <Compile Include="Helpers\Paging\StackyEnumerable.cs" />

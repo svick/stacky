@@ -20,7 +20,7 @@ namespace Stacky
         public int Id
         {
             get { return id; }
-            set { id = value; OnPropertyChanged("Id"); }
+            set { id = value; NotifyOfPropertyChange(() => Id); }
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Stacky
         public UserType Type
         {
             get { return type; }
-            set { type = value; OnPropertyChanged("Type"); }
+            set { type = value; NotifyOfPropertyChange(() => Type); }
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Stacky
         public string DisplayName
         {
             get { return displayName; }
-            set { displayName = value; OnPropertyChanged("DisplayName"); }
+            set { displayName = value; NotifyOfPropertyChange(() => DisplayName); }
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Stacky
         public int Reputation
         {
             get { return reputation; }
-            set { reputation = value; OnPropertyChanged("Reputation"); }
+            set { reputation = value; NotifyOfPropertyChange(() => Reputation); }
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Stacky
         public string EmailHash
         {
             get { return emailHash; }
-            set { emailHash = value; OnPropertyChanged("EmailHash"); OnPropertyChanged("GravatarUrl"); }
+            set { emailHash = value; NotifyOfPropertyChange(() => EmailHash); NotifyOfPropertyChange(() => GravatarUrl); }
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Stacky
         public Site Site
         {
             get { return site; }
-            set { site = value; OnPropertyChanged("Site"); }
+            set { site = value; NotifyOfPropertyChange(() => Site); }
         }
     }
 }

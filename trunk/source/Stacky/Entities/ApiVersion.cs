@@ -18,7 +18,7 @@ namespace Stacky
         public string Version
         {
             get { return version; }
-            set { version = value; OnPropertyChanged("Version"); }
+            set { version = value; NotifyOfPropertyChange(() => Version); }
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Stacky
         public string Revision
         {
             get { return revision; }
-            set { revision = value; OnPropertyChanged("Revision"); }
+            set { revision = value; NotifyOfPropertyChange(() => Revision); }
         }
     }
 }

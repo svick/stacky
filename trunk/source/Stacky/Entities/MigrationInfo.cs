@@ -20,7 +20,7 @@ namespace Stacky
         public int NewQuestionId
         {
             get { return newQuestionId; }
-            set { newQuestionId = value; OnPropertyChanged("NewQuestionId"); }
+            set { newQuestionId = value; NotifyOfPropertyChange(() => NewQuestionId); }
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Stacky
         public Site ToSite
         {
             get { return toSite; }
-            set { toSite = value; OnPropertyChanged("ToSite"); }
+            set { toSite = value; NotifyOfPropertyChange(() => ToSite); }
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Stacky
         public DateTime OnDate
         {
             get { return onDate; }
-            set { onDate = value; OnPropertyChanged("OnDate"); }
+            set { onDate = value; NotifyOfPropertyChange(() => OnDate); }
         }
     }
 }

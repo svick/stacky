@@ -24,7 +24,7 @@ namespace Stacky
         public UserEventType Type
         {
             get { return type; }
-            set { type = value; OnPropertyChanged("Type"); }
+            set { type = value; NotifyOfPropertyChange(() => Type); }
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Stacky
         public int PostId
         {
             get { return postId; }
-            set { postId = value; OnPropertyChanged("PostId"); }
+            set { postId = value; NotifyOfPropertyChange(() => PostId); }
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Stacky
         public int CommentId
         {
             get { return commentId; }
-            set { commentId = value; OnPropertyChanged("CommentId"); }
+            set { commentId = value; NotifyOfPropertyChange(() => CommentId); }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Stacky
         public string Action
         {
             get { return action; }
-            set { action = value; OnPropertyChanged("Action"); }
+            set { action = value; NotifyOfPropertyChange(() => Action); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Stacky
         public string Description
         {
             get { return description; }
-            set { description = value; OnPropertyChanged("Description"); }
+            set { description = value; NotifyOfPropertyChange(() => Description); }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Stacky
         public string Detail
         {
             get { return detail; }
-            set { detail = value; OnPropertyChanged("Detail"); }
+            set { detail = value; NotifyOfPropertyChange(() => Detail); }
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Stacky
         public DateTime CreationDate
         {
             get { return creationDate; }
-            set { creationDate = value; OnPropertyChanged("CreationDate"); }
+            set { creationDate = value; NotifyOfPropertyChange(() => CreationDate); }
         }
     }
 }

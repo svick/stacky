@@ -46,7 +46,7 @@ namespace Stacky
         public int Id
         {
             get { return id; }
-            set { id = value; OnPropertyChanged("Id"); }
+            set { id = value; NotifyOfPropertyChange(() => Id); }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Stacky
         public UserType Type
         {
             get { return type; }
-            set { type = value; OnPropertyChanged("Type"); }
+            set { type = value; NotifyOfPropertyChange(() => Type); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Stacky
         public string DisplayName
         {
             get { return displayName; }
-            set { displayName = value; OnPropertyChanged("DisplayName"); }
+            set { displayName = value; NotifyOfPropertyChange(() => DisplayName); }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Stacky
         public DateTime CreationDate
         {
             get { return creationDate; }
-            set { creationDate = value; OnPropertyChanged("CreationDate"); }
+            set { creationDate = value; NotifyOfPropertyChange(() => CreationDate); }
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Stacky
         public int Reputation
         {
             get { return reputation; }
-            set { reputation = value; OnPropertyChanged("Reputation"); }
+            set { reputation = value; NotifyOfPropertyChange(() => Reputation); }
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Stacky
         public string EmailHash
         {
             get { return emailHash; }
-            set { emailHash = value; OnPropertyChanged("EmailHash"); OnPropertyChanged("GravatarUrl"); }
+            set { emailHash = value; NotifyOfPropertyChange(() => EmailHash); NotifyOfPropertyChange(() => GravatarUrl); }
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Stacky
         public int? Age
         {
             get { return age; }
-            set { age = value; OnPropertyChanged("Age"); }
+            set { age = value; NotifyOfPropertyChange(() => Age); }
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Stacky
         public DateTime LastAccessDate
         {
             get { return lastAccessDate; }
-            set { lastAccessDate = value; OnPropertyChanged("LastAccessDate"); }
+            set { lastAccessDate = value; NotifyOfPropertyChange(() => LastAccessDate); }
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Stacky
         public string Website
         {
             get { return website; }
-            set { website = value; OnPropertyChanged("Website"); }
+            set { website = value; NotifyOfPropertyChange(() => Website); }
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Stacky
         public string Location
         {
             get { return location; }
-            set { location = value; OnPropertyChanged("Location"); }
+            set { location = value; NotifyOfPropertyChange(() => Location); }
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Stacky
         public string AboutMe
         {
             get { return aboutMe; }
-            set { aboutMe = value; OnPropertyChanged("AboutMe"); }
+            set { aboutMe = value; NotifyOfPropertyChange(() => AboutMe); }
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Stacky
         public int QuestionCount
         {
             get { return questionCount; }
-            set { questionCount = value; OnPropertyChanged("QuestionCount"); }
+            set { questionCount = value; NotifyOfPropertyChange(() => QuestionCount); }
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Stacky
         public int AnswerCount
         {
             get { return answerCount; }
-            set { answerCount = value; OnPropertyChanged("AnswerCount"); }
+            set { answerCount = value; NotifyOfPropertyChange(() => AnswerCount); }
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Stacky
         public int ViewCount
         {
             get { return viewCount; }
-            set { viewCount = value; OnPropertyChanged("ViewCount"); }
+            set { viewCount = value; NotifyOfPropertyChange(() => ViewCount); }
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Stacky
         public int UpVotes
         {
             get { return upVotes; }
-            set { upVotes = value; OnPropertyChanged("UpVotes"); }
+            set { upVotes = value; NotifyOfPropertyChange(() => UpVotes); }
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace Stacky
         public int DownVotes
         {
             get { return downVotes; }
-            set { downVotes = value; OnPropertyChanged("DownVotes"); }
+            set { downVotes = value; NotifyOfPropertyChange(() => DownVotes); }
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Stacky
         public int? AcceptRate
         {
             get { return acceptRate; }
-            set { acceptRate = value; OnPropertyChanged("AcceptRate"); }
+            set { acceptRate = value; NotifyOfPropertyChange(() => AcceptRate); }
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace Stacky
         public BadgeCounts BadgeCounts
         {
             get { return badgeCounts; }
-            set { badgeCounts = value; OnPropertyChanged("BadgeCounts"); }
+            set { badgeCounts = value; NotifyOfPropertyChange(() => BadgeCounts); }
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Stacky
         public Guid AssociationId
         {
             get { return associationId; }
-            set { associationId = value; OnPropertyChanged("AssociationId"); }
+            set { associationId = value; NotifyOfPropertyChange(() => AssociationId); }
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Stacky
         public string QuestionsUrl
         {
             get { return questionsUrl; }
-            set { questionsUrl = value; OnPropertyChanged("QuestionsUrl"); }
+            set { questionsUrl = value; NotifyOfPropertyChange(() => QuestionsUrl); }
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace Stacky
         public string AnswersUrl
         {
             get { return answersUrl; }
-            set { answersUrl = value; OnPropertyChanged("AnswersUrl"); }
+            set { answersUrl = value; NotifyOfPropertyChange(() => AnswersUrl); }
         }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace Stacky
         public string FavoritesUrl
         {
             get { return favoritesUrl; }
-            set { favoritesUrl = value; OnPropertyChanged("FavoritesUrl"); }
+            set { favoritesUrl = value; NotifyOfPropertyChange(() => FavoritesUrl); }
         }
 
         /// <summary>
@@ -294,7 +294,7 @@ namespace Stacky
         public string TagsUrl
         {
             get { return tagsUrl; }
-            set { tagsUrl = value; OnPropertyChanged("TagsUrl"); }
+            set { tagsUrl = value; NotifyOfPropertyChange(() => TagsUrl); }
         }
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace Stacky
         public string BadgesUrl
         {
             get { return badgesUrl; }
-            set { badgesUrl = value; OnPropertyChanged("BadgesUrl"); }
+            set { badgesUrl = value; NotifyOfPropertyChange(() => BadgesUrl); }
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace Stacky
         public string TimelineUrl
         {
             get { return timelineUrl; }
-            set { timelineUrl = value; OnPropertyChanged("TimelineUrl"); }
+            set { timelineUrl = value; NotifyOfPropertyChange(() => TimelineUrl); }
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace Stacky
         public string MentionedUrl
         {
             get { return mentionedUrl; }
-            set { mentionedUrl = value; OnPropertyChanged("MentionedUrl"); }
+            set { mentionedUrl = value; NotifyOfPropertyChange(() => MentionedUrl); }
         }
 
         /// <summary>
@@ -338,7 +338,7 @@ namespace Stacky
         public string CommentsUrl
         {
             get { return commentsUrl; }
-            set { commentsUrl = value; OnPropertyChanged("CommentsUrl"); }
+            set { commentsUrl = value; NotifyOfPropertyChange(() => CommentsUrl); }
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace Stacky
         public string ReputationUrl
         {
             get { return reputationUrl; }
-            set { reputationUrl = value; OnPropertyChanged("ReputationUrl"); }
+            set { reputationUrl = value; NotifyOfPropertyChange(() => ReputationUrl); }
         }
     }
 

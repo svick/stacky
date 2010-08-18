@@ -179,6 +179,9 @@
     <Compile Include="..\Stacky\Helpers\EnumHelper.cs">
       <Link>Helpers\EnumHelper.cs</Link>
     </Compile>
+    <Compile Include="..\Stacky\Helpers\Execute.cs">
+      <Link>Helpers\Execute.cs</Link>
+    </Compile>
     <Compile Include="..\Stacky\Helpers\Require.cs">
       <Link>Helpers\Require.cs</Link>
     </Compile>

@@ -19,7 +19,7 @@ namespace Stacky
         public int Gold
         {
             get { return gold; }
-            set { gold = value; OnPropertyChanged("Gold"); }
+            set { gold = value; NotifyOfPropertyChange(() => Gold); }
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Stacky
         public int Silver
         {
             get { return silver; }
-            set { silver = value; OnPropertyChanged("Silver"); }
+            set { silver = value; NotifyOfPropertyChange(() => Silver); }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Stacky
         public int Bronze
         {
             get { return bronze; }
-            set { bronze = value; OnPropertyChanged("Bronze"); }
+            set { bronze = value; NotifyOfPropertyChange(() => Bronze); }
         }
     }
 }

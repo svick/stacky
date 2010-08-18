@@ -23,7 +23,7 @@ namespace Stacky
         public int Id
         {
             get { return id; }
-            set { id = value; OnPropertyChanged("Id"); }
+            set { id = value; NotifyOfPropertyChange(() => Id); }
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Stacky
         public BadgeClass Rank
         {
             get { return rank; }
-            set { rank = value; OnPropertyChanged("Rank"); }
+            set { rank = value; NotifyOfPropertyChange(() => Rank); }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Stacky
         public string Name
         {
             get { return name; }
-            set { name = value; OnPropertyChanged("Name"); }
+            set { name = value; NotifyOfPropertyChange(() => Name); }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Stacky
         public string Description
         {
             get { return description; }
-            set { description = value; OnPropertyChanged("Description"); }
+            set { description = value; NotifyOfPropertyChange(() => Description); }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Stacky
         public int AwardCount
         {
             get { return awardCount; }
-            set { awardCount = value; OnPropertyChanged("AwardCount"); }
+            set { awardCount = value; NotifyOfPropertyChange(() => AwardCount); }
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Stacky
         public bool IsTagBased
         {
             get { return isTagBased; }
-            set { isTagBased = value; OnPropertyChanged("IsTagBased"); }
+            set { isTagBased = value; NotifyOfPropertyChange(() => IsTagBased); }
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Stacky
         public string BadgeRecipientsUrl
         {
             get { return badgeRecipientsUrl; }
-            set { badgeRecipientsUrl = value; OnPropertyChanged("BadgeRecipientsUrl"); }
+            set { badgeRecipientsUrl = value; NotifyOfPropertyChange(() => BadgeRecipientsUrl); }
         }
     }
 }
